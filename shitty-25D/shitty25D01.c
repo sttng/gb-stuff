@@ -4,8 +4,8 @@
 #include <string.h>
 
 UINT8 x = 1, y = 1, i = 3, j, f;
-UINT8 c1, c2, c3, c4, c5, c6, c7, c8; //Draw the wall lines top, bottom, left right.
-UINT8 c1o, c2o, c3o, c4o, c5o, c6o, c7o, c8o; 
+INT16 c1, c2, c3, c4, c5, c6; //Draw the wall lines top, bottom, left right.
+INT16 c1o, c2o, c3o, c4o, c5o, c6o; 
 
 //The end coordinates for the line segment representing a "wall"
 UINT8 wall[6][4] = {
@@ -13,9 +13,13 @@ UINT8 wall[6][4] = {
 	{70, 20, 70, 25},
 	{70, 25, 72, 30},
 	{72, 30, 70, 35},
-	{70, 35, 65, 38}, 	/*wx1 = 70, wy1 = 35, wx2 = 65, wy2 = 40; */
+	{70, 35, 65, 38}, 	//wx1 = 70, wy1 = 35, wx2 = 65, wy2 = 40; 
 	{65,38 , 65, 38} //Last line of 1 px lengh to draw the last horizontal line
 };
+/*
+UINT8 wall[1][4] = {
+	{65, 20, 70, 20} //Last line of 1 px lengh to draw the last horizontal line
+};*/
 
 // The coordinates of the player
 UINT8 px = 50, py = 50;
@@ -64,12 +68,12 @@ INT8 cosinus_INT8(UINT8 x)
 	return x;
 }
 
-INT16 fncross(UINT8 x1,UINT8 y1, UINT8 x2, UINT8 y2){
+INT16 fncross(INT16 x1, INT16 y1, INT16 x2, INT16 y2){
 	INT16 cross = x1*y2 - y1*x2;
 	return cross;
 }
 
-void intersect(INT16 x1, INT16 y1, INT16 x2,INT16 y2, INT16 x3, INT16 y3, INT16 x4, INT16 y4, INT16 *ix, INT16 *iz){
+void intersect(INT16 x1, INT16 y1, INT16 x2, INT16 y2, INT16 x3, INT16 y3, INT16 x4, INT16 y4, INT16 *ix, INT16 *iz){
 	INT16 x = fncross(x1,y1, x2,y2);
 	INT16 y = fncross(x3,y3, x4,y4);
 	INT16 det = fncross(x1-x2, y1-y2, x3-x4, y3-y4);
@@ -95,12 +99,8 @@ void main() {
 	c4 = 0;
 	c5 = 0;
 	c6 = 0;
-	c7 = 0;
-	c8 = 0;
 
 	while (1) {
-		
-
 	
 		for ( i = 0; i < 6; i++ ) {
 		
@@ -119,63 +119,97 @@ void main() {
 				  tx1 = (tx1 * sin_angle) / 128 - (ty1 * cos_angle) / 128;
 				  tx2 = (tx2 * sin_angle) / 128 - (ty2 * cos_angle) / 128;
 			
-			 /* Is the wall at least partially in front of the player? */
-			if(tz1 > 0 || tz2 > 0) {
-				/*INT16 ix, iz;
-				intersect(tx1,tz1, tx2,tz2, 0, 0, -200, 5, &ix, &iz); //, ix1,iz1)
+			/* Is the wall at least partially in front of the player? */
+			if(tz1 <= 0 && tz2 <= 0) continue;
+			
+			/* If it's partially behind the player, clip it against player's view frustrum */
+			if(tz1 <= 0 || tz2 <= 0) {
+				
+				gotogxy(1, 14); gprintln(tz1, 10, SIGNED);
+				gotogxy(1, 15); gprintln(tz2, 10, SIGNED);
+				
+				INT16 ix, iz;
+				intersect(tx1,tz1, tx2,tz2, -1, 1, -20,5, &ix, &iz); //, ix1,iz1)
 				INT16 ix1 = ix;
 				INT16 iz1 = iz;
-				intersect(tx1,tz1, tx2,tz2, 0,0, 200, 5, &ix, &iz);
+				intersect(tx1,tz1, tx2,tz2, 1,1,  20,5, &ix, &iz);
 				INT16 ix2 = ix;
 				INT16 iz2 = iz;
 				if(tz1 <= 0) { if(iz1 > 0) { tx1 = ix1; tz1 = iz1; } else { tx1 = ix2; tz1 = iz2; } }
-				if(tz1 <= 0) { if(iz1 > 0) { tx2 = ix1; tz2 = iz1; } else { tx2 = ix2; tz2 = iz2; } }
-				*/
-				/*
-				gotogxy(14, 16); 
-				gprintln(tz1, 10, UNSIGNED);
-				gotogxy(14, 17); 
-				gprintln(tz2, 10, UNSIGNED);*/
+				if(tz2 <= 0) { if(iz1 > 0) { tx2 = ix1; tz2 = iz1; } else { tx2 = ix2; tz2 = iz2; } }
 				
-				//Perspective-transformations
-				INT16 x1 = -tx1 * 16 / tz1;
-				INT16 y1a = -64 / tz1;
-				INT16 y1b =  64 / tz1;
-				
-				INT16 x2 = -tx2 * 16 / tz2;
-				INT16 y2a = -64 / tz2;
-				INT16 y2b =  64 / tz2;
+				gotogxy(14, 14); gprintln(tz1, 10, SIGNED);
+				gotogxy(14, 15); gprintln(tz2, 10, SIGNED);
 
-				
-				
-				c1 = 64+x1;
-				c2 = 64+y1a;
-				c3 = 64+x2;
-				c4 = 64+y2a;
-				c5 = 64+x1;
-				c6 = 64+y1b;
-				c7 = 64+x2;
-				c8 = 64+y2b;
-				
-				//Overwrite the old walls - didn't find a better way currently. This results in heavy flicker.
-				/*plot(1, 1, 0, SOLID);
-				line(c1o, c2o, c3o, c4o); //top
-				line(c1o, c6o, c3o, c8o); //bottom
-				line(c1o, c2o, c1o, c6o); //left
-				line(c7o, c4o, c3o, c8o); //right*/
-				
-				//box(0, 0, 125, 135, M_FILL); 	
-				
-				//memset(bg_pointer, 0x00, bgp_size);
-				//set_bkg_data(0, 120, alpha);
-				
-				//The new lines
-				plot(1, 1, 2, SOLID);
-				line(c1, c2, c3, c4); //top
-				line(c1, c6, c3, c8); //bottom
-				line(c1, c2, c1, c6); //left
-				line(c7, c4, c3, c8); //right			
 			}
+			
+			//Perspective-transformations
+			INT16 x1 = -tx1 * 16 / tz1;
+			INT16 y1a = -48 / tz1;
+			INT16 y1b =  48 / tz1;
+			
+			INT16 x2 = -tx2 * 16 / tz2;
+			INT16 y2a = -48 / tz2;
+			INT16 y2b =  48 / tz2;
+
+			c1 = 64+x1;
+			c2 = 64+y1a;
+			c3 = 64+x2;
+			c4 = 64+y2a;
+			c5 = 64+y1b;
+			c6 = 64+y2b;
+			
+			//Overwrite the old walls - didn't find a better way currently. This results in heavy flicker.
+			/*plot(1, 1, 0, SOLID);
+			line(c1o, c2o, c3o, c4o); //top
+			line(c1o, c5o, c3o, c6o); //bottom
+			line(c1o, c2o, c1o, c5o); //left
+			line(c3o, c4o, c3o, c6o); //right*/
+			
+			//box(0, 0, 125, 135, M_FILL); 	
+			
+			//memset(bg_pointer, 0x00, bgp_size);
+			//set_bkg_data(0, 120, alpha);
+			
+			/*if(c1 <= 0 || c2 <= 0 || c3 <= 0 || c4 <= 0 || c5 <= 0 || c6 <= 0) {
+				//
+				gotogxy(1, 16); 
+				gprintln(c1, 10, SIGNED);
+				gotogxy(1, 17); 
+				gprintln(c3, 10, SIGNED);
+			}*/
+			
+			//Pseudo Line clipping at the left of the screen
+			if(c1 <= 0) {
+				c1 = 0;
+			}
+			if(c3 <= 0) {
+				c3 = 0;
+			}
+			//Pseudo Line clipping at the top of the screen
+			if(c2 <= 0) {
+				c2 = 0;
+			}
+			if(c4 <= 0) {
+				c4 = 0;
+			}
+			
+			//Pseudo Line clipping at the right of the screen
+			if(c1 > 159) {
+				c1 = 159;
+			}
+			if(c3 > 159) {
+				c3 = 159;
+			}
+			
+			
+			//The new lines
+			plot(1, 1, 2, SOLID);
+			line(c1, c2, c3, c4); //top
+			line(c1, c5, c3, c6); //bottom
+			line(c1, c2, c1, c5); //left
+			line(c3, c4, c3, c6); //right			
+		
 		}
 
 		if (joypad() == J_UP ){
