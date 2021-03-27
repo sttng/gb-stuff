@@ -8,7 +8,7 @@ UINT8 px = 50, py = 50;
 UINT8 angle = 254;
 
 //127x the sine value 
-UINT8 si_cotable[65] = {0,3,6,9,12,15,19,22,25,28,31,34,37,40,43,46,48,51,54,57,60,62,65,68,70,73,75,78,80,83,85,87,89,92,94,96,98,100,102,104,105,107,109,110,112,113,115,116,117,118,119,120,121,122,123,124,124,125,125,126,126,126,127,127,127};
+const UINT8 si_cotable[65] = {0,3,6,9,12,15,19,22,25,28,31,34,37,40,43,46,48,51,54,57,60,62,65,68,70,73,75,78,80,83,85,87,89,92,94,96,98,100,102,104,105,107,109,110,112,113,115,116,117,118,119,120,121,122,123,124,124,125,125,126,126,126,127,127,127};
 
 /** Returns the 127x times value of an 0-255 adjusted degree angle. i.e. 0=0deg and 255=359deg. Like this there is a min roatition of 1.4 degrees*/
 INT8 sinus_INT8(UINT8 x)
@@ -59,12 +59,12 @@ void main() {
 		sin_angle = sinus_INT8(angle);
 
 		if (joypad() == J_UP ){
-			px = px + cos_angle/30;
-			py = py + sin_angle/30;
+			px = px + cos_angle/32;
+			py = py + sin_angle/32;
 		}
 		if (joypad() == J_DOWN){
-			px = px - cos_angle/30;
-			py = py - sin_angle/30;
+			px = px - cos_angle/32;
+			py = py - sin_angle/32;
 
 		}
 		if (joypad() == J_LEFT){
@@ -74,16 +74,16 @@ void main() {
 			angle++;
 		}
 		if (joypad() == J_A){ 
-			px = px + sin_angle/30; 
-			py = py - cos_angle/30;
+			px = px + sin_angle/32; 
+			py = py - cos_angle/32;
 		}
 		if (joypad() == J_B){ 
-			px = px - sin_angle/30;
-			py = py + cos_angle/30;
+			px = px - sin_angle/32;
+			py = py + cos_angle/32;
 		}
 		
-		int cx = cos_angle*40/127 + px;
-		int sy = sin_angle*40/127 + py;
+		int cx = cos_angle*40/128 + px;
+		int sy = sin_angle*40/128 + py;
 		//line(px,py, cx, sy);
 		plot_point(cx, sy); // Plot a single pixel on the screen
 
