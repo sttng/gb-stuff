@@ -1,7 +1,10 @@
 // Original from https://github.com/id-Software/DOOM/blob/master/linuxdoom-1.10/tables.c
+// but using derived version https://github.com/Kippykip/GBADoom/blob/master/source/tables.c
 // Only takes every 8th value to clamp it down to 1024 + 256 items
-// devided by 2 to fit into signed int16 (-32768 to 32767) 
-const INT16 finesine[1280] = {
+// devided by 2 to fit into signed int16 (-32768 to 32767)
+//const fixed_t finesine[10240] = //need to define fixed_t still, most likely to be 8.8
+const INT16 finesine[1280] = 
+{
 13,
 214,
 415,
