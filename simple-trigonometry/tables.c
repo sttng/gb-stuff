@@ -4,6 +4,9 @@
 // devided by 2 to fit into signed int16 (-32768 to 32767)
 //const fixed_t finesine[10240] = //need to define fixed_t still, most likely to be 8.8
 
+
+#include "tables.h"
+
 //const INT16 *const finecosine = &finesine[FINEANGLES/4];
 
 const INT16 finesine[1280] = 
