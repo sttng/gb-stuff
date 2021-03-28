@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <assert.h>
 
+//  signed 8.8 format. That means having an INT8 range of +/- 127/8 and floating point accuracy of 1/256 (~0.00390625)
+
 typedef INT16 fixed_t;
 
 #define FRACBITS        8
