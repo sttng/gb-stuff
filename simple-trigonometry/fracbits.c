@@ -20,7 +20,7 @@ int main()
 
   // testing inverses is often an easy way to make sure things work as expected
   assert(125 == FP_INTEGER(INT_TO_FP(125)));
-  assert(0.5 == FP_DECIMAL(FLOAT_TO_FP(124.5)));
+  assert(0.25 == FP_DECIMAL(FLOAT_TO_FP(124.25)));
   assert(123 == FP_INTEGER(FLOAT_TO_FP(123.5)));
   
   assert(0 == FP_INTEGER(min));
@@ -29,8 +29,18 @@ int main()
   assert(-128 == FP_INTEGER(max_neg));
 
   // we're losing precision - so we test by isolating the interval
-  assert( 0.004 > FP_DECIMAL(min));
-  assert( 0.0039 < FP_DECIMAL(min));
+  assert(0.004 > FP_DECIMAL(min));
+  assert(0.0039 < FP_DECIMAL(min));
+  
+  
+  //addition and subtraction work as expected
+  fixed_t a1 = FLOAT_TO_FP(100.123) - FLOAT_TO_FP(0.123);
+  fixed_t a2 = FLOAT_TO_FP(100.123) + FLOAT_TO_FP(-0.123);
+  
+  assert(100 == FP_INTEGER(a1));
+  assert(0.004 > FP_DECIMAL(a1));
+  assert(100 == FP_INTEGER(a2));
+  assert(0.004 > FP_DECIMAL(a2));
 
   return 0;
 }
