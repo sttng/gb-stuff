@@ -53,9 +53,8 @@ int main()
   assert(100 == FP_INTEGER(a2));
   assert(0.004 > FP_DECIMAL(a2));
 
-  fixed_t a3 = FLOAT_TO_FP(-100.123);
-  printf("int part (u):%d \t\n", a3>>8);
-  printf("float part:%u \t\n", a3 & 0x00ff);
+  assert(FLOAT_TO_FP(124.17) == D_abs(FLOAT_TO_FP(-124.17)));
+  
   
   return 0;
 }
