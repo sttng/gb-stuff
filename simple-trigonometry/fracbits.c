@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <assert.h>
 
-typedef UINT16 fixed_t;
+typedef INT16 fixed_t;
 
 #define FRACBITS        8
 #define FRACUNIT        (1 << FRACBITS)
@@ -22,14 +22,15 @@ int main()
   assert(125 == FP_INTEGER(INT_TO_FP(125)));
   assert(0.5 == FP_DECIMAL(FLOAT_TO_FP(124.5)));
   assert(123 == FP_INTEGER(FLOAT_TO_FP(123.5)));
+  
+  assert(0 == FP_INTEGER(min));
+  assert(-1 == FP_INTEGER(neg_one));
+  assert(127 == FP_INTEGER(max_pos));
+  assert(-128 == FP_INTEGER(max_neg));
 
-  /*assert( 0 == FP_INTEGER( min ) );
-  assert( -1 == FP_INTEGER( neg_one ) );
-  assert( 32767 == FP_INTEGER( max_pos ) );
-  assert( -32767 == FP_INTEGER( max_neg ) );
   // we're losing precision - so we test by isolating the interval
-  assert( 0.000016 > FP_DECIMAL( min ) );
-  assert( 0.000015 < FP_DECIMAL( min ) );*/
+  assert( 0.004 > FP_DECIMAL(min));
+  assert( 0.0039 < FP_DECIMAL(min));
 
   return 0;
 }
