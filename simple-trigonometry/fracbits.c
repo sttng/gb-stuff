@@ -13,6 +13,15 @@ typedef INT16 fixed_t;
 #define INT_TO_FP(k)    (fixed_t)(k << FRACBITS)
 #define FLOAT_TO_FP(k)  (fixed_t)((float)k * FRACUNIT)
 
+
+inline static fixed_t D_abs(fixed_t x)
+{
+  fixed_t _t = (x),_s;
+  _s = _t >> (8*sizeof _t-1);
+  return (_t^_s)-_s;
+}
+
+
 int main()
 {
   fixed_t max_pos = 0x7fff;
@@ -44,5 +53,9 @@ int main()
   assert(100 == FP_INTEGER(a2));
   assert(0.004 > FP_DECIMAL(a2));
 
+  fixed_t a3 = FLOAT_TO_FP(-100.123);
+  printf("int part (u):%d \t\n", a3>>8);
+  printf("float part:%u \t\n", a3 & 0x00ff);
+  
   return 0;
 }
