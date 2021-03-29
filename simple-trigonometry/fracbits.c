@@ -67,13 +67,13 @@ inline static fixed_t FixedMod(fixed_t a, fixed_t b)
 }
 
 
-// Returns 100 times the FP number. So -17.17 will become -1717 for example.
+// Returns 100 times the Fixed Point number. So -17.17 will become -1717 for example.
 INT16 fp_to_float(fixed_t a)
 {
-  INT8 whole_part = a >> FRACBITS;
-  UINT16 frac_part = ((a&0x80) + (a&0x40) + (a&0x20) + (a&0x10) + (a&0x08) + (a&0x04) + (a&0x02) + (a&0x01)) * 100 / FRACUNIT;
-  INT16 z = whole_part * 100;
-  return z + frac_part;
+  INT8 fp_int = a >> FRACBITS;
+  UINT16 fp_dec = ((a&0x80) + (a&0x40) + (a&0x20) + (a&0x10) + (a&0x08) + (a&0x04) + (a&0x02) + (a&0x01)) * 100 / FRACUNIT;
+  INT16 b = fp_int * 100;
+  return b + fp_dec;
 }
 
 int main()
@@ -95,9 +95,7 @@ int main()
 
   // we're losing precision - so we test by isolating the interval
   assert(0.004 > FP_DECIMAL(min));
-  
   assert(0.0039 < FP_DECIMAL(min));
-  
   
   //addition and subtraction work as expected
   fixed_t a1 = FLOAT_TO_FP(100.123) - FLOAT_TO_FP(0.123);
@@ -108,7 +106,11 @@ int main()
   assert(100 == FP_INTEGER(a2));
   assert(0.004 > FP_DECIMAL(a2));
 
-  assert(FLOAT_TO_FP(124.17) == D_abs(FLOAT_TO_FP(-124.17)));
+  //absolute value works as expected
+  assert(FLOAT_TO_FP(124.176) == D_abs(FLOAT_TO_FP(-124.176)));
+  assert(FLOAT_TO_FP(124.176) == D_abs(FLOAT_TO_FP(124.176)));
+  
+  //assert(FLOAT_TO_FP(2.36328125) == FixedMod(FLOAT_TO_FP(15.27), FLOAT_TO_FP(3.23)));
   
   printf("hexadecimal:%x \t\n", FLOAT_TO_FP(-17.17));
   printf("fp to float:%d \t\n", fp_to_float(FLOAT_TO_FP(-17.17)));
