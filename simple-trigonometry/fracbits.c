@@ -2,7 +2,10 @@
 #include <stdio.h>
 #include <assert.h>
 
-//  signed 8.8 format. That means having an INT8 range of +/- 127/8 and floating point accuracy of 1/256 (~0.00390625)
+/*
+ * Fixed point, 16bit as 8.8.
+ * That means having an INT8 range of +/- 127/8 for the whole part and floating point accuracy of 1/256 (~0.00390625)
+ */
 
 typedef INT16 fixed_t;
 
@@ -13,6 +16,12 @@ typedef INT16 fixed_t;
 #define INT_TO_FP(k)    (fixed_t)(k << FRACBITS)
 #define FLOAT_TO_FP(k)  (fixed_t)((float)k * FRACUNIT)
 
+/*
+ * Absolute Value
+ *
+ * killough 5/10/98: In djgpp, use inlined assembly for performance
+ * killough 9/05/98: better code seems to be gotten from using inlined C
+ */
 
 inline static fixed_t D_abs(fixed_t x)
 {
@@ -21,7 +30,6 @@ inline static fixed_t D_abs(fixed_t x)
   return (_t^_s)-_s;
 }
 
-
 /*
  * Fixed Point Multiplication
  */
@@ -29,7 +37,6 @@ inline static fixed_t D_abs(fixed_t x)
 inline static  fixed_t FixedMul(fixed_t a, fixed_t b){
   return (INT32)a * (INT32)b / FRACUNIT;
 }
-
 
 /*
  * Fixed Point Division
@@ -40,7 +47,6 @@ inline static fixed_t FixedDiv(fixed_t a, fixed_t b)
   return (INT32)a * FRACUNIT / b;
 }
 
-
 /* CPhipps -
  * FixedMod - returns a % b, guaranteeing 0<=a<b
  * (notice that the C standard for % does not guarantee this)
@@ -48,24 +54,24 @@ inline static fixed_t FixedDiv(fixed_t a, fixed_t b)
 
 inline static fixed_t FixedMod(fixed_t a, fixed_t b)
 {
-    if(!a)
-        return 0;
+  if(!a)
+    return 0;
 
-    if (b & (b-1))
-    {
-        fixed_t r = a % b;
-        return ((r<0) ? r+b : r);
-    }
-    else
-        return (a & (b-1));
+  if (b & (b-1))
+  {
+    fixed_t r = a % b;
+    return ((r<0) ? r+b : r);
+  }
+  else
+    return (a & (b-1));
 }
 
 
 // Returns 100 times the FP number. So -17.17 will become -1717 for example.
-INT16 fp_to_float(fixed_t x)
+INT16 fp_to_float(fixed_t a)
 {
-  INT8 whole_part = x >> FRACBITS;
-  UINT16 frac_part = (((x&0x80)*100) + ((x&0x40)*100) + ((x&0x20)*100) + ((x&0x10)*100) + ((x&0x08)*100) + ((x&0x04)*100) + ((x&0x02)*100) + ((x&0x01)*100))/FRACUNIT;
+  INT8 whole_part = a >> FRACBITS;
+  UINT16 frac_part = (((a&0x80)*100) + ((a&0x40)*100) + ((a&0x20)*100) + ((a&0x10)*100) + ((a&0x08)*100) + ((a&0x04)*100) + ((a&0x02)*100) + ((a&0x01)*100)) / FRACUNIT;
   INT16 z = whole_part * 100;
   return z + frac_part;
 }
