@@ -71,7 +71,7 @@ inline static fixed_t FixedMod(fixed_t a, fixed_t b)
 INT16 fp_to_float(fixed_t a)
 {
   INT8 whole_part = a >> FRACBITS;
-  UINT16 frac_part = (((a&0x80)*100) + ((a&0x40)*100) + ((a&0x20)*100) + ((a&0x10)*100) + ((a&0x08)*100) + ((a&0x04)*100) + ((a&0x02)*100) + ((a&0x01)*100)) / FRACUNIT;
+  UINT16 frac_part = ((a&0x80) + (a&0x40) + (a&0x20) + (a&0x10) + (a&0x08) + (a&0x04) + (a&0x02) + (a&0x01)) * 100 / FRACUNIT;
   INT16 z = whole_part * 100;
   return z + frac_part;
 }
