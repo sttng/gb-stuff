@@ -21,6 +21,14 @@ inline static fixed_t D_abs(fixed_t x)
   return (_t^_s)-_s;
 }
 
+// Returns 100 times the FP number. So -17.17 will become -1717
+INT16 fp_to_float(fixed_t x)
+{
+  INT8 whole_part = x >> FRACBITS;
+  UINT16 frac_part = (((x&0x80)*100) + ((x&0x40)*100) + ((x&0x20)*100) + ((x&0x10)*100) + ((x&0x08)*100) + ((x&0x04)*100) + ((x&0x02)*100) + ((x&0x01)*100))/FRACUNIT;
+  INT16 z = whole_part * 100;
+  return z + frac_part;
+}
 
 int main()
 {
@@ -41,6 +49,7 @@ int main()
 
   // we're losing precision - so we test by isolating the interval
   assert(0.004 > FP_DECIMAL(min));
+  
   assert(0.0039 < FP_DECIMAL(min));
   
   
@@ -54,6 +63,8 @@ int main()
   assert(0.004 > FP_DECIMAL(a2));
 
   assert(FLOAT_TO_FP(124.17) == D_abs(FLOAT_TO_FP(-124.17)));
+  printf("hexadecimal:%x \t\n", FLOAT_TO_FP(-17.17));
+  printf("fp to float:%d \t\n",  fp_to_float(FLOAT_TO_FP(-17.17)));
   
   
   return 0;
