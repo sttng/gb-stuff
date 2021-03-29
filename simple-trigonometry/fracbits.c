@@ -21,7 +21,47 @@ inline static fixed_t D_abs(fixed_t x)
   return (_t^_s)-_s;
 }
 
-// Returns 100 times the FP number. So -17.17 will become -1717
+
+/*
+ * Fixed Point Multiplication
+ */
+
+inline static  fixed_t FixedMul(fixed_t a, fixed_t b){
+  return (INT32)a * (INT32)b / FRACUNIT;
+}
+
+
+/*
+ * Fixed Point Division
+ */
+
+inline static fixed_t FixedDiv(fixed_t a, fixed_t b)
+{
+  return (INT32)a * FRACUNIT / b;
+}
+
+
+/* CPhipps -
+ * FixedMod - returns a % b, guaranteeing 0<=a<b
+ * (notice that the C standard for % does not guarantee this)
+ */
+
+inline static fixed_t FixedMod(fixed_t a, fixed_t b)
+{
+    if(!a)
+        return 0;
+
+    if (b & (b-1))
+    {
+        fixed_t r = a % b;
+        return ((r<0) ? r+b : r);
+    }
+    else
+        return (a & (b-1));
+}
+
+
+// Returns 100 times the FP number. So -17.17 will become -1717 for example.
 INT16 fp_to_float(fixed_t x)
 {
   INT8 whole_part = x >> FRACBITS;
@@ -37,7 +77,7 @@ int main()
   fixed_t min = 0x0001;
   fixed_t neg_one = 0xff00;
 
-  // testing inverses is often an easy way to make sure things work as expected
+  // testing inverses can be an easy way to make sure things work as expected
   assert(125 == FP_INTEGER(INT_TO_FP(125)));
   assert(0.25 == FP_DECIMAL(FLOAT_TO_FP(124.25)));
   assert(123 == FP_INTEGER(FLOAT_TO_FP(123.5)));
@@ -63,8 +103,12 @@ int main()
   assert(0.004 > FP_DECIMAL(a2));
 
   assert(FLOAT_TO_FP(124.17) == D_abs(FLOAT_TO_FP(-124.17)));
+  
   printf("hexadecimal:%x \t\n", FLOAT_TO_FP(-17.17));
-  printf("fp to float:%d \t\n",  fp_to_float(FLOAT_TO_FP(-17.17)));
+  printf("fp to float:%d \t\n", fp_to_float(FLOAT_TO_FP(-17.17)));
+  printf("modulo:%d \t\n", fp_to_float(FixedMod(FLOAT_TO_FP(15.2), FLOAT_TO_FP(3.23))));
+  printf("division:%d \t\n", fp_to_float(FixedDiv(FLOAT_TO_FP(122.21), FLOAT_TO_FP(-3.73))));
+  printf("mult:%d \t\n", fp_to_float(FixedMul(FLOAT_TO_FP(2.21), FLOAT_TO_FP(-3.73))));
   
   
   return 0;
