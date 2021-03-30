@@ -1300,8 +1300,8 @@ const INT16 finesine[1280] =
 // Maxed to +/- 32767 and adjusted to FP8.8 values (less precision, less max values)
 const fixed_t finetangent[512] =
 {
--65535,
--39266,
+-32768,
+-32767,
 -20227,
 -13621,
 -10267,
