@@ -39,6 +39,17 @@ inline static  fixed_t FixedMul(fixed_t a, fixed_t b){
 }
 
 /*
+ * Fixed Point Multiplication Unsigned 16x8: Multiplies a 16 bit value by an 8 bit one (both unsigned).
+ * https://www.nickpelling.com/gameboymultiply.html
+ * https://www.cpcwiki.eu/index.php/Programming:Integer_Multiplication#Classic_16bit_.2A_8bit_Unsigned
+ * Idea: Use for Sine/Cosine Mult. Just check the sign first and store it. Do the fast unsigned mult and adjust the result based on the sign later.
+ */
+
+inline static  fixed_t FixedMulU16x8(fixed_t a, fixed_t b){
+  return (INT32)a * (INT32)b / FRACUNIT;
+}
+
+/*
  * Fixed Point Division
  */
 
@@ -112,7 +123,7 @@ int main()
   
   //assert(FLOAT_TO_FP(2.36328125) == FixedMod(FLOAT_TO_FP(15.27), FLOAT_TO_FP(3.23)));
   
-  printf("hexadecimal:%x \t\n", FLOAT_TO_FP(-17.17));
+  printf("hexadecimal:%x \t\n", FLOAT_TO_FP(0.99609375));
   printf("fp to float:%d \t\n", fp_to_float(FLOAT_TO_FP(-17.17)));
   printf("modulo:%d \t\n", fp_to_float(FixedMod(FLOAT_TO_FP(15.2), FLOAT_TO_FP(3.23))));
   printf("division:%d \t\n", fp_to_float(FixedDiv(FLOAT_TO_FP(122.21), FLOAT_TO_FP(-3.73))));
