@@ -5,7 +5,7 @@
 
 /*
  * Fixed point (signed), 16bit as 8.8.
- * That means having an INT8 range of +/- 127/8 for the whole part and a floating point accuracy of 1/256 (~0.00390625)
+ * That means having an INT8 range of +/- 127/8 for the whole part and a floating point accuracy of 1/256 (~0.99609375 - 0.00390625)
  */
 
 typedef INT16 fixed_t;
@@ -90,7 +90,7 @@ inline static fixed_t FixedMod(fixed_t a, fixed_t b)
 }
 
 /*
- * Returns a shortened (only 2 decimals) string of a 8.8 fixed-point number
+ * Returns a shortened (only 2 decimals) string of an 8.8 fixed-point number
  */
 const char* fp_to_str(fixed_t a)
 {
@@ -105,7 +105,6 @@ const char* fp_to_str(fixed_t a)
   INT8 j = 0;
   if (( b + fp_dec)<10){ sprintf(result, "0.0%s", str); }
   if (( b + fp_dec)<100){ sprintf(result, "0.%s", str); }
-
   
   else {
     for (INT8 i = len-1; i > -1; i--){
@@ -166,7 +165,7 @@ int main()
   //assert(FLOAT_TO_FP(2.36328125) == FixedMod(FLOAT_TO_FP(15.27), FLOAT_TO_FP(3.23)));
   
   printf("hexadecimal: %x \n", FLOAT_TO_FP(0.99609375));
-  printf("fp to str: %s \n", fp_to_str(FLOAT_TO_FP(0.02)));
+  printf("fixed to str: %s \n", fp_to_str(FLOAT_TO_FP(0.02)));
   printf("modulo: %s \n", fp_to_str(FixedMod(FLOAT_TO_FP(15.2), FLOAT_TO_FP(3.23))));
   printf("division: %s \n", fp_to_str(FixedDiv(FLOAT_TO_FP(122.21), FLOAT_TO_FP(-3.73))));
   printf("mult: %s \n", fp_to_str(FixedMul(FLOAT_TO_FP(2.21), FLOAT_TO_FP(-3.73))));
