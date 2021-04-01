@@ -1,10 +1,11 @@
 #include <gb/gb.h>
 #include <stdio.h>
+#include <string.h>
 #include <assert.h>
 
 /*
- * Fixed point, 16bit as 8.8.
- * That means having an INT8 range of +/- 127/8 for the whole part and floating point accuracy of 1/256 (~0.00390625)
+ * Fixed point (signed), 16bit as 8.8.
+ * That means having an INT8 range of +/- 127/8 for the whole part and a floating point accuracy of 1/256 (~0.00390625)
  */
 
 typedef INT16 fixed_t;
@@ -45,8 +46,17 @@ inline static  fixed_t FixedMul(fixed_t a, fixed_t b){
  * Idea: Use for Sine/Cosine Mult. Just check the sign first and store it. Do the fast unsigned mult and adjust the result based on the sign later.
  */
 
-inline static  fixed_t FixedMulU16x8(fixed_t a, fixed_t b){
-  return (INT32)a * (INT32)b / FRACUNIT;
+inline static fixed_t FixedMulU16x8(fixed_t a, fixed_t b){
+  if ((a && b < 0)) //
+  {
+    return (INT32)D_abs(a) * (INT32)D_abs(b) / FRACUNIT;
+  }
+  else if ((a || b) < 0) //correctly should be xor, but both values negativ are already captured in the above AND
+  {
+    return (-1) * (INT32)D_abs(a) * (INT32)D_abs(b) / FRACUNIT;
+  }
+  else
+    return (INT32)a * (INT32)b / FRACUNIT;
 }
 
 /*
@@ -77,14 +87,43 @@ inline static fixed_t FixedMod(fixed_t a, fixed_t b)
     return (a & (b-1));
 }
 
-
-// Returns 100 times the Fixed Point number. So -17.17 will become -1717 for example.
-INT16 fp_to_float(fixed_t a)
+/*
+ * Returns a shortened (only 2 decimals) string of a 8.8 fixed-point number
+ */
+const char* fp_to_str(fixed_t a)
 {
+  char str[8], res[8];
+  static char result[] = "Undef";
   INT8 fp_int = a >> FRACBITS;
   UINT16 fp_dec = ((a&0x80) + (a&0x40) + (a&0x20) + (a&0x10) + (a&0x08) + (a&0x04) + (a&0x02) + (a&0x01)) * 100 / FRACUNIT;
   INT16 b = fp_int * 100;
-  return b + fp_dec;
+  sprintf(str, "%d", b + fp_dec);
+  
+  INT8 len = strlen(str);
+  INT8 j = 0;
+  if (( b + fp_dec)<100){ sprintf(result, "0.%s", str); }
+  if (( b + fp_dec)<10){ sprintf(result, "0.0%s", str); }
+  
+  else {
+    for (INT8 i = len-1; i > -1; i--){
+      if (i == len -3){
+        res[j] = 46; //Add dot . seperator. ASCII 46
+        j++;
+      }
+      res[j] = str[i];
+      j++;
+    }
+    res[len+1] = 0;
+  
+    j = 0;
+    for (INT8 i = strlen(res)-1; i > -1; i--){
+      str[j] = res[i];
+      j++;
+    }
+    str[len+1] = 0;
+    sprintf(result, "%s", str);
+    }
+  return result;
 }
 
 int main()
@@ -123,11 +162,11 @@ int main()
   
   //assert(FLOAT_TO_FP(2.36328125) == FixedMod(FLOAT_TO_FP(15.27), FLOAT_TO_FP(3.23)));
   
-  printf("hexadecimal:%x \t\n", FLOAT_TO_FP(0.99609375));
-  printf("fp to float:%d \t\n", fp_to_float(FLOAT_TO_FP(-17.17)));
-  printf("modulo:%d \t\n", fp_to_float(FixedMod(FLOAT_TO_FP(15.2), FLOAT_TO_FP(3.23))));
-  printf("division:%d \t\n", fp_to_float(FixedDiv(FLOAT_TO_FP(122.21), FLOAT_TO_FP(-3.73))));
-  printf("mult:%d \t\n", fp_to_float(FixedMul(FLOAT_TO_FP(2.21), FLOAT_TO_FP(-3.73))));
+  printf("hexadecimal: %x \n", FLOAT_TO_FP(0.99609375));
+  printf("fp float: %s \n", fp_to_str(FLOAT_TO_FP(-17.17)));
+  printf("modulo: %s \n", fp_to_str(FixedMod(FLOAT_TO_FP(15.2), FLOAT_TO_FP(3.23))));
+  printf("division: %s \n", fp_to_str(FixedDiv(FLOAT_TO_FP(122.21), FLOAT_TO_FP(-3.73))));
+  printf("mult: %s \n", fp_to_str(FixedMul(FLOAT_TO_FP(2.21), FLOAT_TO_FP(-3.73))));
   
   
   return 0;
