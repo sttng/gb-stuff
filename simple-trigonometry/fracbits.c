@@ -43,15 +43,16 @@ inline static  fixed_t FixedMul(fixed_t a, fixed_t b){
  * Fixed Point Multiplication Unsigned 16x8: Multiplies a 16 bit value by an 8 bit one (both unsigned).
  * https://www.nickpelling.com/gameboymultiply.html
  * https://www.cpcwiki.eu/index.php/Programming:Integer_Multiplication#Classic_16bit_.2A_8bit_Unsigned
- * Idea: Use for Sine/Cosine Mult. Just check the sign first and store it. Do the fast unsigned mult and adjust the result based on the sign later.
+ * Idea: 
+ * Use for Sine/Cosine Mult. Just check the sign(s) first and store it. Do the fast unsigned mult and adjust the result based on the sign later.
  */
 
 inline static fixed_t FixedMulU16x8(fixed_t a, fixed_t b){
-  if ((a && b < 0)) //
+  if ((a && b < 0)) //both numbers negative
   {
     return (INT32)D_abs(a) * (INT32)D_abs(b) / FRACUNIT;
   }
-  else if ((a || b) < 0) //correctly should be xor, but both values negativ are already captured in the above AND
+  else if ((a || b) < 0) //correctly should be XOR, but both values negativ is already covered in the above AND
   {
     return (-1) * (INT32)D_abs(a) * (INT32)D_abs(b) / FRACUNIT;
   }
