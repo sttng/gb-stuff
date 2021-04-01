@@ -41,6 +41,7 @@ inline static  fixed_t FixedMul(fixed_t a, fixed_t b){
 
 /*
  * Fixed Point Multiplication Unsigned 16x8: Multiplies a 16 bit value by an 8 bit one (both unsigned).
+ * !!!! CURRENTLY NOT IMPLEMENTED !!!!
  * https://www.nickpelling.com/gameboymultiply.html
  * https://www.cpcwiki.eu/index.php/Programming:Integer_Multiplication#Classic_16bit_.2A_8bit_Unsigned
  * Idea: 
