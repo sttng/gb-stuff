@@ -93,7 +93,7 @@ inline static fixed_t FixedMod(fixed_t a, fixed_t b)
  */
 const char* fp_to_str(fixed_t a)
 {
-  char str[8], res[8];
+  char str[8], tmp[8];
   static char result[] = "Undef";
   INT8 fp_int = a >> FRACBITS;
   UINT16 fp_dec = ((a&0x80) + (a&0x40) + (a&0x20) + (a&0x10) + (a&0x08) + (a&0x04) + (a&0x02) + (a&0x01)) * 100 / FRACUNIT;
@@ -108,17 +108,17 @@ const char* fp_to_str(fixed_t a)
   else {
     for (INT8 i = len-1; i > -1; i--){
       if (i == len -3){
-        res[j] = 46; //Add dot . seperator. ASCII 46
+        tmp[j] = 46; //Add dot . seperator. ASCII 46
         j++;
       }
-      res[j] = str[i];
+      tmp[j] = str[i];
       j++;
     }
-    res[len+1] = 0;
+    tmp[len+1] = 0;
   
     j = 0;
-    for (INT8 i = strlen(res)-1; i > -1; i--){
-      str[j] = res[i];
+    for (INT8 i = strlen(tmp)-1; i > -1; i--){
+      str[j] = tmp[i];
       j++;
     }
     str[len+1] = 0;
@@ -164,7 +164,7 @@ int main()
   //assert(FLOAT_TO_FP(2.36328125) == FixedMod(FLOAT_TO_FP(15.27), FLOAT_TO_FP(3.23)));
   
   printf("hexadecimal: %x \n", FLOAT_TO_FP(0.99609375));
-  printf("fp float: %s \n", fp_to_str(FLOAT_TO_FP(-17.17)));
+  printf("fp to str: %s \n", fp_to_str(FLOAT_TO_FP(-17.17)));
   printf("modulo: %s \n", fp_to_str(FixedMod(FLOAT_TO_FP(15.2), FLOAT_TO_FP(3.23))));
   printf("division: %s \n", fp_to_str(FixedDiv(FLOAT_TO_FP(122.21), FLOAT_TO_FP(-3.73))));
   printf("mult: %s \n", fp_to_str(FixedMul(FLOAT_TO_FP(2.21), FLOAT_TO_FP(-3.73))));
