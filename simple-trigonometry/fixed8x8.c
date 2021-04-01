@@ -103,8 +103,9 @@ const char* fp_to_str(fixed_t a)
   
   INT8 len = strlen(str);
   INT8 j = 0;
-  if (( b + fp_dec)<100){ sprintf(result, "0.%s", str); }
   if (( b + fp_dec)<10){ sprintf(result, "0.0%s", str); }
+  if (( b + fp_dec)<100){ sprintf(result, "0.%s", str); }
+
   
   else {
     for (INT8 i = len-1; i > -1; i--){
@@ -165,7 +166,7 @@ int main()
   //assert(FLOAT_TO_FP(2.36328125) == FixedMod(FLOAT_TO_FP(15.27), FLOAT_TO_FP(3.23)));
   
   printf("hexadecimal: %x \n", FLOAT_TO_FP(0.99609375));
-  printf("fp to str: %s \n", fp_to_str(FLOAT_TO_FP(-17.17)));
+  printf("fp to str: %s \n", fp_to_str(FLOAT_TO_FP(0.02)));
   printf("modulo: %s \n", fp_to_str(FixedMod(FLOAT_TO_FP(15.2), FLOAT_TO_FP(3.23))));
   printf("division: %s \n", fp_to_str(FixedDiv(FLOAT_TO_FP(122.21), FLOAT_TO_FP(-3.73))));
   printf("mult: %s \n", fp_to_str(FixedMul(FLOAT_TO_FP(2.21), FLOAT_TO_FP(-3.73))));
