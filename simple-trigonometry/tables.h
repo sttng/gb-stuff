@@ -3,15 +3,16 @@
 #include "tables.c" //?
 
 #define FINEANGLES              1024
+#define FINEMASK                (FINEANGLES-1)
 
 // Effective size is 1280.
-const INT16 finesine[1280]; //need to change from const INT16 to const fixed_t later
+const fixed_t finesine[1280]; 
 
 // Re-use data, is just PI/2 phase shift.
-const INT16 *const finecosine = finesine + (FINEANGLES/4);
+const fixed_t *const finecosine = finesine + (FINEANGLES/4);
 
 // Effective size is 512.
-const INT16 finetangent[512];
+const fixed_t finetangent[512];
 
 
 #endif
