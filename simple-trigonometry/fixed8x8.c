@@ -96,8 +96,8 @@ const char* fp_to_str(fixed_t a)
 {
   char str[8], tmp[8];
   static char result[] = "Undef";
-  INT8 fp_int = a >> FRACBITS;
-  UINT16 fp_dec = ((a&0x80) + (a&0x40) + (a&0x20) + (a&0x10) + (a&0x08) + (a&0x04) + (a&0x02) + (a&0x01)) * 100 / FRACUNIT;
+  INT8 fp_int = FP_INTEGER(a);
+  UINT16 fp_dec = ((a & 0x00ff) * 100) / FRACUNIT;
   INT16 b = fp_int * 100;
   sprintf(str, "%d", b + fp_dec);
   
