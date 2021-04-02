@@ -33,6 +33,36 @@ inline static fixed_t D_abs(fixed_t x)
 }
 
 /*
+ * Fixed Point Rounding to the next INT
+ */
+
+inline static fixed_t FixedRound(fixed_t a)
+{
+  if (a >= 0) 
+  {
+    if (FP_FRAC(a) < 128)
+    {
+      return INT_TO_FP(FP_INTEGER(a));
+    }
+    else
+    {
+      return INT_TO_FP(FP_INTEGER(a) + 1);
+    }
+  }
+  else 
+  {
+    if (FP_FRAC(a) <= 128)
+    {
+      return INT_TO_FP(FP_INTEGER(a));
+    }
+    else
+    {
+      return INT_TO_FP(FP_INTEGER(a) + 1);
+    }
+  }
+}
+
+/*
  * Fixed Point Multiplication
  */
 
@@ -49,15 +79,15 @@ inline static  fixed_t FixedMul(fixed_t a, fixed_t b){
  */
 
 inline static  fixed_t FixedMulH8L8(fixed_t a, fixed_t b){
-  if (a < 0 && b < 0) //both numbers negative
+  if (a < 0 && b < 0) 
   {
     return FP_INTEGER(D_abs(a)) * FP_FRAC(D_abs(b));
   }
-  else if (a < 0 || b < 0) //one number negative
+  else if (a < 0 || b < 0)
   {
     return (-1) * FP_INTEGER(D_abs(a)) * FP_FRAC(D_abs(b));
   }
-  else //both numbers positive
+  else
     return FP_INTEGER(a) * FP_FRAC(b);
 }
 
@@ -125,9 +155,10 @@ const char* fp_to_str(fixed_t a)
   
   INT8 len = strlen(str);
   INT8 j = 0;
-  if (( b + fp_dec)<10){ sprintf(result, "0.0%s", str); }
-  if (( b + fp_dec)<100){ sprintf(result, "0.%s", str); }
-  
+  if ((INT16)(b + fp_dec)<0 && (INT16)( b + fp_dec)>-10){ sprintf(str, "%d", -1 * (b + fp_dec)); sprintf(result, "-0.0%s", str); }
+  else if ((INT16)(b + fp_dec)<0 && (INT16)( b + fp_dec)>-100){ sprintf(str, "%d", -1 * (b + fp_dec)); sprintf(result, "-0.%s", str); }
+  else if (( b + fp_dec)<10){ sprintf(result, "0.0%s", str); }
+  else if (( b + fp_dec)<100){ sprintf(result, "0.%s", str); }
   else {
     for (INT8 i = len-1; i > -1; i--){
       if (i == len -3){
