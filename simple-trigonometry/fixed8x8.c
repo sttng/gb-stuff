@@ -14,6 +14,7 @@ typedef INT16 fixed_t;
 #define FRACUNIT        (1 << FRACBITS)
 #define FP_DECIMAL(k)   ((fixed_t)k & 0x00ff)/(float)FRACUNIT
 #define FP_INTEGER(k)   (k >> FRACBITS)
+#define FP_FRAC(k)      (k & 0x00ff)
 #define INT_TO_FP(k)    (fixed_t)(k << FRACBITS)
 #define FLOAT_TO_FP(k)  (fixed_t)((float)k * FRACUNIT)
 
