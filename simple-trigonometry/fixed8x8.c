@@ -40,6 +40,27 @@ inline static  fixed_t FixedMul(fixed_t a, fixed_t b){
 }
 
 /*
+ * Fixed Point Multiplication H8L8
+ *
+ * Takes the upper 8bit of a * the lower 8bit of b.
+ * This is an 8bit multiplication for performance and works with reduced accuracy. It is useful for a > 1 and b < 1. 
+ * It basically omits the fractional part of a. 
+ */
+
+inline static  fixed_t FixedMulH8L8(fixed_t a, fixed_t b){
+  if (a < 0 && b < 0) //both numbers negative
+  {
+    return FP_INTEGER(D_abs(a)) * FP_FRAC(D_abs(b));
+  }
+  else if (a < 0 || b < 0) //one number negative
+  {
+    return (-1) * FP_INTEGER(D_abs(a)) * FP_FRAC(D_abs(b));
+  }
+  else //both numbers positive
+    return FP_INTEGER(a) * FP_FRAC(b);
+}
+
+/*
  * Fixed Point Multiplication Unsigned 16x8: Multiplies a 16 bit value by an 8 bit one (both unsigned).
  * !!!! CURRENTLY NOT IMPLEMENTED !!!!
  * https://www.nickpelling.com/gameboymultiply.html
@@ -49,16 +70,16 @@ inline static  fixed_t FixedMul(fixed_t a, fixed_t b){
  */
 
 inline static fixed_t FixedMulU16x8(fixed_t a, fixed_t b){
-  if ((a && b < 0)) //both numbers negative
+  if (a < 0 && b < 0) //both numbers negative
   {
-    return (INT32)D_abs(a) * (INT32)D_abs(b) / FRACUNIT;
+    return (INT32)D_abs(a) ;//* (INT32)D_abs(b) / FRACUNIT;
   }
-  else if ((a || b) < 0) //correctly should be XOR, but both values negativ is already covered in the above AND
+  else if (a < 0 || b < 0) //correctly should be XOR, but both values negativ is already covered in the above AND
   {
-    return (-1) * (INT32)D_abs(a) * (INT32)D_abs(b) / FRACUNIT;
+    return (-1) ;//* (INT32)D_abs(a) * (INT32)D_abs(b) / FRACUNIT;
   }
   else
-    return (INT32)a * (INT32)b / FRACUNIT;
+    return (INT32)a ;//* (INT32)b / FRACUNIT;
 }
 
 /*
