@@ -2,7 +2,7 @@ A GBDK Wobble Effect with some glitches
 
 ![Shitty Wobble](https://raw.githubusercontent.com/sttng/gb-stuff/main/wobble/wobble.gif)
 
-Somethinglike this:
+Something like this:
 
 https://www.copetti.org/writings/consoles/game-boy/
 
