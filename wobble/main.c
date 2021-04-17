@@ -1,6 +1,6 @@
 #include <gb/gb.h>
-#include "parallax_background_data.c"
-#include "parallax_background_map.c"
+#include "wobble_background_data.c"
+#include "wobble_background_map.c"
 UINT8 backgroundoffset1x, backgroundoffset2x, backgroundoffset3x, backgroundoffset4x, backgroundoffset5x, backgroundoffset6x, backgroundoffset7x, backgroundoffset8x;
 
 
