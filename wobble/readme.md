@@ -1,8 +1,8 @@
-A GBDK Wobble Effect with some glitches
+A GBDK "wobble" effect with some glitches
 
 ![Shitty Wobble](https://raw.githubusercontent.com/sttng/gb-stuff/main/wobble/wobble.gif)
 
-Something like this:
+Inspired by these (kind of):
 
 https://www.copetti.org/writings/consoles/game-boy/
 
