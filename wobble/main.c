@@ -208,8 +208,8 @@ void main(){
     backgroundoffset7x = 0;
     backgroundoffset8x = 0;
 
-    set_bkg_data(0, 247, parallax_background_data);
-    set_bkg_tiles(0, 0, 32, 18, parallax_background_map);
+    set_bkg_data(0, 247, wobble_background_data);
+    set_bkg_tiles(0, 0, 32, 18, wobble_background_map);
 
     STAT_REG = 0x45; // enable LYC=LY interrupt so that we can set a specific line it will fire at
     LYC_REG = 0x00;

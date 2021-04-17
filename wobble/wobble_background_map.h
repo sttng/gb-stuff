@@ -8,4 +8,4 @@
 #define parallax_background_mapWidth 32
 #define parallax_background_mapHeight 18
 
-extern unsigned char parallax_background_map[];
+extern unsigned char wobble_background_map[];

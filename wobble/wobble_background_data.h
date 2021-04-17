@@ -6,4 +6,4 @@
  Number of Tiles   : 189
 */ 
 
-extern unsigned char parallax_background_data[];
+extern unsigned char wobble_background_data[];
