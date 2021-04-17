@@ -1,4 +1,4 @@
-A GBDK "wobble" effect with some glitches
+A GBDK "wobble" effect with some graphics glitches
 
 ![Shitty Wobble](https://raw.githubusercontent.com/sttng/gb-stuff/main/wobble/wobble.gif)
 
