@@ -16,8 +16,6 @@ void interruptLCD(){
 }
 
 void main(){
-
-
     set_bkg_data(0, 247, wobble_background_data);
     set_bkg_tiles(0, 0, 32, 18, wobble_background_map);
 
