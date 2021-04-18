@@ -1,6 +1,6 @@
-A GBDK "wobble" effect with some graphics glitches
+A GBDK "wobble" effect:
 
-![Shitty Wobble](https://raw.githubusercontent.com/sttng/gb-stuff/main/wobble/wobble.gif)
+![Wobble](https://raw.githubusercontent.com/sttng/gb-stuff/main/wobble/wobble.gif)
 
 Inspired by these (kind of):
 
