@@ -1,212 +1,22 @@
 #include <gb/gb.h>
 #include "wobble_background_data.c"
 #include "wobble_background_map.c"
-UINT8 backgroundoffset1x, backgroundoffset2x, backgroundoffset3x, backgroundoffset4x, backgroundoffset5x, backgroundoffset6x, backgroundoffset7x, backgroundoffset8x;
 
+INT8 offset_arrary[144] = {-3,0,-2,-1,-2,-5,-2,-3,0,-4,-4,-3,-1,-3,-1,-2,-6,-6,-5,-2,-2,-4,-6,-5,-5,-2,-4,-3,-7,-9,-9,-10,-10,-9,-11,-14,-15,-18,-18,-20,-21,-25,-24,-21,-23,-22,-26,-27,-24,-27,-26,-26,-28,-28,-27,-26,-23,-20,-18,-16,-18,-21,-23,-21,-23,-22,-21,-18,-18,-17,-15,-12,-11,-12,-12,-11,-14,-13,-14,-17,-17,-17,-16,-17,-21,-18,-20,-23,-27,-24,-25,-28,-27,-30,-34,-33,-35,-37,-36,-36,-37,-41,-44,-48,-49,-48,-48,-50,-51,-48,-47,-44,-44,-42,-46,-43,-42,-45,-48,-51,-54,-55,-55,-59,-56,-60,-59,-58,-57,-58,-59,-57,-57,-59,-58,-59,-57,-55,-53,-51,-55,-53,-56,-58};
 
 void interruptLCD(){
-    switch (LYC_REG)
-    {
-        case 0x00:
-            move_bkg(backgroundoffset1x,0);
-            LYC_REG = 0x03;
-            break;
-        case 0x03:
-            move_bkg(backgroundoffset3x,0);
-            LYC_REG = 0x06;
-            break;
-        case 0x06:
-            move_bkg(backgroundoffset5x,0);
-            LYC_REG = 0x09;
-            break;
-        case 0x09:
-            move_bkg(backgroundoffset2x,0);
-            LYC_REG = 0x0c;
-            break;
-        case 0x0c:
-            move_bkg(backgroundoffset6x,0);
-            LYC_REG = 0x0f;
-            break;
-        case 0x0f:
-            move_bkg(backgroundoffset7x,0);
-            LYC_REG = 0x13;
-            break;
-        case 0x13:
-            move_bkg(backgroundoffset5x,0);
-            LYC_REG = 0x16;
-            break;
-        case 0x16:
-            move_bkg(backgroundoffset6x,0);
-            LYC_REG = 0x19;
-            break;
-        case 0x19:
-            move_bkg(backgroundoffset7x,0);
-            LYC_REG = 0x1c;
-            break;
-        case 0x1c:
-            move_bkg(backgroundoffset8x,0);
-            LYC_REG = 0x1f;
-            break;
-        case 0x1f:
-            move_bkg(backgroundoffset3x,0);
-            LYC_REG = 0x23;
-            break;
-        case 0x23:
-            move_bkg(backgroundoffset1x,0);
-            LYC_REG = 0x26;
-            break;
-        case 0x26:
-            move_bkg(backgroundoffset2x,0);
-            LYC_REG = 0x29;
-            break;
-        case 0x29:
-            move_bkg(backgroundoffset4x,0);
-            LYC_REG = 0x2c;
-            break;
-        case 0x2c:
-            move_bkg(backgroundoffset3x,0);
-            LYC_REG = 0x2f;
-            break;
-        case 0x2f:
-            move_bkg(backgroundoffset5x,0);
-            LYC_REG = 0x33;
-            break;
-        case 0x33:
-            move_bkg(backgroundoffset6x,0);
-            LYC_REG = 0x36;
-            break;
-        case 0x36:
-            move_bkg(backgroundoffset2x,0);
-            LYC_REG = 0x39;
-            break;
-        case 0x39:
-            move_bkg(backgroundoffset8x,0);
-            LYC_REG = 0x3c;
-            break;
-        case 0x3c:
-            move_bkg(backgroundoffset7x,0);
-            LYC_REG = 0x3f;
-            break;
-        case 0x3f:
-            move_bkg(backgroundoffset3x,0);
-            LYC_REG = 0x43;
-            break;
-        case 0x43:
-            move_bkg(backgroundoffset4x,0);
-            LYC_REG = 0x46;
-            break;
-        case 0x46:
-            move_bkg(backgroundoffset5x,0);
-            LYC_REG = 0x49;
-            break;
-        case 0x49:
-            move_bkg(backgroundoffset7x,0);
-            LYC_REG = 0x4c;
-            break;
-        case 0x4c:
-            move_bkg(backgroundoffset6x,0);
-            LYC_REG = 0x4f;
-            break;
-        case 0x4f:
-            move_bkg(backgroundoffset8x,0);
-            LYC_REG = 0x53;
-            break;
-        case 0x53:
-            move_bkg(backgroundoffset3x,0);
-            LYC_REG = 0x56;
-            break;
-        case 0x56:
-            move_bkg(backgroundoffset2x,0);
-            LYC_REG = 0x59;
-            break;
-        case 0x59:
-            move_bkg(backgroundoffset8x,0);
-            LYC_REG = 0x5c;
-            break;
-        case 0x5c:
-            move_bkg(backgroundoffset6x,0);
-            LYC_REG = 0x5f;
-            break;
-        case 0x5f:
-            move_bkg(backgroundoffset4x,0);
-            LYC_REG = 0x63;
-            break;
-        case 0x63:
-            move_bkg(backgroundoffset3x,0);
-            LYC_REG = 0x66;
-            break;
-        case 0x66:
-            move_bkg(backgroundoffset5x,0);
-            LYC_REG = 0x69;
-            break;
-        case 0x69:
-            move_bkg(backgroundoffset6x,0);
-            LYC_REG = 0x6c;
-            break;
-        case 0x6c:
-            move_bkg(backgroundoffset5x,0);
-            LYC_REG = 0x6f;
-            break;
-        case 0x6f:
-            move_bkg(backgroundoffset7x,0);
-            LYC_REG = 0x73;
-            break;
-        case 0x73:
-            move_bkg(backgroundoffset3x,0);
-            LYC_REG = 0x76;
-            break;
-        case 0x76:
-            move_bkg(backgroundoffset4x,0);
-            LYC_REG = 0x79;
-            break;
-        case 0x79:
-            move_bkg(backgroundoffset5x,0);
-            LYC_REG = 0x7c;
-            break;
-        case 0x7c:
-            move_bkg(backgroundoffset2x,0);
-            LYC_REG = 0x7f;
-            break;
-        case 0x7f:
-            move_bkg(backgroundoffset1x,0);
-            LYC_REG = 0x83;
-            break;
-        case 0x83:
-            move_bkg(backgroundoffset2x,0);
-            LYC_REG = 0x86;
-            break;
-        case 0x86:
-            move_bkg(backgroundoffset5x,0);
-            LYC_REG = 0x89;
-            break;
-        case 0x89:
-            move_bkg(backgroundoffset6x,0);
-            LYC_REG = 0x8c;
-            break;
-        case 0x8c:
-            move_bkg(backgroundoffset7x,0);
-            LYC_REG = 0x8f;
-            break;
-        case 0x8f:
-            move_bkg(backgroundoffset8x,0);
-            LYC_REG = 0x93;
-            break;
-        case 0x93:
-            move_bkg(backgroundoffset3x,0);
-            LYC_REG = 0x00;
-            break;
-    }
+	if (offset_arrary[LYC_REG] > 0){
+		move_bkg(offset_arrary[LYC_REG],0);
+	}
+	else {
+		move_bkg(0,0);
+	}
+	LYC_REG +=2;
+	if (LYC_REG > 143) {LYC_REG = 0;}
 }
 
 void main(){
-    backgroundoffset1x = 0;
-    backgroundoffset2x = 0;
-    backgroundoffset3x = 0;
-    backgroundoffset4x = 0;
-    backgroundoffset5x = 0;
-    backgroundoffset6x = 0;
-    backgroundoffset7x = 0;
-    backgroundoffset8x = 0;
+
 
     set_bkg_data(0, 247, wobble_background_data);
     set_bkg_tiles(0, 0, 32, 18, wobble_background_map);
@@ -224,26 +34,11 @@ void main(){
     DISPLAY_ON;
 
     while(1){
+        for (UINT8 i = 0; i < 144; i++) {offset_arrary[i] =  offset_arrary[i] + 1;}
         if (joypad() == J_LEFT ){
-        backgroundoffset1x += 1;
-        if (backgroundoffset1x > 2) { backgroundoffset2x += 1;}
-        if (backgroundoffset2x > 4) { backgroundoffset3x += 1;}
-        if (backgroundoffset3x > 6) { backgroundoffset4x += 1;}
-        if (backgroundoffset4x > 7) { backgroundoffset5x += 1;}
-        if (backgroundoffset5x > 8) { backgroundoffset6x += 1;}
-        if (backgroundoffset6x > 9) { backgroundoffset7x += 1;}
-        if (backgroundoffset7x > 11) { backgroundoffset8x += 1;}
         }
 
         if (joypad() == J_RIGHT ){
-        backgroundoffset1x -= 1;
-        backgroundoffset2x -= 1;
-        backgroundoffset3x -= 1;
-        backgroundoffset4x -= 1;
-        backgroundoffset5x -= 1;
-        backgroundoffset6x -= 1;
-        backgroundoffset7x -= 1;
-        backgroundoffset8x -= 1;
         }
         wait_vbl_done();
     }
