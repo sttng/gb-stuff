@@ -32,10 +32,10 @@ void main(){
     DISPLAY_ON;
 
     while(1){
-        for (UINT8 i = 0; i < 144; i+=2){ //i+2, because only every 2nd scanline (this is quicker).
-            offset_array[i] +=1;
-        }
         if (joypad() == J_LEFT ){
+            for (UINT8 i = 0; i < 144; i+=2){ //i+2, because only every 2nd scanline (this is quicker).
+                offset_array[i] +=1;
+            }
         }
 
         if (joypad() == J_RIGHT ){
