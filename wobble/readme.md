@@ -8,3 +8,4 @@ https://www.copetti.org/writings/consoles/game-boy/#tab-5-1-wobble-effect
 
 http://voidptr.io/blog/2020/04/16/PagedOut-GameBoy.html
 
+http://voidptr.io/blog/2020/05/14/Merken-breakdown.html#merken-13
