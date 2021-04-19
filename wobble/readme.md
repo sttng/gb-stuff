@@ -4,7 +4,7 @@ A GBDK "wobble" effect:
 
 Inspired by these (kind of):
 
-https://www.copetti.org/writings/consoles/game-boy/
+https://www.copetti.org/writings/consoles/game-boy/#tab-5-1-wobble-effect
 
 http://voidptr.io/blog/2020/04/16/PagedOut-GameBoy.html
 
