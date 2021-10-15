@@ -146,6 +146,7 @@ inline static fixed_t FixedMod(fixed_t a, fixed_t b)
  */
 const char* fp_to_str(fixed_t a)
 {
+  // try this maybe: printf("%d.%d \n",a>>8,(a&0xFF)*1000/(1<<8));
   char str[8], tmp[8];
   static char result[] = "Undef";
   INT8 fp_int = FP_INTEGER(a);
