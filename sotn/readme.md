@@ -12,7 +12,7 @@ A portable version of Castlevania: Symphony Of The Night was in development for 
 
 # Castlevania: Symphony Of The Night [Gameboy Considerations) 
 
-Screens in SOTN (PSX) are 16x13 tiles, with each tiles being 16 x 16 pixels. This makes each screen 256 x 208 pixel.
+Screens in SOTN (PSX) are 16x13 tiles, with each tile being 16 x 16 pixels. This makes each screen 256 x 208 pixel.
 
 ![One_Screen](Debug%20Room_One_PSX.png)
 
