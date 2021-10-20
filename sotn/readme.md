@@ -22,7 +22,7 @@ The Gameboy has a 160 x 144 screen resolusion with 8 x 8 pixels per sprite. The 
 
 ![8x8 PSX vs Gameboy](Debug_Room_One_8x8_PSXvsGB.png)
 
-It would be better to scale down by 62.5%, in order to maximize screen estate usage. But then you are dealing essentially 10x10 pixels per sprite, something the Gameboy doesn't support.
+It would be better to scale down by 62.5% (256/160), in order to maximize screen estate usage. But then you are dealing essentially 10x10 pixels per sprite, something the Gameboy doesn't support.
 
 ![10x10 PSX vs Gameboy](Debug_Room_One_10x10_PSXvsGB.png)
 
