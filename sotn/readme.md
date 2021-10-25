@@ -21,7 +21,7 @@ The start screen also seem to have undergone at least 2 versions. It is however 
 
 ![gamedotcom6.jpg](gamedotcom6.jpg)
 
-Last but not least, a blurry shot of Draculas den or the castle keep. Looking at the blurry status bar it seems from the improved revision.
+Last but not least, a blurry shot of Draculas [throne room](https://castlevania.fandom.com/wiki/Throne_Rooms). Looking at the blurry status bar it seems from the improved revision.
 
 
 
