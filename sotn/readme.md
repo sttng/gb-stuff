@@ -21,7 +21,7 @@ The start screen also seem to have undergone at least 2 versions. It is however 
 
 ![gamedotcom6.jpg](gamedotcom6.jpg)
 
-Last but not least, a blurry shot of Draculas den.
+Last but not least, a blurry shot of Draculas den. Looking at the blurry status bar it seems from the improved revision.
 
 
 
