@@ -4,15 +4,25 @@ A portable version of Castlevania: Symphony Of The Night was in development for 
 
 ## Screenshots
 
-These seem to be early proof-of-concept shots, with just the original PSX? graphics converted to grayscale and dithered.
-
 ![gamedotcom4.png](gamedotcom4.png)
 ![gamedotcom5.png](gamedotcom5.png)
 
-These seem to be some updated rendations with slightly improved graphics. Check the background at the entrance hall (2nd picture).
+These seem to be early proof-of-concept shots, with just the original PSX(?) graphics converted to grayscale and dithered.
 
 ![castle9.gif](castle9.gif)
 ![castle10.gif](castle10.gif)
+
+The above ones seem to be updated rendations with slightly improved graphics. Check the background at the entrance hall (2nd picture).
+
+![Castlevania-Symphony_of_the_Night_Game.com-01a.png](Castlevania-Symphony_of_the_Night_Game.com-01a.png)
+![castle8.gif](castle8.gif)
+
+The start screen also seem to have undergone at least 2 versions. It is however unclear which one is the improved one.
+
+![gamedotcom6.jpg](gamedotcom6.jpg)
+
+Last but not least, a blurry shot of Draculas den.
+
 
 
 ## Sources:
