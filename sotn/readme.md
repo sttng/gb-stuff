@@ -2,7 +2,18 @@
 
 A portable version of Castlevania: Symphony Of The Night was in development for the [Game.com](https://en.wikipedia.org/wiki/Game.com), the ill-fated handled console created by Tiger Electronics in 1997, but soon the project vanished in the vaporware limbo and it’s unknown how much of the game was really completed before the cancellation. As other [Game.com](https://en.wikipedia.org/wiki/Game.com) titles (see Resident Evil 2), this Castlevania should have been a “downgraded port” of the Playstation / Saturn Symphony Of The Night, with some evident differences for the limits of the hardware.
 
-![Sprite Comparison](alu_comparison.png)
+## Screenshots
+
+These seem to be early proof-of-concept shots, with just the original PSX? graphics converted to grayscale and dithered.
+
+![gamedotcom4.png](gamedotcom4.png)
+![gamedotcom5.png](gamedotcom5.png)
+
+These seem to be some updated rendations with slightly improved graphics. Check the background at the entrance hall (2nd picture).
+
+![castle9.gif](castle9.gif)
+![castle10.gif](castle10.gif)
+
 
 ## Sources:
 
@@ -16,7 +27,6 @@ Screens in SOTN (PSX) are 16x13 tiles, with each tile being 16 x 16 pixels. This
 
 ![One_Screen](Debug%20Room_One_PSX.png)
 ![One_Screen](Debug_Room_One_PSX_Alu.png)
-
 
 The Gameboy has a 160 x 144 screen resolusion with 8 x 8 pixels per sprite. The most easy way would be to reduce the resolution from the PSX version by 50% (scale down the 16x16 sprites to 8x8 sprites). But then you not only loose a lot of resolution, but also quite some screen estate:
 
