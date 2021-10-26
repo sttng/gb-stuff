@@ -23,7 +23,7 @@ The start screen also seem to have undergone at least 2 versions. It is however 
 
 Last but not least, a blurry shot of Draculas [throne room](https://castlevania.fandom.com/wiki/Throne_Rooms). Looking at the blurry status bar it seems from the improved revision. It looks like it was supposed to be this:
 
-![Throne Room: SOTN](Throne_Room_-_Symphony_of_the_Night_-_01.webp)
+![Throne Room: SOTN](Throne_Room.png)
 
 
 
