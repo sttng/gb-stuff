@@ -1316,92 +1316,70 @@ jr_01d_44d9:
     ld bc, $0223
     ld [hl], a
     ld [bc], a
-    rst $00
-    ld [bc], a
+
+    db $c7, $02
+
     ld [de], a
     inc bc
     ld e, b
     inc bc
-    sbc e
-    inc bc
+
+    db $9b, $03
+
     jp c, $1603
 
     inc b
     ld c, [hl]
     inc b
-    add e
-    inc b
-    or l
-    inc b
+
+    db $83, $04, $b5, $04
+
     push hl
     inc b
-    ld de, $3b05
-    dec b
-    ld h, e
-    dec b
-    adc c
-    dec b
-    xor h
-    dec b
-    adc $05
-    db $ed
-    dec b
-    dec bc
-    ld b, $27
-    ld b, $42
-    ld b, $5b
-    ld b, $72
-    ld b, $89
-    ld b, $9e
-    ld b, $b2
-    ld b, $c4
-    ld b, $d6
-    ld b, $e7
-    ld b, $f7
-    ld b, $06
-    rlca
-    inc d
-    rlca
-    ld hl, $2d07
-    rlca
-    add hl, sp
-    rlca
-    ld b, h
-    rlca
-    ld c, a
-    rlca
+
+    db $11, $05, $3b, $05, $63, $05, $89, $05, $ac, $05, $ce, $05, $ed, $05, $0b, $06
+    db $27, $06, $42, $06, $5b, $06, $72, $06, $89, $06, $9e, $06, $b2, $06, $c4, $06
+
+    sub $06
+
+    db $e7, $06
+
+    rst $30
+    db $06
+
+    db $06, $07, $14, $07, $21, $07, $2d, $07, $39, $07, $44, $07, $4f, $07
+
     ld e, c
     rlca
-    ld h, d
-    rlca
-    ld l, e
-    rlca
-    ld [hl], e
-    rlca
+
+    db $62, $07, $6b, $07, $73, $07
+
     ld a, e
     rlca
     add e
     rlca
-    adc d
-    rlca
-    sub b
-    rlca
+
+    db $8a, $07, $90, $07
+
     sub a
     rlca
     sbc l
     rlca
-    and d
-    rlca
+
+    db $a2, $07
+
     and a
     rlca
-    xor h
-    rlca
+
+    db $ac, $07
+
     or c
     rlca
     or [hl]
     rlca
-    cp d
-    rlca
+
+    db $ba, $07
+
     cp [hl]
     rlca
     pop bc
@@ -1480,8 +1458,9 @@ jr_01d_44d9:
     ld b, l
     inc hl
     ld b, l
-    dec [hl]
-    ld b, l
+
+    db $35, $45
+
     ld b, d
     ld b, l
     ld e, c
@@ -1640,6 +1619,29 @@ jr_01d_44d9:
 
 
     ldh a, [$f8]
+
+    db $11, $11, $11
+
+    db $11
+
+    db $11, $11
+
+    ld de, $1111
+    ld de, $1111
+    ld de, $1111
+    db $11
+
+    db $11, $11
+
+    ld de, $1111
+    ld de, $1111
+    ld de, $1111
+    ld de, $1111
+    db $11
+    db $11
+
+    db $11, $11, $11
+
     ld de, $1111
     ld de, $1111
     ld de, $1111
@@ -1649,36 +1651,21 @@ jr_01d_44d9:
     ld de, $1111
     ld de, $1111
     ld de, $1111
-    ld de, $1111
-    ld de, $1111
-    ld de, $1111
-    ld de, $1111
-    ld de, $1111
-    ld de, $1111
-    ld de, $1111
-    ld de, $1111
-    ld de, $1111
-    ld de, $1111
-    ld de, $1111
-    ld de, $1111
-    ld de, $b2f2
-    and d
-    sub d
-    add d
-    ld [hl], d
-    ld h, d
-    ld d, d
-    ld b, d
-    ld [hl-], a
-    ld [hl+], a
-    ld [de], a
+    db $11
+    db $11
+
+    db $f2, $b2, $a2, $92, $82, $72, $62, $52, $42, $32, $22, $12, $00
+
+    nop
+    nop
+    nop
+
+    db $f3, $58, $26, $19, $00
+
     nop
     nop
     nop
     nop
-    di
-    ld e, b
-    ld h, $19
     nop
     nop
     nop
@@ -1686,24 +1673,9 @@ jr_01d_44d9:
     nop
     nop
     nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld a, [c]
-    or d
-    and d
-    sub d
-    add [hl]
-    db $76
-    ld h, [hl]
-    ld d, [hl]
-    ld b, h
-    inc [hl]
-    inc h
-    inc d
-    nop
+
+    db $f2, $b2, $a2, $92, $86, $76, $66, $56, $44, $34, $24, $14, $00
+
     nop
     nop
     nop
@@ -1723,12 +1695,9 @@ jr_01d_44d9:
     nop
     nop
     nop
-    ld a, [c]
-    and d
-    ld [hl], d
-    ld h, d
-    ld b, h
-    ld b, h
+
+    db $f2, $a2, $72, $62, $44, $44, $00
+
     nop
     nop
     nop
@@ -1738,22 +1707,9 @@ jr_01d_44d9:
     nop
     nop
     nop
-    nop
-    ld a, [c]
-    and d
-    ld [hl], d
-    ld h, d
-    ld b, h
-    inc [hl]
-    inc [hl]
-    inc [hl]
-    inc h
-    inc h
-    inc h
-    inc d
-    inc d
-    inc d
-    nop
+
+    db $f2, $a2, $72, $62, $44, $34, $34, $34, $24, $24, $24, $14, $14, $14, $00
+
     nop
     ld a, [c]
     jp nc, $8cb2
@@ -1914,26 +1870,15 @@ jr_01d_44d9:
     nop
     nop
     nop
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
+
+    db $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $ff
+
     rst $38
     rst $38
     rst $38
-    rst $38
-    nop
-    nop
-    nop
-    nop
+
+    db $00, $00, $00, $00, $ff
+
     rst $38
     rst $38
     rst $38
@@ -1945,20 +1890,9 @@ jr_01d_44d9:
     rst $38
     rst $38
     rst $38
-    rst $38
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    rst $38
+
+    db $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $ff
+
     rst $38
     rst $38
     rst $38
@@ -1976,46 +1910,20 @@ jr_01d_44d9:
     rst $38
     rst $38
     rst $38
-    nop
-    jr nc, jr_01d_4943
 
-jr_01d_4943:
-    jr nc, jr_01d_4945
-
-jr_01d_4945:
-    jr nc, jr_01d_494b
+    db $00, $30, $00, $30, $00, $30, $04
 
     rst $38
     rst $38
     rst $38
     rst $38
-
-jr_01d_494b:
     rst $38
     rst $38
     rst $38
     rst $38
     rst $38
-    nop
-    jr nc, jr_01d_4953
 
-jr_01d_4953:
-    jr nc, jr_01d_4955
-
-jr_01d_4955:
-    jr nc, jr_01d_4957
-
-jr_01d_4957:
-    jr nc, jr_01d_4959
-
-jr_01d_4959:
-    jr nc, jr_01d_495b
-
-jr_01d_495b:
-    jr nc, jr_01d_495d
-
-jr_01d_495d:
-    jr nc, @+$01
+    db $00, $30, $00, $30, $00, $30, $00, $30, $00, $30, $00, $30, $00, $30, $ff
 
     rst $38
     ld [bc], a
@@ -2178,8 +2086,9 @@ jr_01d_495d:
     rst $38
     rst $38
     rst $38
-    pop bc
-    cpl
+
+    db $c1, $2f, $00
+
     nop
     nop
     nop
@@ -2193,12 +2102,9 @@ jr_01d_495d:
     nop
     nop
     nop
-    nop
-    ld b, c
-    add c
-    ld hl, $71b1
-    or c
-    nop
+
+    db $41, $81, $21, $b1, $71, $b1, $00
+
     nop
     nop
     nop
@@ -2433,7 +2339,9 @@ jr_01d_4a49:
     nop
     nop
     nop
-    ld bc, $ff02
+
+    db $01, $02, $ff
+
     rst $38
     rst $38
     rst $38
@@ -2447,11 +2355,9 @@ jr_01d_4a49:
     rst $38
     rst $38
     rst $38
-    ld bc, $4e25
-    ld [bc], a
-    ld b, [hl]
-    inc de
-    rst $38
+
+    db $01, $25, $4e, $02, $46, $13, $ff
+
     rst $38
     rst $38
     rst $38
@@ -2715,22 +2621,9 @@ jr_01d_4a49:
     nop
     nop
     nop
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
+
+    db $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $00, $00, $00, $00, $00, $00, $00, $00
+
     rst $38
     rst $38
     rst $38
@@ -2747,18 +2640,10 @@ jr_01d_4a49:
     nop
     nop
     nop
-    rst $38
-    xor $dd
-    call z, $aabb
-    sbc c
-    adc b
-    ld [hl], a
-    ld h, [hl]
-    ld d, l
-    ld b, h
-    inc sp
-    ld [hl+], a
-    ld de, $ef00
+
+    db $ff, $ee, $dd, $cc, $bb, $aa, $99, $88, $77, $66, $55, $44, $33, $22, $11, $00
+
+    rst $28
     db $ed
     db $dd
     res 7, e
@@ -2784,35 +2669,10 @@ jr_01d_4a49:
     ld [hl-], a
     db $10
     inc bc
-    cp a
-    cp $cb
-    cp e
-    cp e
-    xor d
-    sbc b
-    adc b
-    ld [hl], a
-    db $76
-    ld d, l
-    ld b, h
-    ld b, h
-    ld b, e
-    db $10
-    inc b
-    cp [hl]
-    rst $38
-    cp $dc
-    cp d
-    sbc c
-    adc b
-    adc b
-    ld [hl], a
-    ld [hl], a
-    ld h, [hl]
-    ld d, h
-    ld [hl-], a
-    stop
-    inc d
+
+    db $bf, $fe, $cb, $bb, $bb, $aa, $98, $88, $77, $76, $55, $44, $44, $43, $10, $04
+    db $be, $ff, $fe, $dc, $ba, $99, $88, $88, $77, $77, $66, $54, $32, $10, $00, $14
+
     cp l
     xor $ff
     xor $ed
@@ -2837,39 +2697,15 @@ jr_01d_4a49:
     ld [hl-], a
 
 jr_01d_4caf:
-    jr nc, jr_01d_4caf
+    db $30
 
-    call $cbcb
-    xor d
-    xor c
+    db $fe, $cd, $cb, $cb, $aa, $a9, $99, $88, $77, $76, $65, $55, $43, $43, $23, $10
+    db $ef, $db, $bc, $db, $a9, $aa, $98, $77, $88, $76, $55, $65, $43, $34, $42, $01
+
+    rst $08
+    cp $ca
     sbc c
-    adc b
-    ld [hl], a
-    db $76
-    ld h, l
-    ld d, l
-    ld b, e
-    ld b, e
-    inc hl
-    db $10
-    rst $28
-    db $db
-    cp h
-    db $db
-    xor c
     xor d
-    sbc b
-    ld [hl], a
-    adc b
-    db $76
-    ld d, l
-    ld h, l
-    ld b, e
-    inc [hl]
-    ld b, d
-    ld bc, $fecf
-    jp z, $aa99
-
     xor d
     sbc c
     adc b
@@ -2905,1697 +2741,10 @@ jr_01d_4caf:
     ld hl, $0010
     nop
     inc de
-    ld d, c
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    pop af
-    or d
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    pop bc
-    add d
-    ld d, e
-    ld b, h
-    inc sp
-    inc hl
-    inc d
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld [hl+], a
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    inc hl
-    dec [hl]
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    ld [hl+], a
-    ld [hl+], a
-    inc [hl]
-    ld b, d
-    ld b, d
-    ld b, d
-    ld b, d
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    ld d, b
-    ld d, c
-    ld d, d
-    ld h, [hl]
-    ld d, b
-    ld d, c
-    ld d, d
-    ld d, e
-    ld e, a
-    ld d, l
-    ld d, h
-    ld e, e
-    ld d, [hl]
-    ld d, a
-    ld e, b
-    ld e, c
-    ld d, [hl]
-    ld d, a
-    ld e, b
-    ld e, d
-    ld e, h
-    ld e, l
-    ld e, h
-    ld e, [hl]
-    ld e, h
-    ld e, l
-    ld e, h
-    ld e, [hl]
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, h
-    nop
-    ld c, [hl]
-    db $10
-    ld b, b
-    nop
-    ld bc, $0079
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, h
-    nop
-    ld c, [hl]
-    stop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, [hl]
-    db $10
-    ld e, b
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    nop
-    ld d, d
-    stop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, [hl]
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, [hl]
-    nop
-    ld c, [hl]
-    stop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, [hl]
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, [hl]
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, [hl]
-    nop
-    ld b, h
-    db $10
-    ld c, [hl]
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    db $10
-    ld c, [hl]
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, [hl]
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, h
-    nop
-    ld c, [hl]
-    db $10
-    ld b, b
-    nop
-    ld bc, $0079
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, h
-    nop
-    ld c, [hl]
-    stop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, [hl]
-    db $10
-    ld e, b
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    nop
-    ld d, d
-    stop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, b
-    stop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    nop
-    ld d, [hl]
-    stop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, [hl]
-    nop
-    nop
-    nop
-    ld c, [hl]
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, [hl]
-    nop
-    ld e, h
-    stop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    nop
-    ld e, b
-    db $10
-    ld h, [hl]
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, [hl]
-    nop
-    ld d, [hl]
-    stop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    stop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, [hl]
-    nop
-    ld c, [hl]
-    stop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, h
-    nop
-    ld c, [hl]
-    db $10
-    ld b, b
-    nop
-    ld bc, $0079
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, h
-    nop
-    ld c, [hl]
-    stop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, [hl]
-    db $10
-    ld e, b
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    nop
-    ld d, d
-    stop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, [hl]
-    stop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    nop
-    ld b, h
-    stop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, [hl]
-    nop
-    nop
-    nop
-    ld c, [hl]
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    stop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, [hl]
-    nop
-    ld h, [hl]
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    nop
-    ld h, h
-    nop
-    ld e, h
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, [hl]
-    nop
-    ld h, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    jr nz, @+$66
 
-    jr nz, jr_01d_52f5
-
-jr_01d_52f5:
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    nop
-    ld bc, $0079
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    adc h
-    jr nz, jr_01d_5325
-
-jr_01d_5325:
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    add d
-    jr nz, jr_01d_5333
-
-jr_01d_5333:
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld a, h
-    jr nz, jr_01d_5345
-
-jr_01d_5345:
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld [hl], h
-    jr nz, jr_01d_5353
-
-jr_01d_5353:
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld l, d
-    jr nz, jr_01d_5365
-
-jr_01d_5365:
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld h, h
-    jr nz, jr_01d_5373
-
-jr_01d_5373:
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, h
-    jr nz, jr_01d_5385
-
-jr_01d_5385:
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    jr nz, jr_01d_5393
-
-jr_01d_5393:
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, h
-    jr nz, jr_01d_53a5
-
-jr_01d_53a5:
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $4400
-    jr nz, jr_01d_53b3
-
-jr_01d_53b3:
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld a, [hl-]
-    jr nz, jr_01d_53c5
-
-jr_01d_53c5:
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc [hl]
-    jr nz, jr_01d_53d3
-
-jr_01d_53d3:
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc l
-    jr nz, jr_01d_53e5
-
-jr_01d_53e5:
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, [hl]
-    jr nz, jr_01d_544f
-
-    jr nz, jr_01d_542f
+    db $51, $00
 
     nop
-    ld hl, $0000
     nop
     nop
     nop
@@ -4603,41 +2752,6 @@ jr_01d_53e5:
     nop
     nop
     nop
-    nop
-    nop
-    nop
-    nop
-    ld a, [hl-]
-    nop
-    ld bc, $0079
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    nop
-    ld h, b
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, [hl]
-    nop
-    ld e, h
-    nop
-    nop
-    nop
-    ld de, $0000
     nop
     nop
     nop
@@ -4645,13 +2759,8 @@ jr_01d_53e5:
     nop
     nop
 
-jr_01d_542f:
-    nop
-    ld e, b
-    nop
-    ld h, b
-    nop
-    ld a, $00
+    db $f1, $b2, $00
+
     nop
     nop
     nop
@@ -4659,16 +2768,6 @@ jr_01d_542f:
     nop
     nop
     nop
-    nop
-    nop
-    nop
-    ld d, [hl]
-    nop
-    ld e, h
-    nop
-    nop
-    nop
-    ld bc, $0000
     nop
     nop
     nop
@@ -4676,1891 +2775,9 @@ jr_01d_542f:
     nop
     nop
 
-jr_01d_544f:
-    nop
-    ld d, d
-    nop
-    ld e, b
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld h, $00
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, [hl]
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, [hl]
-    nop
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, h
-    nop
-    ld e, h
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld a, [hl-]
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, b
-    nop
-    ld c, [hl]
-    nop
-    ld b, h
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, h
-    nop
-    ld d, d
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld a, $00
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld a, [hl-]
-    nop
-    ld bc, $0079
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    nop
-    ld h, [hl]
-    nop
-    ld h, b
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, [hl]
-    nop
-    ld h, h
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    nop
-    ld h, b
-    nop
-    ld a, $00
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, [hl]
-    nop
-    ld e, h
-    nop
-    ld h, h
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    nop
-    ld e, b
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, [hl]
-    nop
-    ld d, [hl]
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, b
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, h
-    nop
-    ld d, d
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld h, [hl]
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, b
-    nop
-    ld c, [hl]
-    nop
-    nop
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, h
-    nop
-    ld d, d
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld h, b
-    stop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    ld d, d
-    ld b, b
-    inc a
-    nop
-    ld bc, $0079
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    nop
-    nop
-    inc a
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc a
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, d
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc a
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, d
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc a
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    ld b, b
-    nop
-    nop
-    ld b, h
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    ld b, b
-    nop
-    nop
-    ld b, h
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, d
-    ld b, b
-    ld e, h
-    ld b, b
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, h
-    ld b, b
-    ld c, d
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    ld c, [hl]
-    ld b, b
-    ld c, [hl]
-    nop
-    ld bc, $0079
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    nop
-    nop
-    ld c, [hl]
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc a
-    ld b, b
-    ld b, h
-    ld b, b
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc a
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc a
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc a
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    ld b, b
-    ld c, d
-    ld b, b
-    ld b, h
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, h
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    ld b, b
-    nop
-    nop
-    ld b, h
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, d
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, [hl]
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    ld h, d
-    ld b, b
-    inc a
-    nop
-    ld bc, $0079
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    nop
-    nop
-    inc a
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc a
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, h
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc a
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, d
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc a
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    ld b, b
-    nop
-    nop
-    ld b, h
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    ld b, b
-    nop
-    nop
-    ld b, h
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, d
-    ld b, b
-    ld d, d
-    ld b, b
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, h
-    ld b, b
-    ld c, d
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    ld d, h
-    ld b, b
-    ld c, [hl]
-    nop
-    ld bc, $0079
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    nop
-    nop
-    ld c, [hl]
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc a
-    ld b, b
-    ld b, h
-    ld b, b
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc a
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc a
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc a
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    ld b, b
-    ld c, d
-    ld b, b
-    ld b, h
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, h
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    ld b, b
-    nop
-    nop
-    ld b, h
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, h
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    ld b, b
-    ld c, [hl]
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    ld d, h
-    ld b, b
-    ld c, [hl]
-    nop
-    ld bc, $0079
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    ld b, b
-    nop
-    nop
-    ld c, [hl]
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc a
-    ld b, b
-    ld b, h
-    ld b, b
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc a
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc a
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc a
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    ld b, b
-    ld c, d
-    ld b, b
-    ld b, h
-    nop
-    ld bc, $5c00
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $5400
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    ld b, b
-    nop
-    nop
-    ld b, h
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, h
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, d
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    ld d, b
-    ld c, [hl]
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, [hl]
-    ld d, b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld a, [hl-]
-    nop
-    ld bc, $0079
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    nop
-    ld l, d
-    nop
-    ld h, b
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, [hl]
-    nop
-    ld h, [hl]
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, b
-    nop
-    ld h, h
-    nop
-    ld a, $00
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, [hl]
-    nop
-    ld h, b
-    nop
-    ld h, h
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    nop
-    ld e, h
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, [hl]
-    nop
-    ld h, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, b
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, h
-    nop
-    ld e, h
-    nop
-    nop
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld h, [hl]
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, b
-    nop
-    ld e, b
-    nop
-    nop
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, h
-    nop
-    ld d, [hl]
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    ld c, [hl]
-    ld b, b
-    ld h, b
-    db $10
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld de, $0079
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    db $10
-    ld b, h
-    nop
-    ld [hl], $00
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, [hl]
-    db $10
-    ld c, [hl]
-    nop
-    ld b, b
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, h
-    db $10
-    ld d, d
-    jr nz, jr_01d_5cb9
+    db $c1, $82, $53, $44, $33, $23, $14
 
     nop
-    ld bc, $0000
     nop
     nop
     nop
@@ -6574,7 +2791,6 @@ jr_01d_544f:
     nop
     nop
     nop
-    ld de, $0000
     nop
     nop
     nop
@@ -6588,19 +2804,6 @@ jr_01d_544f:
     nop
     nop
     nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    ld c, [hl]
-    nop
-    nop
-    nop
-    ld bc, $0000
     nop
     nop
     nop
@@ -6614,420 +2817,441 @@ jr_01d_544f:
     nop
     nop
     nop
-    ld de, $0000
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
 
-jr_01d_5cb9:
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    db $10
-    ld c, h
-    jr nz, jr_01d_5cc5
+    db $22, $ff
 
-jr_01d_5cc5:
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, [hl]
-    db $10
-    ld b, h
-    nop
-    ld [hl], $00
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    db $10
-    ld d, [hl]
-    nop
-    ld b, b
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, h
-    db $10
-    ld d, d
-    nop
-    ld b, h
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld de, $0079
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    db $10
-    ld b, h
-    nop
-    ld [hl], $00
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, [hl]
-    db $10
-    ld c, [hl]
-    nop
-    ld b, b
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, h
-    db $10
-    ld d, d
-    jr nz, jr_01d_5db9
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
 
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    ld c, [hl]
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld de, $0000
+    db $23, $35, $ff
 
-jr_01d_5db9:
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    db $10
-    ld c, h
-    jr nz, jr_01d_5dc5
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
 
-jr_01d_5dc5:
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, [hl]
-    db $10
-    ld b, h
-    nop
-    ld [hl], $00
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    db $10
-    ld c, h
-    nop
-    ld b, b
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, h
-    db $10
-    ld d, d
-    nop
-    ld b, h
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld de, $0079
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, d
-    nop
-    inc a
-    nop
-    ld [hl], $00
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    nop
-    ld a, $00
-    ld b, b
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, [hl]
-    nop
-    ld b, b
-    jr nz, jr_01d_5eb9
+    db $22, $22, $34, $42, $42, $42, $42
+
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+
+    db $50, $51, $52, $66, $50, $51, $52, $53, $5f, $55, $54, $5b, $56, $57, $58, $59
+    db $56, $57, $58, $5a, $5c, $5d, $5c, $5e, $5c, $5d, $5c, $5e, $00, $00
 
     nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, b
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
     nop
     nop
     nop
@@ -7037,335 +3261,4893 @@ jr_01d_5dc5:
     nop
     nop
     nop
-    ld c, d
-    jr nz, jr_01d_5e95
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
 
-jr_01d_5e95:
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, h
-    nop
-    ld b, d
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, [hl]
-    nop
-    ld b, h
-    nop
-    ld [hl], $00
-    ld bc, $0000
+    db $5c, $00, $4e, $10, $40, $00, $01, $79, $00
 
-jr_01d_5eb9:
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
-    ld d, b
+
+    db $00
+
     nop
-    ld b, [hl]
+
+    db $00
+
     nop
-    ld [hl], $00
-    ld de, $0000
+
+    db $00, $00, $5c, $00, $4e, $10, $00
+
     nop
+
+    db $01, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $58, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $11, $00, $00
+
     nop
-    ld d, d
+
+    db $00
+
     nop
-    ld c, b
+
+    db $00
+
     nop
-    ld [hl], $00
-    ld de, $0000
+
+    db $00, $00, $00
+
     nop
+
+    db $4e, $10, $58, $00, $01, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $58, $00, $52, $10, $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
-    ld d, h
+
+    db $00
+
     nop
-    ld c, d
+
+    db $00, $00, $00
+
     nop
-    ld b, b
+
+    db $00
+
     nop
-    ld bc, $0000
+
+    db $4e, $00, $01, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $58, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $01, $00, $00
+
     nop
+
+    db $00
+
     nop
-    ld d, [hl]
+
+    db $00
+
     nop
-    ld c, h
+
+    db $00, $00, $56, $00, $4e, $10, $00
+
     nop
-    ld b, h
+
+    db $00, $00, $00
+
     nop
-    ld de, $0000
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $56, $00, $01, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $56, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $01, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $4e, $00, $44, $10, $4e, $00, $00, $00, $00
+
     nop
+
+    db $00
+
     nop
-    ld a, c
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $11, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $48, $00, $00
+
     nop
-    ld e, b
+
+    db $00
+
     nop
-    ld h, b
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
-    ld bc, $0000
+
+    db $00, $00, $00
+
     nop
+
+    db $44, $10, $4e, $00, $01, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $56, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $01, $00, $00
+
     nop
-    ld d, [hl]
+
+    db $00
+
     nop
-    ld e, h
+
+    db $00
+
     nop
+
+    db $00, $00, $5c, $00, $4e, $10, $40, $00, $01, $79, $00
+
     nop
+
+    db $00
+
     nop
-    ld de, $0000
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
-    ld e, b
+
+    db $00, $00, $5c, $00, $4e, $10, $00
+
     nop
-    ld h, b
+
+    db $01, $00, $00
+
     nop
-    ld a, $00
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $58, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $11, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $4e, $10, $58, $00, $01, $00, $00
+
     nop
+
+    db $00
+
     nop
-    ld d, [hl]
+
+    db $00
+
     nop
-    ld e, h
+
+    db $00, $00, $58, $00, $52, $10, $00
+
     nop
+
+    db $01, $00, $00
+
     nop
+
+    db $00
+
     nop
-    ld bc, $0000
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $40, $10, $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $58, $00, $56, $10, $00
+
     nop
-    ld d, d
+
+    db $01, $00, $00
+
     nop
-    ld e, b
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $56, $00, $00
+
     nop
-    ld bc, $0000
+
+    db $4e, $00, $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $58, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $01, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $56, $00, $5c, $10, $00
+
     nop
+
+    db $01, $00, $00
+
     nop
+
+    db $00
+
     nop
-    ld h, $00
+
+    db $00
+
     nop
+
+    db $00, $00, $52, $00, $58, $10, $66, $00, $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $11, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
-    ld c, [hl]
+
+    db $00, $00, $4e, $00, $56, $10, $00
+
     nop
+
+    db $01, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
-    ld bc, $0000
+
+    db $52, $10, $00
+
     nop
+
+    db $01, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $4e, $00, $4e, $10, $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $5c, $00, $4e, $10, $40, $00, $01, $79, $00
+
     nop
-    ld d, [hl]
+
+    db $00
+
     nop
-    ld b, b
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $01, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $5c, $00, $4e, $10, $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
-    ld c, h
+
+    db $00, $00, $58, $00, $00
+
     nop
-    ld e, h
+
+    db $00
+
     nop
+
+    db $11, $00, $00
+
     nop
+
+    db $00
+
     nop
-    ld bc, $0000
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $4e, $10, $58, $00, $01, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $58, $00, $52, $10, $00
+
     nop
+
+    db $01, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $4e, $10, $00
+
     nop
-    ld a, [hl-]
+
+    db $00, $00, $00
+
     nop
-    ld de, $0000
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $58, $00, $44, $10, $00
+
     nop
+
+    db $01, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $56, $00, $00
+
     nop
-    ld c, b
+
+    db $4e, $00, $01, $00, $00
+
     nop
-    ld c, [hl]
+
+    db $00
+
     nop
-    ld b, h
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $44, $10, $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $56, $00, $66, $00, $00
+
     nop
+
+    db $01, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $01, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $52, $00, $64, $00, $5c, $00, $11, $00, $00
+
     nop
-    ld bc, $0000
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $01, $00, $00
+
     nop
+
+    db $00
+
     nop
-    ld c, h
+
+    db $00
+
     nop
-    ld d, d
+
+    db $00, $00, $4e, $00, $60, $00, $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
-    ld bc, $0000
+
+    db $00
+
     nop
+
+    db $00, $00, $52, $20, $64, $20, $00
+
     nop
+
+    db $01, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $44, $00, $01, $79, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
-    ld a, $00
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $01, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $8c, $20, $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $82, $20, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $01, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $00
+
     nop
-    ld bc, $0000
+
+    db $7c, $20, $00
+
     nop
+
+    db $00, $00, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00
+
     nop
+
+    db $00, $00, $74, $20, $00
+
     nop
+
+    db $00
+
     nop
+
+    db $01, $00, $00
+
     nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $6a, $20, $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $64, $20, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $5c, $20, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $52, $20, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $4c, $20, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $44, $20, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $3a, $20, $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $34, $20, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $2c, $20, $00
+
+    nop
+
+    db $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $56, $20, $5c, $20, $3a, $00, $21, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $3a, $00, $01, $79, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $58, $00, $60, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $56, $00, $5c, $00, $00
+
+    nop
+
+    db $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $58, $00, $60, $00, $3e, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $56, $00, $5c, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $52, $00, $58, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $26, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4e, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $56, $00, $40, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4c, $00, $5c, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $3a, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $48, $00, $4e, $00, $44, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4c, $00, $52, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $3e, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $3a, $00, $01, $79, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $58, $00, $66, $00, $60, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $56, $00, $64, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $58, $00, $60, $00, $3e, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $56, $00, $5c, $00, $64, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $52, $00, $58, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4e, $00, $56, $00, $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $40, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4c, $00, $52, $00, $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $66, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $48, $00, $4e, $00, $00
+
+    nop
+
+    db $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $44, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4c, $00, $52, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $60, $10, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $40, $52, $40, $3c, $00, $01, $79, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $40, $00
+
+    nop
+
+    db $3c, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $3c, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $4a, $40, $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $3c, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $4a, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $3c, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $52, $40, $00
+
+    nop
+
+    db $44, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $52, $40, $00
+
+    nop
+
+    db $44, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4a, $40, $5c, $40, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $54, $40, $4a, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $40, $4e, $40, $4e, $00, $01, $79, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $40, $00
+
+    nop
+
+    db $4e, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $3c, $40, $44, $40, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $3c, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $3c, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $3c, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $52, $40, $4a, $40, $44, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $54, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $52, $40, $00
+
+    nop
+
+    db $44, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4a, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $44, $40, $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $4e, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $40, $62, $40, $3c, $00, $01, $79, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $40, $00
+
+    nop
+
+    db $3c, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $3c, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $54, $40, $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $3c, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $4a, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $3c, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $52, $40, $00
+
+    nop
+
+    db $44, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $52, $40, $00
+
+    nop
+
+    db $44, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4a, $40, $52, $40, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $5c, $40, $4a, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $40, $54, $40, $4e, $00, $01, $79, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $40, $00
+
+    nop
+
+    db $4e, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $3c, $40, $44, $40, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $3c, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $3c, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $3c, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $58, $40, $4a, $40, $44, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $5c, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $52, $40, $00
+
+    nop
+
+    db $44, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $54, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $52, $40, $4e, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $40, $54, $40, $4e, $00, $01, $79, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $40, $00
+
+    nop
+
+    db $4e, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $3c, $40, $44, $40, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $3c, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $3c, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $3c, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $58, $40, $4a, $40, $44, $00, $01, $00, $5c, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $58, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $54, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $58, $40, $00
+
+    nop
+
+    db $44, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $52, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $54, $40, $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4a, $40, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $52, $50, $4e, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4e, $50, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $3a, $00, $01, $79, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $58, $00, $6a, $00, $60, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $56, $00, $66, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $58, $00, $64, $00, $3e, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $56, $00, $60, $00, $64, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $52, $00, $5c, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4e, $00, $60, $00, $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $40, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4c, $00, $5c, $00, $00
+
+    nop
+
+    db $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $66, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $48, $00, $58, $00, $00
+
+    nop
+
+    db $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $44, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4c, $00, $56, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $4e, $40, $60, $10, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $11, $79, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $52, $10, $44, $00, $36, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4e, $10, $4e, $00, $40, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4c, $10, $52, $20, $44, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $4e, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $10, $4c, $20, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $56, $10, $44, $00, $36, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $52, $10, $56, $00, $40, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4c, $10, $52, $00, $44, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $11, $79, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $52, $10, $44, $00, $36, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4e, $10, $4e, $00, $40, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4c, $10, $52, $20, $44, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $4e, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $10, $4c, $20, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $56, $10, $44, $00, $36, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $52, $10, $4c, $00, $40, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4c, $10, $52, $00, $44, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $11, $79, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $42, $00, $3c, $00, $36, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $44, $00, $3e, $00, $40, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $46, $00, $40, $20, $44, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $48, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $4a, $20, $00
+
+    nop
+
+    db $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4c, $00, $42, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4e, $00, $44, $00, $36, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $50, $00, $46, $00, $36, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $52, $00, $48, $00, $36, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $54, $00, $4a, $00, $40, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $56, $00, $4c, $00, $44, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $79, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $58, $00, $60, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $56, $00, $5c, $00, $00
+
+    nop
+
+    db $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $58, $00, $60, $00, $3e, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $56, $00, $5c, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $52, $00, $58, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $26, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4e, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $56, $00, $40, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4c, $00, $5c, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $3a, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $48, $00, $4e, $00, $44, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $4c, $00, $52, $00, $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $3e, $00, $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00
+
     ld h, h
     nop
     ld b, h
@@ -8909,237 +9691,369 @@ jr_01d_65c7:
     nop
     nop
     nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    nop
-    ld bc, $0079
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld d, d
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld e, h
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld b, h
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld hl, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld a, [hl-]
-    nop
-    ld de, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld a, $00
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $44, $00, $01, $79, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $52, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $5c, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $44, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $21, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $3a, $00, $11, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $3e, $00, $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $01, $00, $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00
+
+    nop
+
+    db $00, $00
+
     nop
     nop
     nop
