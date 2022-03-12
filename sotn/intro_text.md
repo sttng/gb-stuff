@@ -1,4 +1,5 @@
-Introduction
+== Introduction ==
+
 Narrator: It was Richter Belmont, the legendary vampire hunter, who succeeded in finally ending the menace of Count Dracula, Lord of the Vampires who had been brought back from the grave by the dark priest Shaft.
 
 However, one night 4 years later, under the glare of a full moon, Richter mysteriously vanished.
