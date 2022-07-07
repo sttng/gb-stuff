@@ -51,5 +51,5 @@ It would be better to scale down by 62.5% (256/160), in order to maximize screen
 One solution could be to split the downscaled (160x130 picture) into 40x40 pixel blocks. These blocks would consists of 4x4 'original (10px)' tiles and convert to 5x5 (8px) Gameboy tiles.
 So once screen would consist of 4x3 of these blocks, with an 'extra' 8 pixel line and dropping to 2 pixels (130 = 3 x 40 + 8 + 2)
 
-
+![Alucard comparison](alu_comparison.png)
 
