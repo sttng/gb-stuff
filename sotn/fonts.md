@@ -3,4 +3,4 @@ Start Menu Font (Press Start Button): https://fontstruct.com/fontstructions/show
 
 ALL RIGHTS RESERVERD: https://fontstruct.com/fontstructions/show/451269/5_high_regular "5-High Regular" - but with T slightly more narrow.
 
-Game Menu: https://fontstruct.com/fontstructions/show/1502319/quigley-standard-1 
+Game Menu: https://fontstruct.com/fontstructions/show/1502319/quigley-standard-1 " Belmont Standard" for the small caps
