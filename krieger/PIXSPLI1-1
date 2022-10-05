@@ -1,0 +1,433 @@
+;ษออออออออออออออออออออออออออออออออออออออออออออออออออออออออป
+;บ                     STUNT RACE FX                      บ
+;บ                - THE WILDEST RACE YET -                บ
+;บ   Game Boy Version 1.0  (C) 1994/95 by Elmar Krieger   บ
+;บ            PIXEL LINE SPLITTING MAIN PROGRAM           บ
+;ศออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ
+ 
+  INCLUDE "VARDEF.INC"
+
+PSSEG segment"Mem.ROM"
+
+;PIXEL-LINE-SPLITTING (103 LINES)
+;================================
+;START AT ADDRESS &C400
+pixsplit dw jmp1,jmp2
+;PIXEL-LINE-SPLITTING (103 LINES)
+;START AT ADDRESS &C404
+;LINE 01
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&1D:out (&87),a
+  in a,(pixaf):reti
+;LINE 02
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&36:out (&87),a
+  in a,(pixaf):reti
+;LINE 03
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&4F:out (&87),a
+  in a,(pixaf):reti
+;LINE 04
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&68:out (&87),a
+  in a,(pixaf):reti
+;LINE 05
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&81:out (&87),a
+  in a,(pixaf):reti
+;LINE 06
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&9A:out (&87),a
+  in a,(pixaf):reti
+;LINE 07
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&B3:out (&87),a
+  in a,(pixaf):reti
+;LINE 08
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&D0:out (&87),a
+  ld a,&E4:out (tma),a:in a,(pixaf):reti
+;LINE 09
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&E9:out (&87),a
+  in a,(pixaf):reti
+;LINE 0A
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&06:out (&87),a:ld a,&C5:out (&88),a
+  in a,(pixaf):reti
+;LINE 0B
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&1F:out (&87),a
+  in a,(pixaf):reti
+;LINE 0C
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&38:out (&87),a
+  in a,(pixaf):reti
+;LINE 0D
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&51:out (&87),a
+  in a,(pixaf):reti
+;LINE 0E
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&6A:out (&87),a
+  in a,(pixaf):reti
+;LINE 0F
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&83:out (&87),a
+  in a,(pixaf):reti
+;LINE 10
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&A0:out (&87),a
+  ld a,&E3:out (tma),a:in a,(pixaf):reti
+;LINE 11
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&B9:out (&87),a
+  in a,(pixaf):reti
+;LINE 12
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&D2:out (&87),a
+  in a,(pixaf):reti
+;LINE 13
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&EB:out (&87),a
+  in a,(pixaf):reti
+;LINE 14
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&08:out (&87),a:ld a,&C6:out (&88),a
+  in a,(pixaf):reti
+;LINE 15
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&21:out (&87),a
+  in a,(pixaf):reti
+;LINE 16
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&3A:out (&87),a
+  in a,(pixaf):reti
+;LINE 17
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&53:out (&87),a
+  in a,(pixaf):reti
+;LINE 18
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&70:out (&87),a
+  ld a,&E4:out (tma),a:in a,(pixaf):reti
+;LINE 19
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&89:out (&87),a
+  in a,(pixaf):reti
+;LINE 1A
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&A2:out (&87),a
+  in a,(pixaf):reti
+;LINE 1B
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&BB:out (&87),a
+  in a,(pixaf):reti
+;LINE 1C
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&D4:out (&87),a
+  in a,(pixaf):reti
+;LINE 1D
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&ED:out (&87),a
+  in a,(pixaf):reti
+;LINE 1E
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&0A:out (&87),a:ld a,&C7:out (&88),a
+  in a,(pixaf):reti
+;LINE 1F
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&23:out (&87),a
+  in a,(pixaf):reti
+;LINE 20
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&40:out (&87),a
+  ld a,&E3:out (tma),a:in a,(pixaf):reti
+;LINE 21
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&59:out (&87),a
+  in a,(pixaf):reti
+;LINE 22
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&72:out (&87),a
+  in a,(pixaf):reti
+;LINE 23
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&8B:out (&87),a
+  in a,(pixaf):reti
+;LINE 24
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&A4:out (&87),a
+  in a,(pixaf):reti
+;LINE 25
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&BD:out (&87),a
+  in a,(pixaf):reti
+;LINE 26
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&D6:out (&87),a
+  in a,(pixaf):reti
+;LINE 27
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&EF:out (&87),a
+  in a,(pixaf):reti
+;LINE 28
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&10:out (&87),a:ld a,&C8:out (&88),a
+  ld a,&E4:out (tma),a:in a,(pixaf):reti
+;LINE 29
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&29:out (&87),a
+  in a,(pixaf):reti
+;LINE 2A
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&42:out (&87),a
+  in a,(pixaf):reti
+;LINE 2B
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&5B:out (&87),a
+  in a,(pixaf):reti
+;LINE 2C
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&74:out (&87),a
+  in a,(pixaf):reti
+;LINE 2D
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&8D:out (&87),a
+  in a,(pixaf):reti
+;LINE 2E
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&A6:out (&87),a
+  in a,(pixaf):reti
+;LINE 2F
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&BF:out (&87),a
+  in a,(pixaf):reti
+;LINE 30
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&DC:out (&87),a
+  ld a,&E3:out (tma),a:in a,(pixaf):reti
+;LINE 31
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&F5:out (&87),a
+  in a,(pixaf):reti
+;LINE 32
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&12:out (&87),a:ld a,&C9:out (&88),a
+  in a,(pixaf):reti
+;LINE 33
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&2B:out (&87),a
+  in a,(pixaf):reti
+;LINE 34
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&44:out (&87),a
+  in a,(pixaf):reti
+;LINE 35
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&5D:out (&87),a
+  in a,(pixaf):reti
+;LINE 36
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&76:out (&87),a
+  in a,(pixaf):reti
+;LINE 37
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&8F:out (&87),a
+  in a,(pixaf):reti
+;LINE 38
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&AC:out (&87),a
+  ld a,&E4:out (tma),a:in a,(pixaf):reti
+;LINE 39
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&C5:out (&87),a
+  in a,(pixaf):reti
+;LINE 3A
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&DE:out (&87),a
+  in a,(pixaf):reti
+;LINE 3B
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&F7:out (&87),a
+  in a,(pixaf):reti
+;LINE 3C
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&14:out (&87),a:ld a,&CA:out (&88),a
+  in a,(pixaf):reti
+;LINE 3D
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&2D:out (&87),a
+  in a,(pixaf):reti
+;LINE 3E
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&46:out (&87),a
+  in a,(pixaf):reti
+;LINE 3F
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&5F:out (&87),a
+  in a,(pixaf):reti
+;LINE 40
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&7C:out (&87),a
+  ld a,&E3:out (tma),a
+jmp1 jp &0000:;in a,(pixaf):;reti
+;LINE 41
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&95:out (&87),a
+  in a,(pixaf):reti
+;LINE 42
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&AE:out (&87),a
+  in a,(pixaf):reti
+;LINE 43
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&C7:out (&87),a
+  in a,(pixaf):reti
+;LINE 44
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&E0:out (&87),a
+  in a,(pixaf):reti
+;LINE 45
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&F9:out (&87),a
+  in a,(pixaf):reti
+;LINE 46
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&16:out (&87),a:ld a,&CB:out (&88),a
+  in a,(pixaf):reti
+;LINE 47
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&2F:out (&87),a
+  in a,(pixaf):reti
+;LINE 48
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&4C:out (&87),a
+  ld a,&E4:out (tma),a:in a,(pixaf):reti
+;LINE 49
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&65:out (&87),a
+  in a,(pixaf):reti
+;LINE 4A
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&7E:out (&87),a
+  in a,(pixaf):reti
+;LINE 4B
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&97:out (&87),a
+  in a,(pixaf):reti
+;LINE 4C
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&B0:out (&87),a
+  in a,(pixaf):reti
+;LINE 4D
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&C9:out (&87),a
+  in a,(pixaf):reti
+;LINE 4E
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&E2:out (&87),a
+  in a,(pixaf):reti
+;LINE 4F
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&FB:out (&87),a
+  in a,(pixaf):reti
+;LINE 50
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&1C:out (&87),a:ld a,&CC:out (&88),a
+  ld a,&E3:out (tma),a:in a,(pixaf):reti
+;LINE 51
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&35:out (&87),a
+  in a,(pixaf):reti
+;LINE 52
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&4E:out (&87),a
+  in a,(pixaf):reti
+;LINE 53
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&67:out (&87),a
+  in a,(pixaf):reti
+;LINE 54
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&80:out (&87),a
+  in a,(pixaf):reti
+;LINE 55
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&99:out (&87),a
+  in a,(pixaf):reti
+;LINE 56
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&B2:out (&87),a
+  in a,(pixaf):reti
+;LINE 57
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&CB:out (&87),a
+  in a,(pixaf):reti
+;LINE 58
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&E8:out (&87),a
+  ld a,&E4:out (tma),a:in a,(pixaf):reti
+;LINE 59
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&05:out (&87),a:ld a,&CD:out (&88),a
+  in a,(pixaf):reti
+;LINE 5A
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&1E:out (&87),a
+  in a,(pixaf):reti
+;LINE 5B
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&37:out (&87),a
+  in a,(pixaf):reti
+;LINE 5C
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&50:out (&87),a
+  in a,(pixaf):reti
+;LINE 5D
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&69:out (&87),a
+  in a,(pixaf):reti
+;LINE 5E
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&82:out (&87),a
+  in a,(pixaf):reti
+;LINE 5F
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&9B:out (&87),a
+  in a,(pixaf):reti
+;LINE 60
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&B8:out (&87),a
+  ld a,&E3:out (tma),a:in a,(pixaf):reti
+;LINE 61
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&D1:out (&87),a
+  in a,(pixaf):reti
+;LINE 62
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&EA:out (&87),a
+  in a,(pixaf):reti
+;LINE 63
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&07:out (&87),a:ld a,&CE:out (&88),a
+  in a,(pixaf):reti
+;LINE 64
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&20:out (&87),a
+  in a,(pixaf):reti
+;LINE 65
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&39:out (&87),a
+  in a,(pixaf):reti
+;LINE 66
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (scy),a:ld a,0:out (bgp),a
+  ld a,0:out (wx),a:ld a,&52:out (&87),a
+  in a,(pixaf):reti
+;LINE 67
+  out (pixaf),a:ld a,0:out (scx),a:ld a,0:out (wx),a:ld a,0:out (bgp),a
+  ld a,0:out (scy),a:ld a,&6B:out (&87),a
+  in a,(pixaf)
+jmp2 jp &0000
+
+end
