@@ -16,3 +16,8 @@ https://github.com/LIJI32/GBVisualizer
 
 
 https://avid.miraheze.org/wiki/Konami_(Japan)
+
+
+https://github.com/lancekindle/DMGreport
+
+https://github.com/paulobruno/LearningGbAsm
