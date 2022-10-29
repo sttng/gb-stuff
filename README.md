@@ -13,10 +13,11 @@ https://github.com/FIX94/pkm-yellow-sound-visualizer
 
 https://github.com/LIJI32/GBVisualizer
 
-
+Others:
 
 https://avid.miraheze.org/wiki/Konami_(Japan)
 
+http://higherorderfun.com/blog/2012/05/20/the-guide-to-implementing-2d-platformers/
 
 https://github.com/lancekindle/DMGreport
 
