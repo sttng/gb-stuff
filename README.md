@@ -22,3 +22,7 @@ http://higherorderfun.com/blog/2012/05/20/the-guide-to-implementing-2d-platforme
 https://github.com/lancekindle/DMGreport
 
 https://github.com/paulobruno/LearningGbAsm
+
+https://gbdev.io/guides/deadcscroll.html
+
+https://github.com/gbdev/DeadCScroll/blob/main/DeadCScroll.asm
