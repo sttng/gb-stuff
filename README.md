@@ -26,3 +26,5 @@ https://github.com/paulobruno/LearningGbAsm
 https://gbdev.io/guides/deadcscroll.html
 
 https://github.com/gbdev/DeadCScroll/blob/main/DeadCScroll.asm
+
+https://github.com/KernelEquinox/SotN-Editor
