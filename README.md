@@ -34,3 +34,5 @@ https://twitter.com/_RibbonBlack_/status/1059490335867334656
 https://www.litigationsupporttipofthenight.com/single-post/2020/05/06/powershell-script-to-get-hash-values-of-multiple-files-in-multiple-folders
 
 https://androidarts.com/Castlevania/CVX.htm
+
+https://mastodon.gamedev.place/@PixelatedEric/109717506455108129
