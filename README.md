@@ -36,3 +36,6 @@ https://www.litigationsupporttipofthenight.com/single-post/2020/05/06/powershell
 https://androidarts.com/Castlevania/CVX.htm
 
 https://mastodon.gamedev.place/@PixelatedEric/109717506455108129
+
+http://info.sonicretro.org/SmpsView
+
