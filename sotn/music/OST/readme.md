@@ -34,3 +34,20 @@
 32. Black Banquet (黒の饗宴)
 33. Metamorphosis 3 (変容 NO.3)
 34. I am the Wind (Featuring Cynthia Harrell)
+
+= Unreleased =
+
+01. The Master Librarian (two versions, one for the PlayStation, one for the Sega Saturn)
+02. Chaconne in C Moll (Saturn song)
+03. Vampire Killer Rock (Saturn song)
+04. Vampire Killer Techno-Goth (Saturn song)
+05. Beginning Techno-Goth (Saturn song)
+06. Beginning Jazz (Saturn song)
+07. Bloody Tears Hard-Rock, vers. A (Saturn song)
+08. Bloody Tears Hard-Rock, vers. 2 (Saturn song)
+09. Guardian (Saturn song)
+10. Dracula's Castle [Bonus] (track 2 on PSX disc)
+11. Dracula's Castle (alternate loop)
+12. Festival of Servants (alternate loop)
+13. Crystal Teardrop (alternate loop)
+14 .Blood Relations (alternate loop)
