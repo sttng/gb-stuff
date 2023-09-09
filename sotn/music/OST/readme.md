@@ -1,6 +1,7 @@
 # hUGETracker 8-bit Castlevania music
 
 This folder is a collection of free Castlevania 8-bit music in .uge format for use in Gameboy homebrew projects.
+
 All of the .uge music is availabe under the CC0 license.
 
 ## Track List
@@ -40,7 +41,7 @@ All of the .uge music is availabe under the CC0 license.
 33. Metamorphosis 3 (変容 NO.3)
 34. I am the Wind (Featuring Cynthia Harrell)
 
-## Unreleased
+## Unreleased OST
 
 01. The Master Librarian (two versions, one for the PlayStation, one for the Sega Saturn)
 02. Chaconne in C Moll (Saturn song)
