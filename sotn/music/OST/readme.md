@@ -43,7 +43,7 @@ All of the .uge music is availabe under the CC0 license.
 
 ## Unreleased OST
 
-01. The Master Librarian (two versions, one for the PlayStation, one for the Sega Saturn)
+01. [The Master Librarian](https://www.youtube.com/watch?v=PvfgDsW_U48) (two versions, one for the PlayStation, one for the Sega Saturn)
 02. Chaconne in C Moll (Saturn song)
 03. Vampire Killer Rock (Saturn song)
 04. Vampire Killer Techno-Goth (Saturn song)
