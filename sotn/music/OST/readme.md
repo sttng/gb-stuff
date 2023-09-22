@@ -1,6 +1,8 @@
 # hUGETracker 8-bit Castlevania music
 
-This folder is a collection of free Castlevania 8-bit music in .uge format for use in Gameboy homebrew projects.
+This folder is a collection of  Castlevania 8-bit music in .uge format.
+
+Castlevania is a property of KONAMI
 
 All of the .uge music is availabe under the CC0 license.
 
