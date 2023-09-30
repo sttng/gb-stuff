@@ -25,7 +25,7 @@ All of the .uge music is availabe under the CC0 license.
 15. Requiem for the Gods (神々たちのレクイエム)
 16. [Crystal Teardrop (水晶のしずく)](https://www.youtube.com/watch?v=BCyZux7bKkA)
 17. Abandoned Pit (焉道)
-18. Rainbow Cemetery (虹の墓地)
+18. [Rainbow Cemetery (虹の墓地)](https://www.youtube.com/watch?v=yWSDWlrSnq0)
 19. Silence (静寂)
 20. Lost Painting (失われた彩画)
 21. Waltz of Pearls (パール舞踏曲)
