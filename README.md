@@ -42,3 +42,10 @@ http://info.sonicretro.org/SmpsView
 https://www.youtube.com/watch?v=F3dMR5ge8vk
 
 https://musescore.com/user/30866676/scores/8959626
+
+
+
+
+
+
+Canon EOS R5, (Best quality, 8k, Masterpiece :1.3), (realistic, photorealistic: 1.37), (1girl), (Pretty woman in her 20s), (slim), (emphasizing slender abs :1.3), ((Spanish)), (tight, wet and transparent dress), (visible thongs), (choker on neck), (random sexy pose, spread legs), (large breasts :1.5), (Ultra-detailed face), (Detailed eyes), (Double eyelids), (eyeshadow intensifying), (many eyelashes), (perfect body), (long legs), (professional lighting), (photon mapping), (radiosity), (looking directly at viewer), (blonde hair), (all colors of the rainbow: 1.8), ((Paint Splash, Color Splash, Splash of Ink, Color Splash)), (Ultra-thin mini blue bikini lingerie), ((nipple tips protruding)), (areola is protruding), pubic shape clearly visible, ((rainbow socks)), ((Open your mouth wide and stick out your long tongue:1.4)), wearing a pink baseball cap, In the garbage heap，Dirty 1.5, make part of background, make part of rubbish, rubbish, debris, Garbage all over the ground，grimy，Dilapidated，
