@@ -27,7 +27,7 @@ All of the .uge music is availabe under the CC0 license.
 17. Abandoned Pit (焉道)
 18. [Rainbow Cemetery (虹の墓地)](https://www.youtube.com/watch?v=yWSDWlrSnq0)
 19. Silence (静寂)
-20. Lost Painting (失われた彩画)
+20. [Lost Painting (失われた彩画)](https://www.youtube.com/watch?v=ofvUNqYttUg)
 21. [Waltz of Pearls (パール舞踏曲)](https://www.youtube.com/watch?v=WwCQD6zwLhs)
 22. Curse Zone (呪いの聖域)
 23. Enchanted Banquet (魔性の宴)
