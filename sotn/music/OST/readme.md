@@ -11,7 +11,7 @@ All of the .uge music is availabe under the CC0 license.
 1. Metamorphosis 1 (変容 NO.1)
 2. [Prologue (プロローグ)](https://www.youtube.com/watch?v=I0OnJpQiY2o)
 3. Dance of Illusions (幻想的舞曲)
-4. Moonlight Nocturne (月下の夜想曲)
+4. [Moonlight Nocturne (月下の夜想曲)](https://www.youtube.com/watch?v=99xLiJQAOEY)
 5. [Prayer (祈り)](https://www.youtube.com/watch?v=hLQMYixygV8)
 6. [Dracula's Castle (ドラキュラ城)](https://www.youtube.com/watch?v=L4_bMXof6SM)
 7. Dance of Gold (黄金の舞曲)
