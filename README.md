@@ -43,3 +43,5 @@ https://www.youtube.com/watch?v=F3dMR5ge8vk
 
 https://musescore.com/user/30866676/scores/8959626
 
+JPN Gameboy Box dimension:
+3.9375 × 0.875 × 4.8750 in
