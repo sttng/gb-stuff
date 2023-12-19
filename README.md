@@ -47,3 +47,5 @@ JPN Gameboy Box dimension:
 3.9375 × 0.875 × 4.8750 in
 
 https://www.nintandbox.net/index.php/en/nintendo-boxes-project/GameBoy/Kirbys-Pinball-Land/KirbySPinballLand_GB-Box_ASI(DMG-K9J).zip/file-1559/
+
+https://www.youtube.com/watch?v=Gt1SXw-X26I
