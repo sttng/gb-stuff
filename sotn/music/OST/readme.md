@@ -32,7 +32,7 @@ All of the .uge music is availabe under the CC0 license.
 22. Curse Zone (呪いの聖域)
 23. Enchanted Banquet (魔性の宴)
 24. Wandering Ghosts (さまよえる魂)
-25. The Tragic Prince (悲境の貴公子)
+25. [The Tragic Prince (悲境の貴公子)](https://youtu.be/jgITalUClBg)
 26. Door to the Abyss (深淵への扉)
 27. Heavenly Doorway (天界への扉)
 28. Death Ballad (死の詩曲)
