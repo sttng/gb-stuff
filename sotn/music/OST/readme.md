@@ -14,7 +14,7 @@ All of the .uge music is availabe under the CC0 license.
 4. [Moonlight Nocturne (月下の夜想曲)](https://www.youtube.com/watch?v=99xLiJQAOEY)
 5. [Prayer (祈り)](https://www.youtube.com/watch?v=hLQMYixygV8)
 6. [Dracula's Castle (ドラキュラ城)](https://www.youtube.com/watch?v=L4_bMXof6SM)
-7. Dance of Gold (黄金の舞曲)
+7. [Dance of Gold (黄金の舞曲)](https://www.youtube.com/watch?v=o4Hmooy0fsI)
 8. [Marble Gallery (大理石の廊下)](https://www.youtube.com/watch?v=uMoQSlP4oSQ)
 9. Tower of Mist (魔霧の塔)
 10. Nocturne (夜曲)
