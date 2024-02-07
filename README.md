@@ -49,3 +49,5 @@ JPN Gameboy Box dimension:
 https://www.nintandbox.net/index.php/en/nintendo-boxes-project/GameBoy/Kirbys-Pinball-Land/KirbySPinballLand_GB-Box_ASI(DMG-K9J).zip/file-1559/
 
 https://www.youtube.com/watch?v=Gt1SXw-X26I
+
+https://www.youtube.com/watch?v=SthcxWPXG_E
