@@ -16,7 +16,7 @@ All of the .uge music is availabe under the CC0 license.
 6. [Dracula's Castle (ドラキュラ城)](https://www.youtube.com/watch?v=L4_bMXof6SM)
 7. [Dance of Gold (黄金の舞曲)](https://www.youtube.com/watch?v=o4Hmooy0fsI)
 8. [Marble Gallery (大理石の廊下)](https://www.youtube.com/watch?v=uMoQSlP4oSQ)
-9. Tower of Mist (魔霧の塔)
+9. [Tower of Mist (魔霧の塔)](https://youtu.be/xgpSJQl9UbE)
 10. Nocturne (夜曲)
 11. [Wood Carving Partita (木彫パルティータ)](https://www.youtube.com/watch?v=PJdwuY3sJ2I)
 12. Door of Holy Spirits (聖霊の扉)
