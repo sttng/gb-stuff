@@ -1,4 +1,4 @@
 # bhop Demo ROMs
 
-Demo roms from the [bhop](https://github.com/zeta0134/bhop) music driver for NES / FamiCom.
+Demo roms from the NES / FamiCom driver [bhop](https://github.com/zeta0134/bhop).
 
