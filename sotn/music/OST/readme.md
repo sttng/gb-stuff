@@ -36,7 +36,7 @@ All of the .uge music is availabe under the CC0 license.
 26. Door to the Abyss (深淵への扉)
 27. Heavenly Doorway (天界への扉)
 28. Death Ballad (死の詩曲)
-29. Blood Relations (異形の血族)
+29. [Blood Relations (異形の血族)](https://youtu.be/RIH1IHhFQxs)
 30. Metamorphosis 2 (変容 NO.2)
 31. [Finale Toccata (終曲トッカータ)](https://www.youtube.com/watch?v=HRvsMhNORQ8)
 32. Black Banquet (黒の饗宴)
