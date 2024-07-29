@@ -22,7 +22,7 @@ All of the .uge music is availabe under the CC0 license.
 12. Door of Holy Spirits (聖霊の扉)
 13. [Festival of Servants (しもべたちの祭典)](https://youtu.be/TNEELfskgAI)
 14. Land of Benediction (終焉の地)
-15. Requiem for the Gods (神々たちのレクイエム)
+15. [Requiem for the Gods (神々たちのレクイエム)](https://youtu.be/srsXsVWYIT8)
 16. [Crystal Teardrop (水晶のしずく)](https://www.youtube.com/watch?v=BCyZux7bKkA)
 17. [Abandoned Pit (焉道)](https://youtu.be/XbCva71TTzM)
 18. [Rainbow Cemetery (虹の墓地)](https://www.youtube.com/watch?v=yWSDWlrSnq0)
