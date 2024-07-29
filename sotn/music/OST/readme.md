@@ -51,7 +51,7 @@ All of the .uge music is availabe under the CC0 license.
 04. Vampire Killer Techno-Goth (Saturn song)
 05. Beginning Techno-Goth (Saturn song)
 06. Beginning Jazz (Saturn song)
-07. [Bloody Tears Hard-Rock, vers. A (Saturn song)](https://www.youtube.com/watch?v=R3XvDzwOeoQ)
+07. [Bloody Tears Hard-Rock, vers. A (Saturn song) (ブラッディティアーズ)](https://www.youtube.com/watch?v=R3XvDzwOeoQ)
 08. Bloody Tears Hard-Rock, vers. 2 (Saturn song)
 09. [Guardian (Saturn song)](https://www.youtube.com/watch?v=FRA65a9vJXA)
 10. Dracula's Castle [Bonus] (track 2 on PSX disc)
