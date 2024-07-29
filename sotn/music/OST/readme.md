@@ -59,5 +59,5 @@ All of the .uge music is availabe under the CC0 license.
 12. Festival of Servants (alternate loop)
 13. Crystal Teardrop (alternate loop)
 14. Blood Relations (alternate loop)
-15. Mournful Serenade (PSP version). The new end credits song (instead of "I am the Wind")for Symphony of the Night's PSP version.
+15. Mournful Serenade (PSP version). The new end credits song (instead of "I am the Wind") for Symphony of the Night's PSP version.
 16. Admiration Towards the Clan - renamed "Admiration of Clan" (XBLA) from Castlevania: Lament of Innocence, used in an update of the Xbox Live Arcade version.
