@@ -35,7 +35,7 @@ All of the .uge music is availabe under the CC0 license.
 25. [The Tragic Prince (悲境の貴公子)](https://youtu.be/jgITalUClBg)
 26. Door to the Abyss (深淵への扉)
 27. [Heavenly Doorway (天界への扉)](https://youtu.be/QNLnv-TM1js)
-28. Death Ballad (死の詩曲)
+28. [Death Ballad (死の詩曲)](https://youtu.be/gb8r6vJlUBg)
 29. [Blood Relations (異形の血族)](https://youtu.be/RIH1IHhFQxs)
 30. Metamorphosis 2 (変容 NO.2)
 31. [Finale Toccata (終曲トッカータ)](https://youtu.be/HRvsMhNORQ8)
