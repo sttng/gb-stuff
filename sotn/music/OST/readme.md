@@ -2,7 +2,7 @@
 
 This folder is a collection of  Castlevania 8-bit music in .uge format.
 
-Castlevania is a property of KONAMI
+Castlevania is a property of KONAMI.
 
 All of the .uge music is availabe under the CC0 license.
 
