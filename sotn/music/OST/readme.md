@@ -59,5 +59,5 @@ All of the .uge music is availabe under the CC0 license.
 12. Festival of Servants (alternate loop)
 13. Crystal Teardrop (alternate loop)
 14. Blood Relations (alternate loop)
-15. Mournful Serenade (PSP version) - otherwise known as "Serenade of Sympathy" or "Mournful Nocturne" (哀悼のセレナーデ). The new end credits song (instead of "I am the Wind") for Symphony of the Night's PSP version within Dracula X Chronicles.
+15. Mournful Serenade (PSP version) - otherwise known as "Serenade of Sympathy", "Mourning Serenade" or "Mournful Nocturne" (哀悼のセレナーデ). The new end credits song (instead of "I am the Wind") for Symphony of the Night's PSP version within Dracula X Chronicles.
 16. Admiration Towards the Clan (ある一族への憧憬) - renamed "Admiration of Clan" (XBLA) from Castlevania: Lament of Innocence, used in an update of the Xbox Live Arcade version.
