@@ -1,6 +1,6 @@
 # hUGETracker 8-bit Castlevania music
 
-This folder is a collection of  Castlevania 8-bit music in .uge format.
+This folder is a collection of Castlevania music in Gameboy 8-bit .uge format.
 
 Castlevania is a property of KONAMI.
 
