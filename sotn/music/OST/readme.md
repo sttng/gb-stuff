@@ -47,7 +47,7 @@ All of the .uge music is availabe under the CC0 license.
 
 01. [The Master Librarian](https://youtu.be/PvfgDsW_U48) (two versions, one for the PlayStation, one for the Sega Saturn)
 02. Chaconne in C Moll (Saturn song)
-03. Vampire Killer Rock (Saturn song)
+03. [Vampire Killer Rock (Saturn song)](https://youtu.be/K1f_wC483cw)
 04. Vampire Killer Techno-Goth (Saturn song)
 05. Beginning Techno-Goth (Saturn song) (遥かなる凱旋)
 06. Beginning Jazz (Saturn song) (遥かなる凱旋)
