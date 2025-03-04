@@ -14,7 +14,7 @@ MultiU8U8Qrs:        ; U8U8 Quarter Square Multiplication A = Multiplier, B = Mu
     add a,b
     rra
     ld l,a
-    ld h,high(sqrlo)
+    ld h,HIGH(sqrlo)
     ld a,[hl]
     ld e,l
     ld l,d
