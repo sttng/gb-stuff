@@ -1,51 +1,32 @@
-MultiU8U8Qrs:        ; U8U8 Quarter Square Multiplication A = Multiplier, B = Multiplicant; Output: A:E = Product 
-    cp b
-    jr nc,.l1
-
-    ld e,a
-    ld a,b
-    ld b,e
-
-.l1  ld c,a
-    sub b
+; 34 cycles, 27 bytes
+MultiU8U8Qrs:        ; U8U8 Quarter Square Multiplication A = Multiplier, B = Multiplicand; Output: A:E = Product
+    add a,b
     rra
-    ld d,a
+    ld c,a
+    sbc a,a
+    and b
+    ld e,a
     ld a,c
-    add a,b
-    rra
+    sub b
     ld l,a
-    ld h,HIGH(sqrlo)
-    ld a,[hl]
-    ld e,l
-    ld l,d
-    jr nc,.l2
-
-    sub [hl]   ;odd
-    ld l,e
-    ld e,a
-    inc h      ;loads high(sqrhi)
-    ld a,[hl]
-    ld l,d
-    sbc a,[hl]
+    sbc a,a
+    and l
     ld d,a
-
-    ld a,e
-    add a,b
+    ld h,HIGH(sqrlo)
+    ld b,h
+    ld a,[bc]
+    add a,e
+    rl d
+    sub [hl]
     ld e,a
-    ld a,d
-    adc a,0
-    ret
-
-.l2  sub [hl]  ;even
-    ld l,e
-    ld e,a
-    inc h
-    ld a,[hl]
-    ld l,d
+    inc h      ;loads HIGH(sqrhi)
+    ld b,h
+    ld a,[bc]
     sbc a,[hl]
+    add a,d
     ret
 
-SECTION "4sqrs Table", ROM0[$0200]
+SECTION "4sqrs Table", ROM0, ALIGN[8]
 sqrlo: ;low(x*x)   should be at the page border
     db 0,1,4,9,$10,$19,$24,$31,$40,$51,$64,$79,$90,$a9,$c4,$e1
     db 0,$21,$44,$69,$90,$b9,$e4,$11,$40,$71,$a4,$d9,$10,$49,$84,$c1
