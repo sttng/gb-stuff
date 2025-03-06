@@ -187,7 +187,7 @@ Mult_S48:
 ; Negate a 16-bit number in HL.
 ; INPUT:    HL = num
 ; OUTPUT:   HL = -num
-; DESTROYS: AF -- DE HL
+; DESTROYS: AF -- -- HL
 Math_Neg16_hl:
     ld a,l
     cpl
@@ -217,7 +217,7 @@ Math_Neg16_de:
 ; Negate a 16-bit number in BC.
 ; INPUT:    BC = num
 ; OUTPUT:   BC = -num
-; DESTROYS:  AF BC DE --
+; DESTROYS:  AF BC -- --
 Math_Neg16_bc:
     ld a,b 
     cpl 
