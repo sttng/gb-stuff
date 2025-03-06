@@ -159,7 +159,7 @@ sqrhi: ;high(x*x)
 ; PRESERVES: 
 ; DESTROYS: ?? ?? ?? ??
 Mult_S48:
-    ld a,h
+	ld a,h
 	add a,a
 	sbc a,a
 			
