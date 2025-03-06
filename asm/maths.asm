@@ -149,6 +149,146 @@ sqrhi: ;high(x*x)
     db $e1,$e2,$e4,$e6,$e8,$ea,$ec,$ee,$f0,$f2,$f4,$f6,$f8,$fa,$fc,$fe
 
 
+; Multiply a 16-bit number by a 16-bit number (unsigned)
+; INPUT:     DE = multiplicand
+;            BC = multiplier
+; OUTPUT:    DEHL = result
+; PRESERVES: 
+; DESTROYS:  AF BC DE HL
+mult_U16U16:
+	ld hl,0
+  
+: 	add hl,hl ;repeat 16
+	rl e
+	rl d
+	jp nc,:+
+	add hl,bc
+	jp nc,:+
+	inc de
+
+:	add hl,hl
+	rl e
+	rl d
+	jp nc,:+
+	add hl,bc
+	jp nc,:+
+	inc de
+
+: 	add hl,hl
+	rl e
+	rl d
+	jp nc,:+
+	add hl,bc
+	jp nc,:+
+	inc de
+
+:	add hl,hl
+	rl e
+	rl d
+	jp nc,:+
+	add hl,bc
+	jp nc,:+
+	inc de
+
+: 	add hl,hl
+	rl e
+	rl d
+	jp nc,:+
+	add hl,bc
+	jp nc,:+
+	inc de
+
+: 	add hl,hl
+  	rl e
+  	rl d
+  	jp nc,:+
+  	add hl,bc
+  	jp nc,:+
+  	inc de
+
+: 	add hl,hl
+	rl e
+	rl d
+	jp nc,:+
+	add hl,bc
+	jp nc,:+
+	inc de
+
+: 	add hl,hl
+  	rl e
+  	rl d
+  	jp nc,:+
+  	add hl,bc
+  	jp nc,:+
+  	inc de
+
+: 	add hl,hl
+	rl e
+	rl d
+	jp nc,:+
+	add hl,bc
+	jp nc,:+
+	inc de
+
+: 	add hl,hl
+  	rl e
+  	rl d
+  	jp nc,:+
+  	add hl,bc
+  	jp nc,:+
+  	inc de
+
+: 	add hl,hl
+	rl e
+	rl d
+	jp nc,:+
+	add hl,bc
+	jp nc,:+
+	inc de
+
+: 	add hl,hl
+  	rl e
+  	rl d
+  	jp nc,:+
+  	add hl,bc
+  	jp nc,:+
+  	inc de
+
+: 	add hl,hl
+	rl e
+	rl d
+	jp nc,:+
+	add hl,bc
+	jp nc,:+
+	inc de
+
+: 	add hl,hl
+  	rl e
+  	rl d
+  	jp nc,:+
+  	add hl,bc
+  	jp nc,:+
+  	inc de
+
+: 	add hl,hl
+	rl e
+	rl d
+	jp nc,:+
+	add hl,bc
+	jp nc,:+
+	inc de
+
+: 	add hl,hl
+  	rl e
+  	rl d
+  	jp nc,:+
+  	add hl,bc
+  	jp nc,:+
+  	inc de
+ 
+: 	ret
+
+
 
 
 
