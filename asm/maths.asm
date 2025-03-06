@@ -1,5 +1,12 @@
-; 34-35 cycles, 28 bytes, Preseves BC
-MultiU8U8Qrs:        ; U8U8 Quarter Square Multiplication A = Multiplier, B = Multiplicand; Output: A:E = Product. Preserves BC
+; Quarter Square Multiplication
+; Multiply an 8 bit number by an 8 bit number (unsigned)
+; INPUT:     A  = multiplicand
+;            B  = multiplier
+; OUTPUT:    AE = result
+; PRESERVES: BC
+; DESTROYS: AF DE HL
+; 34-35 cycles, 28 bytes
+Mult_U8U8_Qrs_BC:
     ; L = floor((x+y)/2)
     add a,b
     rra
@@ -70,16 +77,15 @@ sqrhi: ;high(x*x)
 
 
 
-
-
-
-
-
-
-
-
+; Quarter Square Multiplication
+; Multiply an 8 bit number by an 8 bit number (unsigned)
+; INPUT:     A  = multiplicand
+;            B  = multiplier
+; OUTPUT:    AE = result
+; PRESERVES: 
+; DESTROYS:  AF BC DE HL
 ; 34 cycles, 27 bytes
-MultiU8U8Qrs:        ; U8U8 Quarter Square Multiplication A = Multiplier, B = Multiplicand; Output: A:E = Product
+MultiU8U8Qrs:
     add a,b
     rra
     ld c,a
