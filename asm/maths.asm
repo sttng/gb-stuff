@@ -155,138 +155,137 @@ sqrhi: ;high(x*x)
 ; OUTPUT:    DEHL = result
 ; PRESERVES: 
 ; DESTROYS:  AF BC DE HL
-mult_U16U16:
+mult_U16U16_unr:
 	ld hl,0
-  
-: 	add hl,hl ;repeat 16
+
+: add hl,hl ;repeat 16
 	rl e
 	rl d
-	jp nc,:+
+	jr nc,:+
 	add hl,bc
-	jp nc,:+
+	jr nc,:+
 	inc de
 
 :	add hl,hl
 	rl e
 	rl d
-	jp nc,:+
+	jr nc,:+
 	add hl,bc
-	jp nc,:+
-	inc de
-
-: 	add hl,hl
-	rl e
-	rl d
-	jp nc,:+
-	add hl,bc
-	jp nc,:+
+	jr nc,:+
 	inc de
 
 :	add hl,hl
 	rl e
 	rl d
-	jp nc,:+
+	jr nc,:+
 	add hl,bc
-	jp nc,:+
+	jr nc,:+
 	inc de
 
-: 	add hl,hl
+:	add hl,hl
 	rl e
 	rl d
-	jp nc,:+
+	jr nc,:+
 	add hl,bc
-	jp nc,:+
+	jr nc,:+
 	inc de
 
-: 	add hl,hl
-  	rl e
-  	rl d
-  	jp nc,:+
-  	add hl,bc
-  	jp nc,:+
-  	inc de
-
-: 	add hl,hl
+: add hl,hl
 	rl e
 	rl d
-	jp nc,:+
+	jr nc,:+
 	add hl,bc
-	jp nc,:+
+	jr nc,:+
 	inc de
 
-: 	add hl,hl
-  	rl e
-  	rl d
-  	jp nc,:+
-  	add hl,bc
-  	jp nc,:+
-  	inc de
-
-: 	add hl,hl
+:	add hl,hl
 	rl e
 	rl d
-	jp nc,:+
+	jr nc,:+
 	add hl,bc
-	jp nc,:+
+	jr nc,:+
 	inc de
 
-: 	add hl,hl
-  	rl e
-  	rl d
-  	jp nc,:+
-  	add hl,bc
-  	jp nc,:+
-  	inc de
-
-: 	add hl,hl
+:	add hl,hl
 	rl e
 	rl d
-	jp nc,:+
+	jr nc,:+
 	add hl,bc
-	jp nc,:+
+	jr nc,:+
 	inc de
 
-: 	add hl,hl
-  	rl e
-  	rl d
-  	jp nc,:+
-  	add hl,bc
-  	jp nc,:+
-  	inc de
-
-: 	add hl,hl
+:	add hl,hl
 	rl e
 	rl d
-	jp nc,:+
+	jr nc,:+
 	add hl,bc
-	jp nc,:+
+	jr nc,:+
 	inc de
 
-: 	add hl,hl
-  	rl e
-  	rl d
-  	jp nc,:+
-  	add hl,bc
-  	jp nc,:+
-  	inc de
-
-: 	add hl,hl
+: add hl,hl
 	rl e
 	rl d
-	jp nc,:+
+	jr nc,:+
 	add hl,bc
-	jp nc,:+
+	jr nc,:+
 	inc de
 
-: 	add hl,hl
-  	rl e
-  	rl d
-  	jp nc,:+
-  	add hl,bc
-  	jp nc,:+
-  	inc de
- 
-: 	ret
+:	add hl,hl
+	rl e
+	rl d
+	jr nc,:+
+	add hl,bc
+	jr nc,:+
+	inc de
+
+:	add hl,hl
+	rl e
+	rl d
+	jr nc,:+
+	add hl,bc
+	jr nc,:+
+	inc de
+
+:	add hl,hl
+	rl e
+	rl d
+	jr nc,:+
+	add hl,bc
+	jr nc,:+
+	inc de
+
+: add hl,hl
+	rl e
+	rl d
+	jr nc,:+
+	add hl,bc
+	jr nc,:+
+	inc de
+
+:	add hl,hl
+	rl e
+	rl d
+	jr nc,:+
+	add hl,bc
+	jr nc,:+
+	inc de
+
+:	add hl,hl
+	rl e
+	rl d
+	jr nc,:+
+	add hl,bc
+	jr nc,:+
+	inc de
+
+:	add hl,hl
+	rl e
+	rl d
+	jr nc,:+
+	add hl,bc
+	jr nc,:+
+	inc de
+: ret
 
 
 
@@ -296,6 +295,7 @@ mult_U16U16:
 ; OUTPUT:    DEHL = product
 ; PRESERVES: 
 ; DESTROYS:  AF BC DE HL
+mult_U16U16:
 	ld hl,0
 	ld a,16
 .muluw
