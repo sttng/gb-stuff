@@ -311,6 +311,76 @@ mult_U16U16:
  	jr nz,.muluw
 	ret
 
+; Multiply a 16-bit number by a 16-bit number (signed)
+; INPUT:     DE = (s) multiplicand
+;            BC = (s) multiplier
+; OUTPUT:    DEHL = (s) product
+; PRESERVES: 
+; DESTROYS:  AF BC DE HL
+mult_S16S16:
+	ld l,0
+	bit 7,d
+	jp z,:+
+		; DE is -ve
+	inc l
+			
+	dec de
+	ld a,d
+	cpl
+	ld d,a
+	ld a,e
+	cpl
+	ld e,a
+			
+:
+	bit 7,b
+	jp z,:+
+		; BC is signed.
+	inc l
+	dec bc
+	ld a,b
+	cpl
+	ld b,a
+	ld a,c
+	cpl
+	ld c,a
+
+:
+	ld a,l
+	call U16U16
+	
+	and 1
+	ret z ; No need to flip sign of DEHL
+	ld a,h
+	or l
+
+	; dec dehl
+
+	dec l
+	jr nc,:+
+	dec h
+	jr nc,:+
+	dec e
+	jr nc,:+
+	dec d
+
+:
+	ld a,d
+	cpl
+	ld d,a
+	ld a,e
+	cpl
+	ld e,a
+	ld a,h
+	cpl
+	ld h,a
+	ld a,l
+	cpl
+	ld l,a
+	
+	ret	
+
+
 
 
 ; Multiply an ?? bit number by an ?? bit number (signed)
