@@ -195,7 +195,7 @@ Math_Neg16_hl:
     ld a,h
     cpl
     ld h,a
-    inc h
+    inc hl
     ret
 
 
@@ -210,7 +210,7 @@ Math_Neg16_de:
     ld a,e 
     cpl 
     ld e,a 
-    inc d
+    inc de
     ret
 
 
@@ -225,5 +225,5 @@ Math_Neg16_bc:
     ld a,c 
     cpl  
     ld c,a 
-    inc b ;??? original was de should be b, needs to dbl chk
+    inc bc ;??? original was de should be bc, needs to dbl chk
     ret
