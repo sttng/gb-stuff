@@ -1,10 +1,9 @@
-; Quarter Square Multiplication
-; Multiply an 8 bit number by an 8 bit number (unsigned)
+; Quarter Square Multiplication 
+; Multiply an 8 bit number by an 8 bit number (unsigned) - preserves BC
 ; INPUT:     A  = multiplicand
 ;            B  = multiplier
 ; OUTPUT:    AE = result
-; PRESERVES: BC
-; DESTROYS:  AF DE HL
+; DESTROYS:  AF -- DE HL
 ; 34-35 cycles, 28 bytes
 Mult_U8U8_Qrs_BC:
     ; L = floor((x+y)/2)
@@ -82,7 +81,6 @@ sqrhi: ;high(x*x)
 ; INPUT:     A  = multiplicand
 ;            B  = multiplier
 ; OUTPUT:    AE = result
-; PRESERVES: 
 ; DESTROYS:  AF BC DE HL
 ; 34 cycles, 27 bytes
 Mult_U8U8Q_rs:
@@ -153,7 +151,6 @@ sqrhi: ;high(x*x)
 ; INPUT:     DE = multiplicand
 ;            BC = multiplier
 ; OUTPUT:    DEHL = result
-; PRESERVES: 
 ; DESTROYS:  AF BC DE HL
 mult_U16U16_unr:
 	ld hl,0
@@ -293,7 +290,6 @@ mult_U16U16_unr:
 ; INPUT:     DE = multiplicand
 ;            BC = multiplier
 ; OUTPUT:    DEHL = product
-; PRESERVES: 
 ; DESTROYS:  AF BC DE HL
 mult_U16U16:
 	ld hl,0
@@ -315,7 +311,6 @@ mult_U16U16:
 ; INPUT:     DE = (s) multiplicand
 ;            BC = (s) multiplier
 ; OUTPUT:    DEHL = (s) product
-; PRESERVES: 
 ; DESTROYS:  AF BC DE HL
 mult_S16S16:
 	ld l,0
@@ -387,7 +382,6 @@ mult_S16S16:
 ; INPUT:     A  = ??
 ;            B  = ??
 ; OUTPUT:    AE = ??
-; PRESERVES: 
 ; DESTROYS: ?? ?? ?? ??
 Mult_S48:
 	ld a,h
