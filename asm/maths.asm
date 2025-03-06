@@ -183,3 +183,47 @@ Mult_S48:
 	adc a,c
 			
 	ret
+
+; Negate a 16-bit number in HL.
+; INPUT:    HL = num
+; OUTPUT:   HL = -num
+; DESTROYS: AF -- DE HL
+Math_Neg16_hl:
+    ld a,l
+    cpl
+    ld l,a
+    ld a,h
+    cpl
+    ld h,a
+    inc hl
+    ret
+
+
+; Negate a 16-bit number in DE.
+; INPUT:    DE = num
+; OUTPUT:   DE = -num
+; DESTROYS: AF -- DE --
+Math_Neg16_de:
+    ld a,d
+    cpl
+    ld d,a
+    ld a,e 
+    cpl 
+    ld e,a 
+    inc de
+    ret
+
+
+; Negate a 16-bit number in BC.
+; INPUT:    BC = num
+; OUTPUT:   BC = -num
+; DESTROYS:  AF BC DE --
+Math_Neg16_bc:
+    ld a,b 
+    cpl 
+    ld b,a 
+    ld a,c 
+    cpl  
+    ld c,a 
+    inc de ;??? should be bc, needs to dbl chk
+    ret
