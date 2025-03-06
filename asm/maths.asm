@@ -85,7 +85,7 @@ sqrhi: ;high(x*x)
 ; PRESERVES: 
 ; DESTROYS:  AF BC DE HL
 ; 34 cycles, 27 bytes
-MultiU8U8Qrs:
+Mult_U8U8Q_rs:
     add a,b
     rra
     ld c,a
@@ -147,3 +147,39 @@ sqrhi: ;high(x*x)
     db $a9,$aa,$ac,$ad,$af,$b1,$b2,$b4,$b6,$b7,$b9,$bb,$bd,$be,$c0,$c2
     db $c4,$c5,$c7,$c9,$cb,$cc,$ce,$d0,$d2,$d4,$d5,$d7,$d9,$db,$dd,$df
     db $e1,$e2,$e4,$e6,$e8,$ea,$ec,$ee,$f0,$f2,$f4,$f6,$f8,$fa,$fc,$fe
+
+
+
+
+
+; Multiply an ?? bit number by an ?? bit number (signed)
+; INPUT:     A  = ??
+;            B  = ??
+; OUTPUT:    AE = ??
+; PRESERVES: 
+; DESTROYS: ?? ?? ?? ??
+Mult_S48:
+    ld a,h
+	add a,a
+	sbc a,a
+			
+	add hl,hl
+	rla
+	add hl,hl
+	rla
+	add hl,hl
+	rla
+	add hl,hl
+	rla
+			
+	ld c,a
+	ld e,l
+	ld d,h
+			
+	add hl,hl
+	rla
+			
+	add hl,de
+	adc a,c
+			
+	ret
