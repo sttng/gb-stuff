@@ -290,6 +290,27 @@ mult_U16U16:
 
 
 
+; Multiply a 16-bit number by a 16-bit number (unsigned)
+; INPUT:     DE = multiplicand
+;            BC = multiplier
+; OUTPUT:    DEHL = product
+; PRESERVES: 
+; DESTROYS:  AF BC DE HL
+	ld hl,0
+	ld a,16
+.muluw
+ 	add hl,hl
+ 	rl e
+ 	rl d
+ 	jr nc,.muluw_cont
+  	add hl,bc
+  	jr nc,.muluw_cont
+   	inc de
+.muluw_cont
+ 	dec a
+ 	jr nz,.muluw
+	ret
+
 
 
 ; Multiply an ?? bit number by an ?? bit number (signed)
