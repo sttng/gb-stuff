@@ -4,7 +4,7 @@
 ;            B  = multiplier
 ; OUTPUT:    AE = result
 ; PRESERVES: BC
-; DESTROYS: AF DE HL
+; DESTROYS:  AF DE HL
 ; 34-35 cycles, 28 bytes
 Mult_U8U8_Qrs_BC:
     ; L = floor((x+y)/2)
