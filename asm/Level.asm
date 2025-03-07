@@ -1034,8 +1034,1328 @@ Sector45: dw -384, -96
 Sector46: dw -334, -256
 
 
+THINGS:
 
 
+
+Tree:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F
+dw Tree_B
+dw 5888
+
+Tree_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_F
+dw Tree_F_B
+dw -7936
+
+Tree_F_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F_F_F
+dw Tree_F_F_B
+dw 12032
+
+Tree_F_F_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_F_F_F
+dw Tree_F_F_F_B
+dw -3328
+
+Tree_F_F_F_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F_F_F_F_F
+dw Tree_F_F_F_F_B
+dw 13056
+
+Tree_F_F_F_F_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F_F_F_F_F_F
+dw Tree_F_F_F_F_F_B
+dw 13824
+
+Tree_F_F_F_F_F_F:
+db Tree_Node_Type_Leaf
+	db 41
+	db 0
+	db 6 
+	db 222, 208, 209, 210, 211, 212
+
+Tree_F_F_F_F_F_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_F_F_F_F_B_F
+dw Tree_F_F_F_F_F_B_B
+dw -2304
+
+Tree_F_F_F_F_F_B_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_F_F_F_F_B_F_F
+dw Tree_F_F_F_F_F_B_F_B
+dw -1536
+
+Tree_F_F_F_F_F_B_F_F:
+db Tree_Node_Type_Leaf
+	db 41
+	db 0
+	db 2 
+	db 223, 213
+
+Tree_F_F_F_F_F_B_F_B:
+db Tree_Node_Type_Leaf
+	db 42
+	db 13
+	db 4 
+	db 221, 222, 223, 224
+
+Tree_F_F_F_F_F_B_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_F_F_F_F_B_B_F
+dw Tree_F_F_F_F_F_B_B_B
+dw -3072
+
+Tree_F_F_F_F_F_B_B_F:
+db Tree_Node_Type_Leaf
+	db 41
+	db 0
+	db 1 
+	db 221
+
+Tree_F_F_F_F_F_B_B_B:
+db Tree_Node_Type_Leaf
+	db 41
+	db 0
+	db 3 
+	db 206, 205, 207
+
+Tree_F_F_F_F_B:
+db Tree_Node_Type_Leaf
+	db 41
+	db 0
+	db 5 
+	db 224, 203, 204, 215, 214
+
+Tree_F_F_F_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_F_F_B_F
+dw Tree_F_F_F_B_B
+dw -3840
+
+Tree_F_F_F_B_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_F_F_B_F_F
+dw Tree_F_F_F_B_F_B
+dw -3584
+
+Tree_F_F_F_B_F_F:
+db Tree_Node_Type_Leaf
+	db 44
+	db 0
+	db 4 
+	db 206, 254, 226, 227
+
+Tree_F_F_F_B_F_B:
+db Tree_Node_Type_Leaf
+	db 45
+	db 0
+	db 3 
+	db 254, 228, 229
+
+Tree_F_F_F_B_B:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F_F_F_B_B_F
+dw Tree_F_F_F_B_B_B
+dw 15360
+
+Tree_F_F_F_B_B_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_F_F_B_B_F_F
+dw Tree_F_F_F_B_B_F_B
+dw -6144
+
+Tree_F_F_F_B_B_F_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_F_F_B_B_F_F_F
+dw Tree_F_F_F_B_B_F_F_B
+dw -5632
+
+Tree_F_F_F_B_B_F_F_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F_F_F_B_B_F_F_F_F
+dw Tree_F_F_F_B_B_F_F_F_B
+dw 16128
+
+Tree_F_F_F_B_B_F_F_F_F:
+db Tree_Node_Type_Leaf
+	db 45
+	db 0
+	db 3 
+	db 241, 242, 243
+
+Tree_F_F_F_B_B_F_F_F_B:
+db Tree_Node_Type_Leaf
+	db 45
+	db 12
+	db 2 
+	db 244, 250
+
+Tree_F_F_F_B_B_F_F_B:
+db Tree_Node_Type_Leaf
+	db 46
+	db 0
+	db 4 
+	db 249, 250, 255, 240
+
+Tree_F_F_F_B_B_F_B:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F_F_F_B_B_F_B_F
+dw Tree_F_F_F_B_B_F_B_B
+dw 16128
+
+Tree_F_F_F_B_B_F_B_F:
+db Tree_Node_Type_Leaf
+	db 45
+	db 0
+	db 3 
+	db 237, 238, 239
+
+Tree_F_F_F_B_B_F_B_B:
+db Tree_Node_Type_Leaf
+	db 45
+	db 10
+	db 2 
+	db 249, 236
+
+Tree_F_F_F_B_B_B:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F_F_F_B_B_B_F
+dw Tree_F_F_F_B_B_B_B
+dw 13568
+
+Tree_F_F_F_B_B_B_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F_F_F_B_B_B_F_F
+dw Tree_F_F_F_B_B_B_F_B
+dw 14848
+
+Tree_F_F_F_B_B_B_F_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_F_F_B_B_B_F_F_F
+dw Tree_F_F_F_B_B_B_F_F_B
+dw -5888
+
+Tree_F_F_F_B_B_B_F_F_F:
+db Tree_Node_Type_Leaf
+	db 45
+	db 0
+	db 2 
+	db 251, 245
+
+Tree_F_F_F_B_B_B_F_F_B:
+db Tree_Node_Type_Leaf
+	db 45
+	db 0
+	db 2 
+	db 235, 248
+
+Tree_F_F_F_B_B_B_F_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_F_F_B_B_B_F_B_F
+dw Tree_F_F_F_B_B_B_F_B_B
+dw -5888
+
+Tree_F_F_F_B_B_B_F_B_F:
+db Tree_Node_Type_Leaf
+	db 45
+	db 0
+	db 2 
+	db 252, 246
+
+Tree_F_F_F_B_B_B_F_B_B:
+db Tree_Node_Type_Leaf
+	db 45
+	db 0
+	db 2 
+	db 234, 247
+
+Tree_F_F_F_B_B_B_B:
+db Tree_Node_Type_Leaf
+	db 45
+	db 0
+	db 5 
+	db 253, 230, 231, 232, 233
+
+Tree_F_F_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_F_B_F
+dw Tree_F_F_B_B
+dw -5632
+
+Tree_F_F_B_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_F_B_F_F
+dw Tree_F_F_B_F_B
+dw -4864
+
+Tree_F_F_B_F_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F_F_B_F_F_F
+dw Tree_F_F_B_F_F_B
+dw 7424
+
+Tree_F_F_B_F_F_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_F_B_F_F_F_F
+dw Tree_F_F_B_F_F_F_B
+dw -3072
+
+Tree_F_F_B_F_F_F_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_F_B_F_F_F_F_F
+dw Tree_F_F_B_F_F_F_F_B
+dw -2560
+
+Tree_F_F_B_F_F_F_F_F:
+db Tree_Node_Type_Leaf
+	db 41
+	db 0
+	db 5 
+	db 201, 198, 202, 216, 225
+
+Tree_F_F_B_F_F_F_F_B:
+db Tree_Node_Type_Leaf
+	db 43
+	db 0
+	db 4 
+	db 190, 201, 199, 200
+
+Tree_F_F_B_F_F_F_B:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F_F_B_F_F_F_B_F
+dw Tree_F_F_B_F_F_F_B_B
+dw 7936
+
+Tree_F_F_B_F_F_F_B_F:
+db Tree_Node_Type_Leaf
+	db 37
+	db 0
+	db 8 
+	db 188, 190, 173, 171, 172, 191, 192, 193
+
+Tree_F_F_B_F_F_F_B_B:
+db Tree_Node_Type_Leaf
+	db 43
+	db 0
+	db 4 
+	db 173, 196, 194, 195
+
+Tree_F_F_B_F_F_B:
+db Tree_Node_Type_Leaf
+	db 41
+	db 14
+	db 6 
+	db 196, 219, 218, 217, 197, 220
+
+Tree_F_F_B_F_B:
+db Tree_Node_Type_ShallowSlopePartition
+dw Tree_F_F_B_F_B_F
+dw Tree_F_F_B_F_B_B
+dw -13568
+dw 256
+
+Tree_F_F_B_F_B_F:
+db Tree_Node_Type_Leaf
+	db 37
+	db 0
+	db 2 
+	db 187, 174
+
+Tree_F_F_B_F_B_B:
+db Tree_Node_Type_ShallowSlopePartition
+dw Tree_F_F_B_F_B_B_F
+dw Tree_F_F_B_F_B_B_B
+dw 6144
+dw -256
+
+Tree_F_F_B_F_B_B_F:
+db Tree_Node_Type_Leaf
+	db 37
+	db 0
+	db 2 
+	db 170, 189
+
+Tree_F_F_B_F_B_B_B:
+db Tree_Node_Type_Leaf
+	db 36
+	db 0
+	db 4 
+	db 187, 179, 188, 189
+
+Tree_F_F_B_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_F_B_B_F
+dw Tree_F_F_B_B_B
+dw -6400
+
+Tree_F_F_B_B_F:
+db Tree_Node_Type_ShallowSlopePartition
+dw Tree_F_F_B_B_F_F
+dw Tree_F_F_B_B_F_B
+dw -15104
+dw 256
+
+Tree_F_F_B_B_F_F:
+db Tree_Node_Type_Leaf
+	db 36
+	db 0
+	db 2 
+	db 178, 175
+
+Tree_F_F_B_B_F_B:
+db Tree_Node_Type_ShallowSlopePartition
+dw Tree_F_F_B_B_F_B_F
+dw Tree_F_F_B_B_F_B_B
+dw 4608
+dw -256
+
+Tree_F_F_B_B_F_B_F:
+db Tree_Node_Type_Leaf
+	db 36
+	db 0
+	db 2 
+	db 180, 169
+
+Tree_F_F_B_B_F_B_B:
+db Tree_Node_Type_Leaf
+	db 35
+	db 0
+	db 4 
+	db 178, 179, 184, 180
+
+Tree_F_F_B_B_B:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F_F_B_B_B_F
+dw Tree_F_F_B_B_B_B
+dw 9472
+
+Tree_F_F_B_B_B_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F_F_B_B_B_F_F
+dw Tree_F_F_B_B_B_F_B
+dw 10240
+
+Tree_F_F_B_B_B_F_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F_F_B_B_B_F_F_F
+dw Tree_F_F_B_B_B_F_F_B
+dw 11008
+
+Tree_F_F_B_B_B_F_F_F:
+db Tree_Node_Type_Leaf
+	db 36
+	db 0
+	db 3 
+	db 181, 167, 168
+
+Tree_F_F_B_B_B_F_F_B:
+db Tree_Node_Type_Leaf
+	db 35
+	db 0
+	db 4 
+	db 186, 185, 181, 166
+
+Tree_F_F_B_B_B_F_B:
+db Tree_Node_Type_ShallowSlopePartition
+dw Tree_F_F_B_B_B_F_B_F
+dw Tree_F_F_B_B_B_F_B_B
+dw -16128
+dw 256
+
+Tree_F_F_B_B_B_F_B_F:
+db Tree_Node_Type_Leaf
+	db 35
+	db 0
+	db 1 
+	db 183
+
+Tree_F_F_B_B_B_F_B_B:
+db Tree_Node_Type_ShallowSlopePartition
+dw Tree_F_F_B_B_B_F_B_B_F
+dw Tree_F_F_B_B_B_F_B_B_B
+dw 3584
+dw -256
+
+Tree_F_F_B_B_B_F_B_B_F:
+db Tree_Node_Type_Leaf
+	db 35
+	db 0
+	db 1 
+	db 185
+
+Tree_F_F_B_B_B_F_B_B_B:
+db Tree_Node_Type_Leaf
+	db 34
+	db 9
+	db 6 
+	db 141, 182, 183, 184, 185, 186
+
+Tree_F_F_B_B_B_B:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F_F_B_B_B_B_F
+dw Tree_F_F_B_B_B_B_B
+dw 8704
+
+Tree_F_F_B_B_B_B_F:
+db Tree_Node_Type_Leaf
+	db 35
+	db 0
+	db 3 
+	db 177, 182, 165
+
+Tree_F_F_B_B_B_B_B:
+db Tree_Node_Type_Leaf
+	db 36
+	db 0
+	db 3 
+	db 177, 176, 164
+
+Tree_F_B:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F_B_F
+dw Tree_F_B_B
+dw 7168
+
+Tree_F_B_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F_B_F_F
+dw Tree_F_B_F_B
+dw 8704
+
+Tree_F_B_F_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_B_F_F_F
+dw Tree_F_B_F_F_B
+dw -9472
+
+Tree_F_B_F_F_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_B_F_F_F_F
+dw Tree_F_B_F_F_F_B
+dw -8960
+
+Tree_F_B_F_F_F_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_B_F_F_F_F_F
+dw Tree_F_B_F_F_F_F_B
+dw -8448
+
+Tree_F_B_F_F_F_F_F:
+db Tree_Node_Type_Leaf
+	db 33
+	db 0
+	db 3 
+	db 141, 142, 163
+
+Tree_F_B_F_F_F_F_B:
+db Tree_Node_Type_Leaf
+	db 33
+	db 8
+	db 4 
+	db 162, 144, 143, 140
+
+Tree_F_B_F_F_F_B:
+db Tree_Node_Type_Leaf
+	db 32
+	db 0
+	db 4 
+	db 161, 162, 139, 145
+
+Tree_F_B_F_F_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_B_F_F_B_F
+dw Tree_F_B_F_F_B_B
+dw -9984
+
+Tree_F_B_F_F_B_F:
+db Tree_Node_Type_Leaf
+	db 31
+	db 0
+	db 4 
+	db 160, 161, 138, 146
+
+Tree_F_B_F_F_B_B:
+db Tree_Node_Type_ShallowSlopePartition
+dw Tree_F_B_F_F_B_B_F
+dw Tree_F_B_F_F_B_B_B
+dw -2744
+dw -213
+
+Tree_F_B_F_F_B_B_F:
+db Tree_Node_Type_Leaf
+	db 30
+	db 0
+	db 3 
+	db 159, 160, 137
+
+Tree_F_B_F_F_B_B_B:
+db Tree_Node_Type_Leaf
+	db 29
+	db 0
+	db 3 
+	db 158, 159, 136
+
+Tree_F_B_F_B:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F_B_F_B_F
+dw Tree_F_B_F_B_B
+dw 8192
+
+Tree_F_B_F_B_F:
+db Tree_Node_Type_Leaf
+	db 28
+	db 0
+	db 4 
+	db 157, 158, 135, 147
+
+Tree_F_B_F_B_B:
+db Tree_Node_Type_VerticalPartition
+dw Tree_F_B_F_B_B_F
+dw Tree_F_B_F_B_B_B
+dw 7680
+
+Tree_F_B_F_B_B_F:
+db Tree_Node_Type_Leaf
+	db 27
+	db 0
+	db 4 
+	db 156, 157, 134, 148
+
+Tree_F_B_F_B_B_B:
+db Tree_Node_Type_Leaf
+	db 26
+	db 0
+	db 4 
+	db 155, 156, 133, 149
+
+Tree_F_B_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_B_B_F
+dw Tree_F_B_B_B
+dw -9472
+
+Tree_F_B_B_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_B_B_F_F
+dw Tree_F_B_B_F_B
+dw -8960
+
+Tree_F_B_B_F_F:
+db Tree_Node_Type_Leaf
+	db 22
+	db 0
+	db 4 
+	db 128, 119, 120, 121
+
+Tree_F_B_B_F_B:
+db Tree_Node_Type_Leaf
+	db 22
+	db 0
+	db 3 
+	db 152, 129, 151
+
+Tree_F_B_B_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_F_B_B_B_F
+dw Tree_F_B_B_B_B
+dw -9984
+
+Tree_F_B_B_B_F:
+db Tree_Node_Type_Leaf
+	db 23
+	db 0
+	db 4 
+	db 152, 153, 130, 150
+
+Tree_F_B_B_B_B:
+db Tree_Node_Type_SteepSlopePartition
+dw Tree_F_B_B_B_B_F
+dw Tree_F_B_B_B_B_B
+dw 15120
+dw 204
+
+Tree_F_B_B_B_B_F:
+db Tree_Node_Type_Leaf
+	db 25
+	db 0
+	db 3 
+	db 154, 155, 132
+
+Tree_F_B_B_B_B_B:
+db Tree_Node_Type_Leaf
+	db 24
+	db 0
+	db 3 
+	db 153, 154, 131
+
+Tree_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F
+dw Tree_B_B
+dw -7680
+
+Tree_B_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_F
+dw Tree_B_F_B
+dw -4096
+
+Tree_B_F_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_F_F
+dw Tree_B_F_F_B
+dw -3072
+
+Tree_B_F_F_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_B_F_F_F_F
+dw Tree_B_F_F_F_B
+dw 2048
+
+Tree_B_F_F_F_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_B_F_F_F_F_F
+dw Tree_B_F_F_F_F_B
+dw 3072
+
+Tree_B_F_F_F_F_F:
+db Tree_Node_Type_ShallowSlopePartition
+dw Tree_B_F_F_F_F_F_F
+dw Tree_B_F_F_F_F_F_B
+dw 768
+dw -192
+
+Tree_B_F_F_F_F_F_F:
+db Tree_Node_Type_Leaf
+	db 1
+	db 0
+	db 6 
+	db 13, 31, 32, 15, 25, 14
+
+Tree_B_F_F_F_F_F_B:
+db Tree_Node_Type_Leaf
+	db 0
+	db 0
+	db 1 
+	db 25
+
+Tree_B_F_F_F_F_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_F_F_F_B_F
+dw Tree_B_F_F_F_F_B_B
+dw -1024
+
+Tree_B_F_F_F_F_B_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_F_F_F_B_F_F
+dw Tree_B_F_F_F_F_B_F_B
+dw -512
+
+Tree_B_F_F_F_F_B_F_F:
+db Tree_Node_Type_Leaf
+	db 1
+	db 0
+	db 2 
+	db 28, 16
+
+Tree_B_F_F_F_F_B_F_B:
+db Tree_Node_Type_Leaf
+	db 4
+	db 3
+	db 4 
+	db 27, 28, 29, 32
+
+Tree_B_F_F_F_F_B_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_F_F_F_B_B_F
+dw Tree_B_F_F_F_F_B_B_B
+dw -1536
+
+Tree_B_F_F_F_F_B_B_F:
+db Tree_Node_Type_Leaf
+	db 3
+	db 0
+	db 4 
+	db 26, 27, 30, 31
+
+Tree_B_F_F_F_F_B_B_B:
+db Tree_Node_Type_Leaf
+	db 0
+	db 0
+	db 2 
+	db 26, 6
+
+Tree_B_F_F_F_B:
+db Tree_Node_Type_ShallowSlopePartition
+dw Tree_B_F_F_F_B_F
+dw Tree_B_F_F_F_B_B
+dw -3072
+dw 192
+
+Tree_B_F_F_F_B_F:
+db Tree_Node_Type_Leaf
+	db 1
+	db 1
+	db 6 
+	db 29, 30, 19, 17, 24, 18
+
+Tree_B_F_F_F_B_B:
+db Tree_Node_Type_Leaf
+	db 0
+	db 0
+	db 1 
+	db 24
+
+Tree_B_F_F_B:
+db Tree_Node_Type_VerticalPartition
+dw Tree_B_F_F_B_F
+dw Tree_B_F_F_B_B
+dw 2560
+
+Tree_B_F_F_B_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_F_B_F_F
+dw Tree_B_F_F_B_F_B
+dw -3584
+
+Tree_B_F_F_B_F_F:
+db Tree_Node_Type_Leaf
+	db 0
+	db 0
+	db 4 
+	db 7, 8, 12, 22
+
+Tree_B_F_F_B_F_B:
+db Tree_Node_Type_Leaf
+	db 38
+	db 0
+	db 4 
+	db 9, 10, 11, 23
+
+Tree_B_F_F_B_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_F_B_B_F
+dw Tree_B_F_F_B_B_B
+dw -3584
+
+Tree_B_F_F_B_B_F:
+db Tree_Node_Type_Leaf
+	db 0
+	db 0
+	db 4 
+	db 5, 0, 4, 20
+
+Tree_B_F_F_B_B_B:
+db Tree_Node_Type_Leaf
+	db 2
+	db 0
+	db 4 
+	db 1, 2, 3, 21
+
+Tree_B_F_B:
+db Tree_Node_Type_VerticalPartition
+dw Tree_B_F_B_F
+dw Tree_B_F_B_B
+dw 1536
+
+Tree_B_F_B_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_B_F_B_F_F
+dw Tree_B_F_B_F_B
+dw 3584
+
+Tree_B_F_B_F_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_B_F_F_F
+dw Tree_B_F_B_F_F_B
+dw -5632
+
+Tree_B_F_B_F_F_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_B_F_B_F_F_F_F
+dw Tree_B_F_B_F_F_F_B
+dw 4608
+
+Tree_B_F_B_F_F_F_F:
+db Tree_Node_Type_ShallowSlopePartition
+dw Tree_B_F_B_F_F_F_F_F
+dw Tree_B_F_B_F_F_F_F_B
+dw -512
+dw -256
+
+Tree_B_F_B_F_F_F_F_F:
+db Tree_Node_Type_Leaf
+	db 5
+	db 0
+	db 4 
+	db 65, 39, 40, 41
+
+Tree_B_F_B_F_F_F_F_B:
+db Tree_Node_Type_Leaf
+	db 6
+	db 0
+	db 1 
+	db 65
+
+Tree_B_F_B_F_F_F_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_B_F_F_F_B_F
+dw Tree_B_F_B_F_F_F_B_B
+dw -4608
+
+Tree_B_F_B_F_F_F_B_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_B_F_F_F_B_F_F
+dw Tree_B_F_B_F_F_F_B_F_B
+dw -4352
+
+Tree_B_F_B_F_F_F_B_F_F:
+db Tree_Node_Type_Leaf
+	db 9
+	db 0
+	db 4 
+	db 10, 43, 44, 71
+
+Tree_B_F_B_F_F_F_B_F_B:
+db Tree_Node_Type_Leaf
+	db 5
+	db 0
+	db 3 
+	db 71, 42, 45
+
+Tree_B_F_B_F_F_F_B_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_B_F_F_F_B_B_F
+dw Tree_B_F_B_F_F_F_B_B_B
+dw -5120
+
+Tree_B_F_B_F_F_F_B_B_F:
+db Tree_Node_Type_Leaf
+	db 39
+	db 0
+	db 2 
+	db 66, 46
+
+Tree_B_F_B_F_F_F_B_B_B:
+db Tree_Node_Type_Leaf
+	db 6
+	db 0
+	db 1 
+	db 66
+
+Tree_B_F_B_F_F_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_B_F_F_B_F
+dw Tree_B_F_B_F_F_B_B
+dw -6400
+
+Tree_B_F_B_F_F_B_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_B_F_B_F_F_B_F_F
+dw Tree_B_F_B_F_F_B_F_B
+dw 5120
+
+Tree_B_F_B_F_F_B_F_F:
+db Tree_Node_Type_Leaf
+	db 5
+	db 0
+	db 2 
+	db 64, 38
+
+Tree_B_F_B_F_F_B_F_B:
+db Tree_Node_Type_Leaf
+	db 6
+	db 5
+	db 2 
+	db 63, 64
+
+Tree_B_F_B_F_F_B_B:
+db Tree_Node_Type_Leaf
+	db 5
+	db 0
+	db 4 
+	db 63, 35, 36, 37
+
+Tree_B_F_B_F_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_B_F_B_F
+dw Tree_B_F_B_F_B_B
+dw -5120
+
+Tree_B_F_B_F_B_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_B_F_B_F_F
+dw Tree_B_F_B_F_B_F_B
+dw -4608
+
+Tree_B_F_B_F_B_F_F:
+db Tree_Node_Type_Leaf
+	db 7
+	db 2
+	db 4 
+	db 50, 47, 48, 49
+
+Tree_B_F_B_F_B_F_B:
+db Tree_Node_Type_Leaf
+	db 5
+	db 0
+	db 2 
+	db 67, 50
+
+Tree_B_F_B_F_B_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_B_F_B_B_F
+dw Tree_B_F_B_F_B_B_B
+dw -6400
+
+Tree_B_F_B_F_B_B_F:
+db Tree_Node_Type_Leaf
+	db 6
+	db 0
+	db 2 
+	db 62, 67
+
+Tree_B_F_B_F_B_B_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_B_F_B_B_B_F
+dw Tree_B_F_B_F_B_B_B_B
+dw -7168
+
+Tree_B_F_B_F_B_B_B_F:
+db Tree_Node_Type_Leaf
+	db 5
+	db 0
+	db 4 
+	db 62, 96, 107, 108
+
+Tree_B_F_B_F_B_B_B_B:
+db Tree_Node_Type_Leaf
+	db 10
+	db 0
+	db 4 
+	db 96, 97, 73, 95
+
+Tree_B_F_B_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_B_B_F
+dw Tree_B_F_B_B_B
+dw -5632
+
+Tree_B_F_B_B_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_B_F_B_B_F_F
+dw Tree_B_F_B_B_F_B
+dw 512
+
+Tree_B_F_B_B_F_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_B_B_F_F_F
+dw Tree_B_F_B_B_F_F_B
+dw -4608
+
+Tree_B_F_B_B_F_F_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_B_B_F_F_F_F
+dw Tree_B_F_B_B_F_F_F_B
+dw -4352
+
+Tree_B_F_B_B_F_F_F_F:
+db Tree_Node_Type_Leaf
+	db 8
+	db 0
+	db 4 
+	db 2, 72, 53, 54
+
+Tree_B_F_B_B_F_F_F_B:
+db Tree_Node_Type_Leaf
+	db 5
+	db 0
+	db 3 
+	db 72, 52, 55
+
+Tree_B_F_B_B_F_F_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_B_B_F_F_B_F
+dw Tree_B_F_B_B_F_F_B_B
+dw -5120
+
+Tree_B_F_B_B_F_F_B_F:
+db Tree_Node_Type_Leaf
+	db 40
+	db 0
+	db 2 
+	db 68, 51
+
+Tree_B_F_B_B_F_F_B_B:
+db Tree_Node_Type_Leaf
+	db 6
+	db 0
+	db 1 
+	db 68
+
+Tree_B_F_B_B_F_B:
+db Tree_Node_Type_ShallowSlopePartition
+dw Tree_B_F_B_B_F_B_F
+dw Tree_B_F_B_B_F_B_B
+dw -5632
+dw 256
+
+Tree_B_F_B_B_F_B_F:
+db Tree_Node_Type_Leaf
+	db 5
+	db 0
+	db 4 
+	db 56, 57, 58, 69
+
+Tree_B_F_B_B_F_B_B:
+db Tree_Node_Type_Leaf
+	db 6
+	db 0
+	db 1 
+	db 69
+
+Tree_B_F_B_B_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_F_B_B_B_F
+dw Tree_B_F_B_B_B_B
+dw -6400
+
+Tree_B_F_B_B_B_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_B_F_B_B_B_F_F
+dw Tree_B_F_B_B_B_F_B
+dw 0
+
+Tree_B_F_B_B_B_F_F:
+db Tree_Node_Type_Leaf
+	db 6
+	db 4
+	db 2 
+	db 61, 70
+
+Tree_B_F_B_B_B_F_B:
+db Tree_Node_Type_Leaf
+	db 5
+	db 0
+	db 2 
+	db 59, 70
+
+Tree_B_F_B_B_B_B:
+db Tree_Node_Type_Leaf
+	db 5
+	db 0
+	db 4 
+	db 61, 33, 34, 60
+
+Tree_B_B:
+db Tree_Node_Type_VerticalPartition
+dw Tree_B_B_F
+dw Tree_B_B_B
+dw 2304
+
+Tree_B_B_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_B_B_F_F
+dw Tree_B_B_F_B
+dw 3584
+
+Tree_B_B_F_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_B_F_F_F
+dw Tree_B_B_F_F_B
+dw -10496
+
+Tree_B_B_F_F_F:
+db Tree_Node_Type_Leaf
+	db 21
+	db 0
+	db 5 
+	db 128, 114, 118, 122, 123
+
+Tree_B_B_F_F_B:
+db Tree_Node_Type_Leaf
+	db 21
+	db 6
+	db 3 
+	db 115, 116, 117
+
+Tree_B_B_F_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_B_F_B_F
+dw Tree_B_B_F_B_B
+dw -8192
+
+Tree_B_B_F_B_F:
+db Tree_Node_Type_Leaf
+	db 11
+	db 0
+	db 4 
+	db 97, 98, 74, 94
+
+Tree_B_B_F_B_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_B_F_B_B_F
+dw Tree_B_B_F_B_B_B
+dw -9344
+
+Tree_B_B_F_B_B_F:
+db Tree_Node_Type_Leaf
+	db 12
+	db 0
+	db 4 
+	db 98, 99, 92, 93
+
+Tree_B_B_F_B_B_B:
+db Tree_Node_Type_Leaf
+	db 21
+	db 0
+	db 2 
+	db 113, 124
+
+Tree_B_B_B:
+db Tree_Node_Type_VerticalPartition
+dw Tree_B_B_B_F
+dw Tree_B_B_B_B
+dw 256
+
+Tree_B_B_B_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_B_B_F_F
+dw Tree_B_B_B_F_B
+dw -9344
+
+Tree_B_B_B_F_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_B_B_B_F_F_F
+dw Tree_B_B_B_F_F_B
+dw 1280
+
+Tree_B_B_B_F_F_F:
+db Tree_Node_Type_VerticalPartition
+dw Tree_B_B_B_F_F_F_F
+dw Tree_B_B_B_F_F_F_B
+dw 1792
+
+Tree_B_B_B_F_F_F_F:
+db Tree_Node_Type_Leaf
+	db 13
+	db 0
+	db 4 
+	db 99, 100, 75, 91
+
+Tree_B_B_B_F_F_F_B:
+db Tree_Node_Type_Leaf
+	db 14
+	db 0
+	db 4 
+	db 100, 101, 76, 90
+
+Tree_B_B_B_F_F_B:
+db Tree_Node_Type_VerticalPartition
+dw Tree_B_B_B_F_F_B_F
+dw Tree_B_B_B_F_F_B_B
+dw 768
+
+Tree_B_B_B_F_F_B_F:
+db Tree_Node_Type_Leaf
+	db 15
+	db 0
+	db 4 
+	db 101, 102, 77, 89
+
+Tree_B_B_B_F_F_B_B:
+db Tree_Node_Type_Leaf
+	db 16
+	db 0
+	db 4 
+	db 102, 103, 78, 88
+
+Tree_B_B_B_F_B:
+db Tree_Node_Type_VerticalPartition
+dw Tree_B_B_B_F_B_F
+dw Tree_B_B_B_F_B_B
+dw 768
+
+Tree_B_B_B_F_B_F:
+db Tree_Node_Type_Leaf
+	db 21
+	db 0
+	db 3 
+	db 112, 126, 125
+
+Tree_B_B_B_F_B_B:
+db Tree_Node_Type_Leaf
+	db 21
+	db 0
+	db 2 
+	db 111, 127
+
+Tree_B_B_B_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_B_B_B_F
+dw Tree_B_B_B_B_B
+dw -9728
+
+Tree_B_B_B_B_F:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_B_B_B_F_F
+dw Tree_B_B_B_B_F_B
+dw -9216
+
+Tree_B_B_B_B_F_F:
+db Tree_Node_Type_Leaf
+	db 17
+	db 7
+	db 4 
+	db 103, 104, 79, 80
+
+Tree_B_B_B_B_F_B:
+db Tree_Node_Type_Leaf
+	db 18
+	db 0
+	db 4 
+	db 104, 105, 81, 87
+
+Tree_B_B_B_B_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_B_B_B_B_F
+dw Tree_B_B_B_B_B_B
+dw -10240
+
+Tree_B_B_B_B_B_F:
+db Tree_Node_Type_Leaf
+	db 19
+	db 0
+	db 4 
+	db 105, 106, 82, 86
+
+Tree_B_B_B_B_B_B:
+db Tree_Node_Type_HorizontalPartition
+dw Tree_B_B_B_B_B_B_F
+dw Tree_B_B_B_B_B_B_B
+dw -11264
+
+Tree_B_B_B_B_B_B_F:
+db Tree_Node_Type_Leaf
+	db 20
+	db 0
+	db 4 
+	db 106, 84, 83, 85
+
+Tree_B_B_B_B_B_B_B:
+db Tree_Node_Type_Leaf
+	db 21
+	db 0
+	db 3 
+	db 84, 109, 110
 
 BlockMap:
 dw -1280, -12800
