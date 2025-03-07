@@ -21,16 +21,16 @@ Walk.CheckPartitionSide:
 	ld a,l
 	sub a,e
 	ld l,a
-  
+
 	ld a,d
 	xor $80
 	ld d,a
 	or a
-	ld b,a
+	ld e,a
 	ld a,h
 	xor $80
 	sbc d
 	ld h,a
-	
-	ld a,b
+
+	ld a,e
 	jr nc,Walk.BehindPartition
