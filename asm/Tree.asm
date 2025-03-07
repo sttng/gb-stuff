@@ -1,4 +1,20 @@
 ; --------------------------------------------------------------------------
+; We've encountered a partition, so work out which side we're on.
+; --------------------------------------------------------------------------
+Walk.Partition:
+	dec a
+	jr z,Walk.VerticalPartition
+	dec a
+	jr z,Walk.HorizontalPartition
+	dec a
+	jr z,Walk.ShallowSlopePartition
+	dec a
+	jr z,Walk.SteepSlopePartition
+
+
+
+
+; --------------------------------------------------------------------------
 ; Which side of the partition are we really on?
 ; --------------------------------------------------------------------------
 Walk.CheckPartitionSide:
