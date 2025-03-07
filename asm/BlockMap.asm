@@ -8,11 +8,21 @@ Code:
 ; Destroyed: AF, BC, DE, HL.
 ; ==========================================================================
 IntialiseFromLevel:
-	ld hl,[Level.BlockMap]
+	ld hl, BlockMap
+	ld a, h
+	ld [Grid], a
+	ld a, l
+	ld [Grid+1], a
 	ld de,Header
-	ld bc,Header.Size
-	ldir					;copy from HL to DE with amount of BC
-	ld [Grid],hl
+	ld bc,Header_Size
+:	ld a,[hl]          ;ldir
+	inc hl
+	ld [de],a
+	inc de
+	dec bc
+	ld a,c
+	or a,b
+	jr nz, :-          ;ldir - end
 	ret
 
 ; ==========================================================================
