@@ -520,149 +520,149 @@ Wall101:
 	db 3, 64, 66, 79, 14, 15
 	dw 16
 Wall102:
-db 3, 64, 67, 78, 15, 16
-dw 16
+	db 3, 64, 67, 78, 15, 16
+	dw 16
 Wall103:
-db 3, 64, 68, 77, 16, 17
-dw 16
+	db 3, 64, 68, 77, 16, 17
+	dw 16
 Wall104:
-db 3, 0, 70, 77, 17, 18
-dw 16
+	db 3, 0, 70, 77, 17, 18
+	dw 16
 Wall105:
-db 3, 0, 71, 76, 18, 19
-dw 16
+	db 3, 0, 71, 76, 18, 19
+	dw 16
 Wall106:
-db 3, 0, 72, 75, 19, 20
-dw 16
+	db 3, 0, 72, 75, 19, 20
+	dw 16
 Wall107:
-db 7, 0, 28, 62, 5, 5
-dw 9
+	db 7, 0, 28, 62, 5, 5
+	dw 9
 Wall108:
-db 7, 0, 85, 29, 5, 5
-dw 1
+	db 7, 0, 85, 29, 5, 5
+	dw 1
 Wall109:
-db 7, 64, 73, 86, 21, 21
-dw 16
+	db 7, 64, 73, 86, 21, 21
+	dw 16
 Wall110:
-db 5, 0, 86, 87, 21, 21
-dw 16
+	db 5, 0, 86, 87, 21, 21
+	dw 16
 Wall111:
-db 6, 0, 87, 88, 21, 21
-dw 4
+	db 6, 0, 87, 88, 21, 21
+	dw 4
 Wall112:
-db 7, 221, 88, 89, 21, 21
-dw 85
+	db 7, 221, 88, 89, 21, 21
+	dw 85
 Wall113:
-db 5, 0, 89, 90, 21, 21
-dw 25
+	db 5, 0, 89, 90, 21, 21
+	dw 25
 Wall114:
-db 6, 0, 90, 91, 21, 21
-dw 9
+	db 6, 0, 90, 91, 21, 21
+	dw 9
 Wall115:
-db 7, 32, 91, 92, 21, 21
-dw 18
+	db 7, 32, 91, 92, 21, 21
+	dw 18
 Wall116:
-db 7, 0, 92, 93, 21, 21
-dw 9
+	db 7, 0, 92, 93, 21, 21
+	dw 9
 Wall117:
-db 5, 192, 93, 94, 21, 21
-dw 9
+	db 5, 192, 93, 94, 21, 21
+	dw 9
 Wall118:
-db 6, 192, 94, 95, 21, 21
-dw 36
+	db 6, 192, 94, 95, 21, 21
+	dw 36
 Wall119:
-db 7, 0, 95, 104, 22, 22
-dw 1
+	db 7, 0, 95, 104, 22, 22
+	dw 1
 Wall120:
-db 6, 192, 96, 97, 22, 22
-dw 16
+	db 6, 192, 96, 97, 22, 22
+	dw 16
 Wall121:
-db 5, 128, 97, 98, 22, 22
-dw 25
+	db 5, 128, 97, 98, 22, 22
+	dw 25
 Wall122:
-db 6, 128, 98, 99, 21, 21
-dw 81
+	db 6, 128, 98, 99, 21, 21
+	dw 81
 Wall123:
-db 7, 64, 99, 100, 21, 21
-dw 36
+	db 7, 64, 99, 100, 21, 21
+	dw 36
 Wall124:
-db 5, 128, 100, 101, 21, 21
-dw 25
+	db 5, 128, 100, 101, 21, 21
+	dw 25
 Wall125:
-db 6, 128, 101, 102, 21, 21
-dw 16
+	db 6, 128, 101, 102, 21, 21
+	dw 16
 Wall126:
-db 7, 75, 102, 103, 21, 21
-dw 53
+	db 7, 75, 102, 103, 21, 21
+	dw 53
 Wall127:
-db 7, 128, 103, 74, 21, 21
-dw 4
+	db 7, 128, 103, 74, 21, 21
+	dw 4
 Wall128:
-db 2, 192, 95, 98, 21, 22
-dw 16
+	db 2, 192, 95, 98, 21, 22
+	dw 16
 Wall129:
-db 5, 64, 104, 105, 22, 22
-dw 4
+	db 5, 64, 104, 105, 22, 22
+	dw 4
 Wall130:
-db 4, 64, 105, 106, 23, 23
-dw 4
+	db 4, 64, 105, 106, 23, 23
+	dw 4
 Wall131:
-db 6, 64, 106, 107, 24, 24
-dw 25
+	db 6, 64, 106, 107, 24, 24
+	dw 25
 Wall132:
-db 5, 0, 107, 108, 25, 25
-dw 16
+	db 5, 0, 107, 108, 25, 25
+	dw 16
 Wall133:
-db 4, 0, 108, 109, 26, 26
-dw 4
+	db 4, 0, 108, 109, 26, 26
+	dw 4
 Wall134:
-db 4, 0, 109, 110, 27, 27
-dw 4
+	db 4, 0, 109, 110, 27, 27
+	dw 4
 Wall135:
-db 4, 0, 110, 111, 28, 28
-dw 4
+	db 4, 0, 110, 111, 28, 28
+	dw 4
 Wall136:
-db 6, 0, 111, 112, 29, 29
-dw 36
+	db 6, 0, 111, 112, 29, 29
+	dw 36
 Wall137:
-db 5, 192, 112, 113, 30, 30
-dw 25
+	db 5, 192, 112, 113, 30, 30
+	dw 25
 Wall138:
-db 4, 192, 113, 114, 31, 31
-dw 4
+	db 4, 192, 113, 114, 31, 31
+	dw 4
 Wall139:
-db 4, 192, 114, 115, 32, 32
-dw 4
+	db 4, 192, 114, 115, 32, 32
+	dw 4
 Wall140:
-db 4, 192, 115, 127, 33, 33
-dw 4
+	db 4, 192, 115, 127, 33, 33
+	dw 4
 Wall141:
-db 3, 128, 116, 117, 33, 34
-dw 9
+	db 3, 128, 116, 117, 33, 34
+	dw 9
 Wall142:
-db 7, 64, 117, 118, 33, 33
-dw 4
+	db 7, 64, 117, 118, 33, 33
+	dw 4
 Wall143:
-db 7, 128, 118, 119, 33, 33
-dw 9
+	db 7, 128, 118, 119, 33, 33
+	dw 9
 Wall144:
-db 5, 64, 119, 120, 33, 33
-dw 4
+	db 5, 64, 119, 120, 33, 33
+	dw 4
 Wall145:
-db 4, 64, 120, 121, 32, 32
-dw 4
+	db 4, 64, 120, 121, 32, 32
+	dw 4
 Wall146:
-db 6, 64, 121, 122, 31, 31
-dw 4
+	db 6, 64, 121, 122, 31, 31
+	dw 4
 Wall147:
-db 5, 128, 122, 123, 28, 28
-dw 4
+	db 5, 128, 122, 123, 28, 28
+	dw 4
 Wall148:
-db 4, 128, 123, 124, 27, 27
-dw 4
+	db 4, 128, 123, 124, 27, 27
+	dw 4
 Wall149:
-db 6, 128, 124, 125, 26, 26
-dw 4
+	db 6, 128, 124, 125, 26, 26
+	dw 4
 Wall150:
 	db 5, 192, 125, 126, 23, 23
 	dw 4
@@ -673,98 +673,98 @@ Wall152:
 	db 3, 0, 105, 126, 22, 23
 	dw 16
 Wall153:
-db 3, 0, 106, 125, 23, 24
-dw 16
+	db 3, 0, 106, 125, 23, 24
+	dw 16
 Wall154:
-db 3, 220, 107, 125, 24, 25
-dw 41
+	db 3, 220, 107, 125, 24, 25
+	dw 41
 Wall155:
-db 3, 192, 108, 125, 25, 26
-dw 25
+	db 3, 192, 108, 125, 25, 26
+	dw 25
 Wall156:
-db 3, 192, 109, 124, 26, 27
-dw 25
+	db 3, 192, 109, 124, 26, 27
+	dw 25
 Wall157:
-db 3, 192, 110, 123, 27, 28
-dw 25
+	db 3, 192, 110, 123, 27, 28
+	dw 25
 Wall158:
-db 3, 192, 111, 122, 28, 29
-dw 25
+	db 3, 192, 111, 122, 28, 29
+	dw 25
 Wall159:
-db 3, 157, 112, 122, 29, 30
-dw 61
+	db 3, 157, 112, 122, 29, 30
+	dw 61
 Wall160:
-db 3, 128, 113, 122, 30, 31
-dw 36
+	db 3, 128, 113, 122, 30, 31
+	dw 36
 Wall161:
-db 3, 128, 114, 121, 31, 32
-dw 36
+	db 3, 128, 114, 121, 31, 32
+	dw 36
 Wall162:
-db 3, 128, 115, 120, 32, 33
-dw 36
+	db 3, 128, 115, 120, 32, 33
+	dw 36
 Wall163:
-db 7, 192, 127, 116, 33, 33
-dw 4
+	db 7, 192, 127, 116, 33, 33
+	dw 4
 Wall164:
-db 5, 0, 138, 139, 36, 36
-dw 9
+	db 5, 0, 138, 139, 36, 36
+	dw 9
 Wall165:
-db 6, 0, 139, 117, 35, 35
-dw 9
+	db 6, 0, 139, 117, 35, 35
+	dw 9
 Wall166:
-db 5, 0, 116, 128, 35, 35
-dw 9
+	db 5, 0, 116, 128, 35, 35
+	dw 9
 Wall167:
-db 6, 0, 128, 129, 36, 36
-dw 9
+	db 6, 0, 128, 129, 36, 36
+	dw 9
 Wall168:
-db 5, 192, 129, 130, 36, 36
-dw 36
+	db 5, 192, 129, 130, 36, 36
+	dw 36
 Wall169:
-db 4, 192, 130, 131, 36, 36
-dw 9
+	db 4, 192, 130, 131, 36, 36
+	dw 9
 Wall170:
-db 4, 192, 131, 132, 37, 37
-dw 9
+	db 4, 192, 131, 132, 37, 37
+	dw 9
 Wall171:
-db 6, 192, 132, 133, 37, 37
-dw 49
+	db 6, 192, 132, 133, 37, 37
+	dw 49
 Wall172:
-db 7, 128, 133, 158, 37, 37
-dw 36
+	db 7, 128, 133, 158, 37, 37
+	dw 36
 Wall173:
-db 0, 64, 153, 152, 37, 43
-dw 9
+	db 0, 64, 153, 152, 37, 43
+	dw 9
 Wall174:
-db 4, 64, 135, 136, 37, 37
-dw 9
+	db 4, 64, 135, 136, 37, 37
+	dw 9
 Wall175:
-db 4, 64, 136, 137, 36, 36
-dw 9
+	db 4, 64, 136, 137, 36, 36
+	dw 9
 Wall176:
-db 6, 64, 137, 138, 36, 36
-dw 36
+	db 6, 64, 137, 138, 36, 36
+	dw 36
 Wall177:
-db 3, 192, 139, 140, 36, 35
-dw 36
+	db 3, 192, 139, 140, 36, 35
+	dw 36
 Wall178:
-db 3, 224, 140, 141, 36, 35
-dw 18
+	db 3, 224, 140, 141, 36, 35
+	dw 18
 Wall179:
-db 3, 0, 141, 142, 36, 35
-dw 9
+	db 3, 0, 141, 142, 36, 35
+	dw 9
 Wall180:
-db 3, 32, 142, 143, 36, 35
-dw 18
+	db 3, 32, 142, 143, 36, 35
+	dw 18
 Wall181:
-db 3, 64, 143, 128, 36, 35
-dw 36
+	db 3, 64, 143, 128, 36, 35
+	dw 36
 Wall182:
-db 3, 192, 117, 144, 35, 34
-dw 25
+	db 3, 192, 117, 144, 35, 34
+	dw 25
 Wall183:
-db 3, 224, 144, 145, 35, 34
-dw 2
+	db 3, 224, 144, 145, 35, 34
+	dw 2
 Wall184:
 	db 3, 0, 145, 146, 35, 34
 	dw 1
@@ -1037,7 +1037,22 @@ Sector46: dw -334, -256
 
 
 
-
+BlockMap:
+dw -1280, -12800
+db 18, 13
+dw BlockMapList0, BlockMapList1, BlockMapList2, BlockMapList3, BlockMapList4, BlockMapList5, BlockMapList6, BlockMapList7, BlockMapList8, BlockMapList9, BlockMapList10, BlockMapList11, BlockMapList12, BlockMapList12, BlockMapList12, BlockMapList12, BlockMapList12, BlockMapList12
+dw BlockMapList13, BlockMapList14, BlockMapList15, BlockMapList16, BlockMapList17, BlockMapList18, BlockMapList19, BlockMapList20, BlockMapList21, BlockMapList22, BlockMapList23, BlockMapList10, BlockMapList12, BlockMapList12, BlockMapList12, BlockMapList12, BlockMapList12, BlockMapList12
+dw BlockMapList24, BlockMapList25, BlockMapList26, BlockMapList27, BlockMapList28, BlockMapList29, BlockMapList30, BlockMapList31, BlockMapList32, BlockMapList33, BlockMapList34, BlockMapList35, BlockMapList12, BlockMapList12, BlockMapList12, BlockMapList12, BlockMapList12, BlockMapList12
+dw BlockMapList36, BlockMapList37, BlockMapList38, BlockMapList39, BlockMapList40, BlockMapList41, BlockMapList42, BlockMapList43, BlockMapList44, BlockMapList45, BlockMapList46, BlockMapList47, BlockMapList12, BlockMapList12, BlockMapList12, BlockMapList12, BlockMapList12, BlockMapList12
+dw BlockMapList48, BlockMapList49, BlockMapList50, BlockMapList51, BlockMapList52, BlockMapList53, BlockMapList54, BlockMapList55, BlockMapList56, BlockMapList57, BlockMapList58, BlockMapList59, BlockMapList60, BlockMapList61, BlockMapList62, BlockMapList63, BlockMapList64, BlockMapList65
+dw BlockMapList66, BlockMapList67, BlockMapList68, BlockMapList69, BlockMapList70, BlockMapList71, BlockMapList72, BlockMapList73, BlockMapList74, BlockMapList75, BlockMapList76, BlockMapList77, BlockMapList78, BlockMapList79, BlockMapList80, BlockMapList81, BlockMapList82, BlockMapList83
+dw BlockMapList84, BlockMapList84, BlockMapList85, BlockMapList86, BlockMapList87, BlockMapList88, BlockMapList89, BlockMapList89, BlockMapList90, BlockMapList91, BlockMapList92, BlockMapList92, BlockMapList93, BlockMapList94, BlockMapList95, BlockMapList96, BlockMapList97, BlockMapList98
+dw BlockMapList99, BlockMapList100, BlockMapList101, BlockMapList102, BlockMapList103, BlockMapList104, BlockMapList105, BlockMapList106, BlockMapList107, BlockMapList107, BlockMapList12, BlockMapList12, BlockMapList108, BlockMapList109, BlockMapList110, BlockMapList111, BlockMapList112, BlockMapList113
+dw BlockMapList114, BlockMapList115, BlockMapList116, BlockMapList117, BlockMapList118, BlockMapList119, BlockMapList120, BlockMapList121, BlockMapList122, BlockMapList123, BlockMapList124, BlockMapList124, BlockMapList125, BlockMapList126, BlockMapList127, BlockMapList128, BlockMapList129, BlockMapList130
+dw BlockMapList131, BlockMapList132, BlockMapList133, BlockMapList134, BlockMapList135, BlockMapList136, BlockMapList137, BlockMapList138, BlockMapList139, BlockMapList140, BlockMapList141, BlockMapList141, BlockMapList142, BlockMapList143, BlockMapList127, BlockMapList144, BlockMapList145, BlockMapList146
+dw BlockMapList131, BlockMapList147, BlockMapList148, BlockMapList149, BlockMapList150, BlockMapList151, BlockMapList152, BlockMapList153, BlockMapList154, BlockMapList155, BlockMapList156, BlockMapList156, BlockMapList157, BlockMapList158, BlockMapList159, BlockMapList160, BlockMapList161, BlockMapList12
+dw BlockMapList162, BlockMapList163, BlockMapList164, BlockMapList165, BlockMapList166, BlockMapList167, BlockMapList168, BlockMapList169, BlockMapList170, BlockMapList170, BlockMapList171, BlockMapList171, BlockMapList172, BlockMapList173, BlockMapList174, BlockMapList175, BlockMapList176, BlockMapList12
+dw BlockMapList177, BlockMapList178, BlockMapList179, BlockMapList180, BlockMapList181, BlockMapList182, BlockMapList182, BlockMapList12, BlockMapList12, BlockMapList12, BlockMapList12, BlockMapList12, BlockMapList183, BlockMapList184, BlockMapList174, BlockMapList185, BlockMapList186, BlockMapList12
 
 BlockMapList0: db 6, 83, 85, 109, 110, 111, 127
 BlockMapList1: db 8, 83, 85, 109, 110, 111, 112, 126, 127
