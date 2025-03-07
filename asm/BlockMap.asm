@@ -43,7 +43,12 @@ GetBlockFromPoint:
 ; --------------------------------------------------------------------------
 
 	push de
-	ld de,[Origin.X]
+	ld bc, Origin_X
+	ld a,[bc]
+	ld d,a
+	inc bc
+	ld a, [bc]
+	ld e, a
 	or a
 	ld a, l
 	sub e
