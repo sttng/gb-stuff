@@ -1,3 +1,30 @@
+Code:
+
+; ==========================================================================
+; Node offsets
+; --------------------------------------------------------------------------
+; These refer to offsets to fields within a tree node.
+; ==========================================================================
+DEF Tree_Node_Type EQU 0
+DEF Tree_Node_Leaf EQU 1
+DEF Tree_Node_FrontNode EQU 1
+DEF Tree_Node_BackNode EQU 3
+DEF Tree_Node_PartitionPosition EQU 5
+DEF Tree_Node_PartitionGradient EQU 7
+
+; ==========================================================================
+; Node types
+; ==========================================================================
+DEF Tree_Node_Type_Leaf EQU 0
+DEF Tree_Node_Type_VerticalPartition EQU 1
+DEF Tree_Node_Type_HorizontalPartition EQU 2
+DEF Tree_Node_Type_ShallowSlopePartition EQU 3
+DEF Tree_Node_Type_SteepSlopePartition EQU 4
+
+
+
+
+
 ; --------------------------------------------------------------------------
 ; We've encountered a partition, so work out which side we're on.
 ; --------------------------------------------------------------------------
