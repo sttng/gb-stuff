@@ -10,15 +10,13 @@ section "Variables",wram0,align[8]
 VariableRegion1 equ TopEdgeClip + 96
 VariableRegion2 equ BottomEdgeClip + 96
 
-;.module BlockMap
+section "BlockMap",wram0 ;.module BlockMap
 
-DEF Header = 10      ;Header = AllocateVariable(0)
-DEF Origin_X = $FFFF ;Origin.X = AllocateVariable(2)
-DEF Origin_Y = $EEEE ;Origin.Y = AllocateVariable(2)
-DEF Width = 12 ;Width = AllocateVariable(1)
-DEF Height = 14 ;Height = AllocateVariable(1)
-DEF Header_Size EQU 7
-
-DEF Grid = $AAAA 
-
+Header:        ;Header = AllocateVariable(0)
+Origin_X:    dw   ;Origin.X = AllocateVariable(2)
+Origin_Y:    dw   ;Origin.Y = AllocateVariable(2)
+Width:       db   ;Width = AllocateVariable(1)
+Height:      db   ;Height = AllocateVariable(1)
+Header_Size: db  7
+Grid:        dw
 ;.endmodule
