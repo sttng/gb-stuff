@@ -21,6 +21,39 @@ DEF Tree_Node_Type_HorizontalPartition EQU 2
 DEF Tree_Node_Type_ShallowSlopePartition EQU 3
 DEF Tree_Node_Type_SteepSlopePartition EQU 4
 
+; ==========================================================================
+; Walk
+; --------------------------------------------------------------------------
+; Walks the BSP tree.
+; --------------------------------------------------------------------------
+; Inputs:    IX: Pointer to the BSP tree node.
+;            HL: X coordinate of the thing walking the tree.
+;            DE: Y coordinate of the thing walking the tree.
+;            BC: Pointer to the function to execute when a leaf is reached.
+; Destroyed: AF, BC, DE, HL, IX.
+; ==========================================================================
+Walk:
+
+	ld [Walker.X],hl
+	ld [Walker.Y],de
+	ld [Walker.Leaf.Function],bc
+
+Walk.SkipInit:
+
+	;.if Options.KeepStatistics
+	;ld hl,(Statistics.TreeNodesVisited)
+	;inc hl
+	;ld (Statistics.TreeNodesVisited),hl
+	;..endif
+
+; --------------------------------------------------------------------------
+; What type is the node?
+; --------------------------------------------------------------------------
+
+	ld a,(ix+Node.Type) ;tbd
+	or a
+	jr nz,Walk.Partition
+
 
 
 
