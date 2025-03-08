@@ -10,6 +10,34 @@ section "Variables",wram0,align[8]
 VariableRegion1 equ TopEdgeClip + 96
 VariableRegion2 equ BottomEdgeClip + 96
 
+section "CameraRenderVars", wram0
+
+CameraVariables:           ;CameraVariables = AllocateVariable(0)
+Camera_X:              dw  ;Camera.X = AllocateVariable(2)
+Camera_Y:              dw  ;Camera.Y = AllocateVariable(2)
+Camera_Z:              dw  ;Camera.Z = AllocateVariable(2)
+Camera_Angle:          db  ;Camera.Angle = AllocateVariable(1)
+Camera_YShear:         db  ;Camera.YShear = AllocateVariable(1)
+def CameraVariables_Size EQU Camera_YShear - CameraVariables
+
+Render_Camera_Angle:   db  ;Render.Camera.Angle = AllocateVariable(1)
+Render_Camera_Z:       dw  ;Render.Camera.Z = AllocateVariable(2)
+Render_Camera_YShear:  dw  ;Render.Camera.YShear = AllocateVariable(2)
+
+Sector_Front:          dw  ;Sector.Front = AllocateVariable(2)
+Sector_Back:           dw  ;Sector.Back = AllocateVariable(2)
+
+Previous_Camera_X:     dw  ;Previous.Camera.X = AllocateVariable(2)
+Previous_Camera_Y:     dw  ;Previous.Camera.Y = AllocateVariable(2)
+Previous_Camera_Angle: db  ;Previous.Camera.Angle = AllocateVariable(1)
+
+AllocatedTableMemory:  dw  ;AllocatedTableMemory = AllocateVariable(2)
+ClipTableAddress:      dw  ;ClipTableAddress = AllocateVariable(2)
+
+ColumnsToDraw:         db;  ColumnsToDraw = AllocateVariable(1)
+
+
+
 
 section "Level_StructurePointers", wram0
 
