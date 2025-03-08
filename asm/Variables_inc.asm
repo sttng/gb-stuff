@@ -36,7 +36,21 @@ ClipTableAddress:      dw  ;ClipTableAddress = AllocateVariable(2)
 
 ColumnsToDraw:         db;  ColumnsToDraw = AllocateVariable(1)
 
+;------ Temp Variables------
+Neg_Camera_X:         dw
+Neg_Camera_Y:         dw
+Original_X:           dw
+Original_Y:           dw
+VertexCount:          dw
+WriteDataPointer:     dw
+ReadDataPointer:      dw
 
+;.module Vertices
+
+SinA:                dw  ;SinA = AllocateVariable(2)
+CosA:                dw  ;CosA = AllocateVariable(2)
+
+;.endmodule
 
 
 section "Level_StructurePointers", wram0
