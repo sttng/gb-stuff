@@ -71,16 +71,20 @@ GetBlockFromPoint:
 ; Offset Y by the origin.
 ; --------------------------------------------------------------------------
 
-	ld bc,[Origin.Y]
+	push hl
+	ld hl, Origin_Y
+	ld a,[hl+]
+	ld b, a
+	ld c,[hl]
+	pop hl
 	or a
-	ld e, a
+	;sbc hl,bc
 	ld a, l
 	sub c
 	ld l, a
 	ld a, h
 	sbc b
 	ld h, a
-	ld a, e
 
 ; --------------------------------------------------------------------------
 ; Divide by 1024 (each block is 1024 units high).
