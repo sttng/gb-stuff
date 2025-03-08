@@ -8,7 +8,7 @@
 ; Destroyed: AF, BC, HL.
 ; ==========================================================================
 Transform.Begin:
-	
+
 	; Get sin(a)
 	ld a,[Camera_Angle]
 	;call Maths.Trig.Sin
@@ -40,10 +40,10 @@ Transform.Begin:
 	inc hl
 	;neg_hl end
 	ld a,h
-	ld [NegCameraX],a
+	ld [Neg_Camera_X],a
 	ld a,l
-	ld [NegCameraX+1],a
-	
+	ld [Neg_Camera_X+1],a
+
 	ld hl,Camera_Y
 	ld a,[hl+]
 	ld h,[hl]
@@ -58,8 +58,8 @@ Transform.Begin:
 	inc hl
 	;neg_hl end
   	ld a,h
-	ld [NegCameraY],a
+	ld [Neg_Camera_Y],a
 	ld a,l
-	ld [NegCameraY+1],a
-	
+	ld [Neg_Camera_Y+1],a
+
 	ret
