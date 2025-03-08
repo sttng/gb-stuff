@@ -29,7 +29,7 @@ IntialiseFromLevel:
 	ret
 
 
-GetBlockFromPoint:
+GetBlockFromPoint:       ; ??? UNUSED ???
 
 ; --------------------------------------------------------------------------
 ; Offset X by the origin.
