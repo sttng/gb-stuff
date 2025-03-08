@@ -21,10 +21,10 @@ IntialiseFromLevel:
 	jr nz,.ldir
 	
 	ld hl,BlockMap
-	ld a, h
-	ld [Grid], a
-	ld a, l
-	ld [Grid+1], a
+	ld a,h
+	ld [Grid],a
+	ld a,l
+	ld [Grid+1],a
 
 	ret
 
@@ -38,17 +38,17 @@ GetBlockFromPoint:
 	push de
 	ld b,h
 	ld c,l
-	ld hl, Origin_X
+	ld hl,Origin_X
 	ld a,[hl+]
 	ld d, a
 	ld e,[hl]
 	or a
-	ld a, l
+	ld a,l
 	sub e
-	ld e, a
-	ld a, h
+	ld e,a
+	ld a,h
 	sbc d
-	ld d, a
+	ld d,a
 	pop hl
 
 ; --------------------------------------------------------------------------
@@ -72,19 +72,19 @@ GetBlockFromPoint:
 ; --------------------------------------------------------------------------
 
 	push hl
-	ld hl, Origin_Y
+	ld hl,Origin_Y
 	ld a,[hl+]
-	ld b, a
+	ld b,a
 	ld c,[hl]
 	pop hl
 	or a
 	;sbc hl,bc
-	ld a, l
+	ld a,l
 	sub c
-	ld l, a
-	ld a, h
+	ld l,a
+	ld a,h
 	sbc b
-	ld h, a
+	ld h,a
 
 ; --------------------------------------------------------------------------
 ; Divide by 1024 (each block is 1024 units high).
@@ -122,7 +122,12 @@ GetBlockFromPoint:
 ; Offset by the start of the block map.
 ; --------------------------------------------------------------------------
 
-	ld de,[Grid]
+	push hl
+	ld hl,Grid
+	ld a,[hl+]
+	ld d,a
+	ld e,[hl]
+	pop hl
 	add hl,de
 
 ; --------------------------------------------------------------------------
