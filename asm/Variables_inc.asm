@@ -18,7 +18,7 @@ Camera_Y:              dw  ;Camera.Y = AllocateVariable(2)
 Camera_Z:              dw  ;Camera.Z = AllocateVariable(2)
 Camera_Angle:          db  ;Camera.Angle = AllocateVariable(1)
 Camera_YShear:         db  ;Camera.YShear = AllocateVariable(1)
-def CameraVariables_Size EQU Camera_YShear - CameraVariables
+def CameraVariables_Size EQU (Camera_YShear - CameraVariables) + 1
 
 Render_Camera_Angle:   db  ;Render.Camera.Angle = AllocateVariable(1)
 Render_Camera_Z:       dw  ;Render.Camera.Z = AllocateVariable(2)
