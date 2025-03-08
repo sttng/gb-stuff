@@ -1,5 +1,14 @@
 SECTION "Level", ROM0
 
+dw Vertices, Vertices.Count
+dw Walls, Walls.Count
+dw Sectors
+dw Tree
+;dw Things
+dw BlockMap
+dw 6912, -8448, -272
+db 192, 0
+
 Vertices:
 	dw 0, -3072
 	dw 512, -3584
