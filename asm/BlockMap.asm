@@ -8,11 +8,7 @@ Code:
 ; Destroyed: AF, BC, DE, HL.
 ; ==========================================================================
 IntialiseFromLevel:
-	ld hl, BlockMap
-	ld a, h
-	ld [Grid], a
-	ld a, l
-	ld [Grid+1], a
+	ld hl,BlockMap
 	ld de,Header
 	ld bc,Header_Size
 .ldir
@@ -23,19 +19,16 @@ IntialiseFromLevel:
 	ld a,b
 	or c
 	jr nz,.ldir
+	
+	ld hl,BlockMap
+	ld a, h
+	ld [Grid], a
+	ld a, l
+	ld [Grid+1], a
+
 	ret
 
-; ==========================================================================
-; GetBlockFromPoint
-; --------------------------------------------------------------------------
-; Gets the pointer to a block in the map from coordinates.
-; --------------------------------------------------------------------------
-; Inputs:    (HL, DE) - Coordinate to retrieve the block for.
-; Outputs:   Carry flag set if the point is outside the block map.
-;            Carry flag reset and DE pointing to the block map if inside the
-;               block map.
-; Destroyed: AF, BC, DE, HL.
-; ==========================================================================
+
 GetBlockFromPoint:
 
 ; --------------------------------------------------------------------------
@@ -43,12 +36,12 @@ GetBlockFromPoint:
 ; --------------------------------------------------------------------------
 
 	push de
-	ld bc, Origin_X
-	ld a,[bc]
-	ld d,a
-	inc bc
-	ld a, [bc]
-	ld e, a
+	ld b,h
+	ld c,l
+	ld hl, Origin_X
+	ld a,[hl+]
+	ld d, a
+	ld e,[hl]
 	or a
 	ld a, l
 	sub e
