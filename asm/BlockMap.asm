@@ -15,14 +15,14 @@ IntialiseFromLevel:
 	ld [Grid+1], a
 	ld de,Header
 	ld bc,Header_Size
-:	ld a,[hl]          ;ldir
-	inc hl
+.ldir
+	ld a,[hl+]
 	ld [de],a
 	inc de
 	dec bc
-	ld a,c
-	or a,b
-	jr nz, :-          ;ldir - end
+	ld a,b
+	or c
+	jr nz,.ldir
 	ret
 
 ; ==========================================================================
@@ -150,23 +150,22 @@ GetBlockFromPoint:
 
 
 ; ==========================================================================
-; ldir
+; ldir / Memcopy
 ; --------------------------------------------------------------------------
 ; Copies specified memory-location to another location. 'Fake' ldir from Z80
 ; --------------------------------------------------------------------------
 ; Parameters:
-; hl: Source
-; de: Destination
-; bc: Count
+; HL: Source
+; DE: Destination
+; BC: Count / Size
 ; ==========================================================================
 ldir:
-:	ld a,[hl]
-	inc hl
+	ld a,[hl+]
 	ld [de],a
 	inc de
 	dec bc
-	ld a,c
-	or a,b
-	jr nz, :-
-ret
+	ld a,b
+	or c
+	jr nz,ldir
+	ret
 
