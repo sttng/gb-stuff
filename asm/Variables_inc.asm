@@ -55,27 +55,27 @@ CosA:                dw  ;CosA = AllocateVariable(2)
 
 section "Level_StructurePointers", wram0
 
-StructurePointers:   db ;Level.StructurePointers = AllocateVariable(0)
-Vertices:            dw ;Level.Vertices = AllocateVariable(2)
-Vertices_Count:      dw ;Level.Vertices.Count = AllocateVariable(2)
-Walls:               dw ;Level.Walls = AllocateVariable(2)
-Walls_Count:         dw ;Level.Walls.Count = AllocateVariable(2)
-Sectors:             dw ;Level.Sectors = AllocateVariable(2)
-Tree:                dw ;Level.Tree = AllocateVariable(2)
-Things:              dw ;Level.Things = AllocateVariable(2)
-Level_Blockmap:      dw ;Level.BlockMap = AllocateVariable(2)
+StructurePointers:   db  ;Level.StructurePointers = AllocateVariable(0)
+Vertices:            dw  ;Level.Vertices = AllocateVariable(2)
+Vertices_Count:      dw  ;Level.Vertices.Count = AllocateVariable(2)
+Walls:               dw  ;Level.Walls = AllocateVariable(2)
+Walls_Count:         dw  ;Level.Walls.Count = AllocateVariable(2)
+Sectors:             dw  ;Level.Sectors = AllocateVariable(2)
+Tree:                dw  ;Level.Tree = AllocateVariable(2)
+Things:              dw  ;Level.Things = AllocateVariable(2)
+Level_Blockmap:      dw  ;Level.BlockMap = AllocateVariable(2)
 def StructurePointers_Size equ (Level_Blockmap - StructurePointers) + 1 ;Level.StructurePointers.Size = AllocateVariable(0) - Level.StructurePointers
 
-DynamicMemory:       dw ;Level.DynamicMemory = AllocateVariable(2)
-TransformedVertices: dw ;Level.TransformedVertices = AllocateVariable(2)
-AllocatedMemory:     dw ;Level.AllocatedMemory = AllocateVariable(2)
+DynamicMemory:       dw  ;Level.DynamicMemory = AllocateVariable(2)
+TransformedVertices: dw  ;Level.TransformedVertices = AllocateVariable(2)
+AllocatedMemory:     dw  ;Level.AllocatedMemory = AllocateVariable(2)
 
 ;.module Things
 
-SubSectorStack.Top             dw  ;SubSectorStack.Top = AllocateVariable(2)
-SubSectorStack_Current         dw  ;SubSectorStack.Current = AllocateVariable(2)
-SubSectorStack_MaximumCapacity dw  ;SubSectorStack.MaximumCapacity = AllocateVariable(2)
-SubSectorStack_EntriesFree     dw  ;SubSectorStack.EntriesFree = AllocateVariable(2)
+SubSectorStack_Top:             dw  ;SubSectorStack.Top = AllocateVariable(2)
+SubSectorStack_Current:         dw  ;SubSectorStack.Current = AllocateVariable(2)
+SubSectorStack_MaximumCapacity: dw  ;SubSectorStack.MaximumCapacity = AllocateVariable(2)
+SubSectorStack_EntriesFree:     dw  ;SubSectorStack.EntriesFree = AllocateVariable(2)
 
 
 section "BlockMapVars",wram0 ;.module BlockMap
