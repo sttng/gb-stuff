@@ -1,5 +1,6 @@
+
 ; ==========================================================================
-; Load
+; Level.Load
 ; --------------------------------------------------------------------------
 ; Loads a level from a pointer in HL.
 ; --------------------------------------------------------------------------
@@ -8,15 +9,40 @@
 ;                if the level was loaded.
 ; Destroyed: AF, BC, DE, HL, IX.
 ; ==========================================================================
-Load:
+Level.Load:
 
 ; --------------------------------------------------------------------------
 ; Copy pointers from the level file.
 ; --------------------------------------------------------------------------
-	push hl
+
 	ld de,StructurePointers
-	ld bc,StructurePointers.Size
-	ldir
+	ld bc,StructurePointers_Size
+:   ld a,[hl+]    ;ldir start
+	ld [de],a
+	inc de
+	dec bc
+	ld a,b
+	or c
+	jr nz,:-      ;ldir end
+	
 	ld de,CameraVariables
-	ld bc,CameraVariables.Size
-	ldir
+	ld bc,CameraVariables_Size
+:   ld a,[hl+]    ;ldir start
+	ld [de],a
+	inc de
+	dec bc
+	ld a,b
+	or c
+	jr nz,:-      ;ldir end
+
+; --------------------------------------------------------------------------
+; Invert the camera angle to ensure that the first frame is transformed.
+; --------------------------------------------------------------------------	
+
+	ld a,[Camera_Angle]
+	cpl
+	ld [Previous_Camera_Angle],a
+
+; --------------------------------------------------------------------------
+; How much dynamic memory will we need for the level?
+; --------------------------------------------------------------------------
