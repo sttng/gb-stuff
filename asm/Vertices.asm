@@ -103,3 +103,26 @@ Transform:
 	ld bc,0
 	call Maths.Mul.S16S16
 
+	ld l,h
+	ld h,e ; (>>= 8)
+
+	push hl ; Oy*sin(a)	
+		ld hl,Original_X
+	    ld a,[hl+]
+	    ld h,[hl]
+		ld l,a
+		ld d,h
+		ld e,l
+
+		ld hl,CosA
+	    ld a,[hl+]
+	    ld h,[hl]
+		ld l,a
+		ld b,h
+		ld c,l	
+		call Maths.Mul.S16S16
+		; (>>= 8)
+		ld d,e
+		ld e,h
+	pop hl
+
