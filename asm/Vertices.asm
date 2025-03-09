@@ -186,4 +186,71 @@ Transform:
 ; ==========================================================================
 Transform.Multiple:
 
+	; Temp variables
+	
+	;ld (VertexCount),bc
+	ld a,b
+	ld [VertexCount],a
+	ld a,c
+	ld [VertexCount+1],a
+	;ld WriteDataPointer,de
+	ld a,d
+	ld [WriteDataPointer],a
+	ld a,e
+	ld [WriteDataPointer+1],a
+	;ld ReadDataPointer,hl
+	ld a,h
+	ld [ReadDataPointer],a
+	ld a,l
+	ld [ReadDataPointer+1],a
+	
+TransformLoop:
 
+;ReadDataPointer = $+1
+	ld hl,0
+	
+	ld c,[hl]
+	inc hl
+	ld b,[hl]
+	inc hl
+	ld e,[hl]
+	inc hl
+	ld d,[hl]
+	inc hl	
+	;ld (ReadDataPointer),hl
+	ld a,h
+	ld [ReadDataPointer],a
+	ld a,l
+	ld [ReadDataPointer+1],a
+	
+	call Transform
+
+;WriteDataPointer = $+1
+	ld hl,0
+	ld [hl],c
+	inc hl
+	ld [hl],b
+	inc hl
+	ld [hl],e
+	inc hl
+	ld [hl],d
+	inc hl
+	;ld (WriteDataPointer),hl
+	ld a,h
+	ld [WriteDataPointer],a
+	ld a,l
+	ld [WriteDataPointer+1],a
+
+;VertexCount = $+1
+	ld hl,0
+	dec hl
+	;ld (VertexCount),hl
+	ld a,h
+	ld [VertexCount],a
+	ld a,l
+	ld [VertexCount+1],a
+	
+	ld a,h
+	or l
+	jp nz,TransformLoop	
+	ret
