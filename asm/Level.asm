@@ -46,3 +46,28 @@ Level.Load:
 ; --------------------------------------------------------------------------
 ; How much dynamic memory will we need for the level?
 ; --------------------------------------------------------------------------
+	
+	ld a,10
+	ld [SubSectorStack_MaximumCapacity],a
+	
+	ld a, [Vertices_Count]
+	ld h, a
+	ld a, [Vertices_Count + 1]
+	ld l, a
+
+	add hl,hl
+	add hl,hl
+	
+	ld de,SubSectorStack_EntrySize*10 ; Five thing stack entries.
+	add hl,de
+	ld a,h
+	ld [AllocatedMemory],a
+	ld a, l
+	ld [AllocatedMemory+1],a
+	
+; --------------------------------------------------------------------------
+; Do we have enough memory?
+; --------------------------------------------------------------------------
+
+	call EnoughMem ;<tbd how to implement>
+	ret c
