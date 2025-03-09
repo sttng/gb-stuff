@@ -126,3 +126,64 @@ Transform:
 		ld e,h
 	pop hl
 
+	or a
+  ;sbc hl,de
+	ld a,l
+	sub e
+	ld l,a
+	ld a,h
+	sbc d
+	ld h,a
+  
+	push hl
+		;OriginalX = $+1 \ 
+		ld de,0
+		ld hl,SinA
+		ld a,[hl+]
+		ld h,[hl]
+		ld c,a
+		ld b,h
+		call Maths.Mul.S16S16
+		ld l,h
+		ld h,e
+		push hl
+			ld hl,Original_Y
+			ld a,[hl+]
+			ld h,[hl]
+			ld e,a
+			ld d,h
+			ld hl,CosA
+			ld a,[hl+]
+			ld h,[hl]
+			ld c,a
+			ld b,h
+			call Maths.Mul.S16S16
+			ld l,h
+			ld h,e
+		pop de
+		add hl,de
+		;ex de,hl
+		ld a, d 
+		ld d, h  
+		ld h, a 
+		ld a, e 
+		ld e, l  
+		ld l, a 
+
+	pop bc
+
+	ret
+
+; ==========================================================================
+; Transform.Multiple
+; --------------------------------------------------------------------------
+; Transforms multiple vertices.
+; --------------------------------------------------------------------------
+; Inputs:    HL: Pointer to start of vertices to transform.
+;            DE: Pointer to place to store transformed vertices.
+;            BC: Number of vertices to transform.
+; Destroyed: AF, BC, DE, HL.
+; ==========================================================================
+Transform.Multiple:
+
+
