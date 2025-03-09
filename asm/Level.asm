@@ -50,10 +50,10 @@ Level.Load:
 	ld a,10
 	ld [SubSectorStack_MaximumCapacity],a
 	
-	ld a, [Vertices_Count]
-	ld h, a
-	ld a, [Vertices_Count + 1]
-	ld l, a
+	ld a,[Vertices_Count]
+	ld h,a
+	ld a,[Vertices_Count + 1]
+	ld l,a
 
 	add hl,hl
 	add hl,hl
@@ -71,3 +71,29 @@ Level.Load:
 
 	call EnoughMem ;<tbd how to implement>
 	ret c
+
+; --------------------------------------------------------------------------
+; Allocate the memory.
+; --------------------------------------------------------------------------
+
+	;ex de,hl
+	ld a,d
+	ld d,h
+	ld h,a
+	ld a,e
+	ld e,l
+	ld l,a
+	ld a,[DynamicMemory]
+	ld d, a
+	ld a,[DynamicMemory + 1]
+	ld e,a
+	ld a,d
+	ld [TransformedVertices],a
+	ld a,e
+	ld [TransformedVertices+1],a
+	
+	call InsertMem ;<tbd how to implement>
+
+; --------------------------------------------------------------------------
+; Update variables pointing to memory as appropriate.
+; --------------------------------------------------------------------------
