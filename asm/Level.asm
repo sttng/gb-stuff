@@ -112,9 +112,9 @@ Level.Load:
 	add hl,de
 
 	ld a,h
-	ld [Things_SubSectorStack_Top],a
+	ld [SubSectorStack_Top],a
 	ld a,l
-	ld [Things_SubSectorStack_Top+1],a
+	ld [SubSectorStack_Top+1],a
 
 ; --------------------------------------------------------------------------
 ; Initialise the block map.
