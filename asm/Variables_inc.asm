@@ -77,6 +77,8 @@ SubSectorStack_Current:         dw  ;SubSectorStack.Current = AllocateVariable(2
 SubSectorStack_MaximumCapacity: dw  ;SubSectorStack.MaximumCapacity = AllocateVariable(2)
 SubSectorStack_EntriesFree:     dw  ;SubSectorStack.EntriesFree = AllocateVariable(2)
 
+def SubSectorStack_EntrySize equ (96 * 2) + 2 ;SubSectorStack.EntrySize = (96 * 2) + 2
+
 
 section "BlockMapVars",wram0 ;.module BlockMap
 
