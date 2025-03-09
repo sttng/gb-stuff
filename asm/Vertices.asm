@@ -108,15 +108,15 @@ Transform:
 
 	push hl ; Oy*sin(a)	
 		ld hl,Original_X
-	    ld a,[hl+]
-	    ld h,[hl]
+		ld a,[hl+]
+		ld h,[hl]
 		ld l,a
 		ld d,h
 		ld e,l
 
 		ld hl,CosA
-	    ld a,[hl+]
-	    ld h,[hl]
+		ld a,[hl+]
+		ld h,[hl]
 		ld l,a
 		ld b,h
 		ld c,l	
