@@ -6,7 +6,10 @@
 ; Destroyed: AF, BC, DE, HL.
 ; ==========================================================================
 IntialiseFromLevel:
-	ld hl,BlockMap
+	ld a,[BlockMap]
+	ld h, a
+	ld a,[BlockMap+1]
+	ld l,a
 	ld de,Header
 	ld bc,Header_Size
 .ldir
@@ -18,7 +21,11 @@ IntialiseFromLevel:
 	or c
 	jr nz,.ldir
 	
-	ld hl,BlockMap
+	ld a,[BlockMap]
+	ld h, a
+	ld a,[BlockMap+1]
+	ld l,a
+
 	ld a,h
 	ld [Grid],a
 	ld a,l
