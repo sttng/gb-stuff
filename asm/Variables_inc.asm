@@ -70,6 +70,13 @@ DynamicMemory:       dw ;Level.DynamicMemory = AllocateVariable(2)
 TransformedVertices: dw ;Level.TransformedVertices = AllocateVariable(2)
 AllocatedMemory:     dw ;Level.AllocatedMemory = AllocateVariable(2)
 
+;.module Things
+
+SubSectorStack.Top             dw  ;SubSectorStack.Top = AllocateVariable(2)
+SubSectorStack_Current         dw  ;SubSectorStack.Current = AllocateVariable(2)
+SubSectorStack_MaximumCapacity dw  ;SubSectorStack.MaximumCapacity = AllocateVariable(2)
+SubSectorStack_EntriesFree     dw  ;SubSectorStack.EntriesFree = AllocateVariable(2)
+
 
 section "BlockMapVars",wram0 ;.module BlockMap
 
