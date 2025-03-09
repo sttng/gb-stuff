@@ -7,7 +7,7 @@
 ; --------------------------------------------------------------------------
 ; Destroyed: AF, BC, HL.
 ; ==========================================================================
-Transform.Begin:         ; ??? Unused ???
+Transform.Begin:
 
 	; Get sin(a)
 	ld a,[Camera_Angle]
@@ -184,7 +184,7 @@ Transform:
 ;            BC: Number of vertices to transform.
 ; Destroyed: AF, BC, DE, HL.
 ; ==========================================================================
-Transform.Multiple:
+Transform.Multiple:         ; ??? Unused ???
 
 	; Temp variables
 	
