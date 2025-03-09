@@ -163,12 +163,12 @@ Transform:
 		pop de
 		add hl,de
 		;ex de,hl
-		ld a, d 
-		ld d, h  
-		ld h, a 
-		ld a, e 
-		ld e, l  
-		ld l, a 
+		ld a,d 
+		ld d,h  
+		ld h,a 
+		ld a,e 
+		ld e,l  
+		ld l,a 
 
 	pop bc
 
