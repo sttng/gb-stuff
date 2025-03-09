@@ -24,7 +24,7 @@ Level.Load:
 	ld a,b
 	or c
 	jr nz,:-      ;ldir end
-	
+
 	ld de,CameraVariables
 	ld bc,CameraVariables_Size
 :   ld a,[hl+]    ;ldir start
@@ -46,25 +46,25 @@ Level.Load:
 ; --------------------------------------------------------------------------
 ; How much dynamic memory will we need for the level?
 ; --------------------------------------------------------------------------
-	
+
 	ld a,10
 	ld [SubSectorStack_MaximumCapacity],a
-	
+
 	ld a,[Vertices_Count]
 	ld h,a
-	ld a,[Vertices_Count + 1]
+	ld a,[Vertices_Count+1]
 	ld l,a
 
 	add hl,hl
 	add hl,hl
-	
+
 	ld de,SubSectorStack_EntrySize*10 ; Five thing stack entries.
 	add hl,de
 	ld a,h
 	ld [AllocatedMemory],a
 	ld a, l
 	ld [AllocatedMemory+1],a
-	
+
 ; --------------------------------------------------------------------------
 ; Do we have enough memory?
 ; --------------------------------------------------------------------------
@@ -83,17 +83,69 @@ Level.Load:
 	ld a,e
 	ld e,l
 	ld l,a
+
 	ld a,[DynamicMemory]
 	ld d, a
-	ld a,[DynamicMemory + 1]
+	ld a,[DynamicMemory+1]
 	ld e,a
 	ld a,d
 	ld [TransformedVertices],a
 	ld a,e
 	ld [TransformedVertices+1],a
-	
+
 	call InsertMem ;<tbd how to implement>
 
 ; --------------------------------------------------------------------------
 ; Update variables pointing to memory as appropriate.
 ; --------------------------------------------------------------------------
+
+	ld a,[DynamicMemory]
+	ld h, a
+	ld a,[DynamicMemory+1]
+	ld l,a
+
+	ld a,[AllocatedMemory]
+	ld d, a
+	ld a,[AllocatedMemory+1]
+	ld e,a
+
+	add hl,de
+
+	ld a,h
+	ld [Things_SubSectorStack_Top],a
+	ld a,l
+	ld [Things_SubSectorStack_Top+1],a
+
+; --------------------------------------------------------------------------
+; Initialise the block map.
+; --------------------------------------------------------------------------
+
+	call BlockMap_IntialiseFromLevel
+
+; --------------------------------------------------------------------------
+; Return successfully.
+; --------------------------------------------------------------------------
+
+	or a
+	ret
+
+; ==========================================================================
+; Unload
+; --------------------------------------------------------------------------
+; Unloads the current level.
+; --------------------------------------------------------------------------
+; Destroyed: AF, BC, DE, HL, IX.
+; ==========================================================================
+Unload:
+	ld a,[DynamicMemory]
+	ld h, a
+	ld a,[DynamicMemory+1]
+	ld l,a
+
+	ld a,[AllocatedMemory]
+	ld d, a
+	ld a,[AllocatedMemory+1]
+	ld e,a
+
+	call DelMem ;<tbd how to implement>
+	ret
