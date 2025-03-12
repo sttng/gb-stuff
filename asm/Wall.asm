@@ -50,3 +50,14 @@ ld hl, Angle.Transformed
 	ret nc
 :
 ret
+
+; --------------------------------------------------------------------------
+; Is the wall entirely behind the camera?
+; --------------------------------------------------------------------------
+
+	ld a,[Start.Y+1]
+	ld b,a
+	ld a,[End.Y+1]
+	and b
+	bit 7, a  ;ret m
+	ret nz
