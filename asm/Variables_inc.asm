@@ -52,6 +52,53 @@ CosA:                dw  ;CosA = AllocateVariable(2)
 
 ;.endmodule
 
+;.module Wall
+
+Trapezium.Start_Column: db; Trapezium.Start.Column = AllocateVariable(1)
+Trapezium.End_Column:   db; = AllocateVariable(1)
+
+Trapezium.Start_Ceiling: dw ; = AllocateVariable(2)
+Trapezium.Start_Floor:   dw ; = AllocateVariable(2)
+Trapezium.End_Ceiling:   dw ; = AllocateVariable(2)
+Trapezium.End_Floor:     dw ; = AllocateVariable(2)
+
+Start.X: dw ; = AllocateVariable(2)
+Start.Y: dw ; = AllocateVariable(2)
+
+End.X: dw ; = AllocateVariable(2)
+End.Y: dw ; = AllocateVariable(2)
+
+Start.VertexIndex: db ; = AllocateVariable(1)
+End.VertexIndex:   db ; = AllocateVariable(1)
+
+Delta.X:    dw ; = AllocateVariable(2)
+Delta.AbsX: dw ; = AllocateVariable(2)
+
+Delta.Y:    dw ; = AllocateVariable(2)
+Delta.AbsY: dw ; = AllocateVariable(2)
+
+Gradient:   dw ; = AllocateVariable(2)
+
+UpperLower.FrontCeilingHeight: dw ; = AllocateVariable(2)
+UpperLower.BackCeilingHeight:  dw; = AllocateVariable(2)
+UpperLower.FrontFloorHeight:   dw; = AllocateVariable(2)
+UpperLower.BackFloorHeight:    dw; = AllocateVariable(2)
+
+HorizontalEdge.Start_Y: dw; = AllocateVariable(2)
+HorizontalEdge.End_Y:   dw; = AllocateVariable(2)
+
+Angle: db ; = AllocateVariable(1)
+Angle.Transformed: db; = AllocateVariable(1)
+
+VerticalEdge.Floor:  dw; = AllocateVariable(2)
+VerticalEdge.Column: db;= AllocateVariable(1)
+
+;.endmodule
+
+
+
+
+
 
 section "Level_StructurePointers", wram0
 
