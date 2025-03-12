@@ -25,3 +25,28 @@ def Data_EndVertex = 3
 def Data_FrontSector = 4
 def Data_BackSector = 5
 def Data_LengthSquared = 6
+
+; ==========================================================================
+; ClipAndDraw
+; --------------------------------------------------------------------------
+; Clips the wall to the view and draws it on the screen.
+; ==========================================================================
+ClipAndDraw:
+
+; --------------------------------------------------------------------------
+; Can we quickly backface cull the wall by its angle?
+; --------------------------------------------------------------------------
+
+ld hl, DrawFlags
+bit DrawFlag_FillMiddle, [hl]
+
+jr z,:+
+
+ld hl, Angle.Transformed	
+	ld a,[Angle.Transformed]
+	cp 32
+	ret c
+	cp 224
+	ret nc
+:
+ret
