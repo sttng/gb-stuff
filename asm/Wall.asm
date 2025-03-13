@@ -61,3 +61,80 @@ ret
 	and b
 	bit 7, a  ;ret m
 	ret nz
+
+; --------------------------------------------------------------------------
+; Calculate the wall delta values.
+; --------------------------------------------------------------------------
+
+	ld hl,Start.X
+	ld a,[hl+]
+	ld e,[hl]	
+	ld d,a
+
+	ld hl,End.X
+	ld a,[hl+]
+	ld l,[hl]	
+	ld h,a
+
+	or a
+  ;sbc hl,de
+	ld a,l
+	sub e
+	ld [Delta.X+1],a
+	ld l,a
+	ld a,h
+	sbc d
+	ld [Delta.X],a
+	ld h,a
+
+	jp c,:+
+	;neg_hl start
+  		ld a,h
+  		cpl
+		ld h,a
+		ld a,l
+		cpl
+		ld l,a
+		inc hl
+	;neg_hl end
+:	ld a,h
+	ld [Delta.AbsX],a
+	ld a,l
+	ld [Delta.AbsX+1],a
+
+
+	ld hl,Start.Y
+	ld a,[hl+]
+	ld e,[hl]	
+	ld d,a
+
+	ld hl,End.Y
+	ld a,[hl+]
+	ld l,[hl]	
+	ld h,a
+
+	or a
+  ;sbc hl,de
+	ld a,l
+	sub e
+	ld [Delta.Y+1],a
+	ld l,a
+	ld a,h
+	sbc d
+	ld [Delta.Y],a
+	ld h,a
+
+	jp c,:+
+	;neg_hl start
+  		ld a,h
+  		cpl
+		ld h,a
+		ld a,l
+		cpl
+		ld l,a
+		inc hl
+	;neg_hl end
+:	ld a,h
+	ld [Delta.AbsY],a
+	ld a,l
+	ld [Delta.AbsY+1],a
