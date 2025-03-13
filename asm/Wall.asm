@@ -170,7 +170,7 @@ ret
 	bit 7,a
 	jr z,Start.DoesNotIntersectY
 
-	ld hl, Delta.X + 1
+	ld hl, Delta.X+1
 	ld a,[hl]
 	ld e,a
 	dec hl
@@ -198,11 +198,11 @@ ret
 Start.DoesNotIntersectY:
 
 	; Clip the end of the wall to Y=0.
-	ld a,(End.Y+1)
+	ld a,[End.Y+1]
 	bit 7,a
 	jr z,End.DoesNotIntersectY
 
-	ld hl,Delta.X + 1
+	ld hl,Delta.X+1
 	ld a,[hl]
 	ld e,a
 	dec hl
