@@ -226,3 +226,41 @@ Start.DoesNotIntersectY:
 End.DoesNotIntersectY:
 
 ClippedToY:
+
+; --------------------------------------------------------------------------
+; Does the wall need to be clipped to Y=+X or Y=-X?
+; --------------------------------------------------------------------------
+
+	; Check the start against Y=+X.
+
+	;ld de,(Start.Y)
+	ld hl, Start.Y
+	ld a, [hl+]
+	ld d,a
+	ld a, [hl]
+	ld e,a
+
+	;ld hl,(Start.X)
+	ld hl, Start.X
+	ld a, [hl+]
+	ld b,a
+	ld a, [hl]
+	ld l,a
+	ld h,b
+
+	; Count the number of times Y=+X (B) and Y=-X (C) are clipped against.
+	ld bc,$0202
+
+	call Maths.Compare.HL.DE.Signed
+	
+	jr c,:+
+	dec b
+	
+	ld hl,ClipFlags
+	set ClipFlag_StartOutsideRight,[hl]
+	ld hl,DrawFlags
+	res DrawFlag_StrokeStart,[hl]
+	
+:
+
+	; Check the start against Y=-X.
