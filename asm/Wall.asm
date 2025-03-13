@@ -3,14 +3,14 @@
 ; --------------------------------------------------------------------------
 ; Provide flags describing the clipping operation.
 ; ==========================================================================
-ClipFlag: db $00
+ClipFlags: db $00
 def ClipFlag_StartOutsideLeft  equ %00000001
 def ClipFlag_StartOutsideRight equ %00000010
 def ClipFlag_EndOutsideLeft    equ %00000100
 def ClipFlag_EndOutsideRight   equ %00001000
 def ClipFlag_Steep             equ %00010000
 
-DrawFlag: db $00
+DrawFlags: db $00
 def DrawFlag_StrokeStart    equ %00000001
 def DrawFlag_StrokeEnd      equ %00000010
 def DrawFlag_FillMiddle     equ %00000100
@@ -138,3 +138,23 @@ ret
 	ld [Delta.AbsY],a
 	ld a,l
 	ld [Delta.AbsY+1],a
+
+; --------------------------------------------------------------------------
+; Clear the GetYIntercept and GetXIntercept cache.
+; --------------------------------------------------------------------------
+
+	;ld hl,$0118 ; JR $+1
+	ld a, $01
+	ld [GetYIntercept+0], a
+	ld [GetXIntercept+0], a
+	ld a, $18
+	ld [GetYIntercept+1], a
+	ld [GetXIntercept+1], a
+
+; --------------------------------------------------------------------------
+; Clear the clipping flags.
+; --------------------------------------------------------------------------
+
+	ld a,[ClipFlags]
+	and %11100000
+	ld [ClipFlags],a
