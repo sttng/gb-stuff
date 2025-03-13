@@ -11,10 +11,10 @@ def ClipFlag_EndOutsideRight   equ %00001000
 def ClipFlag_Steep             equ %00010000
 
 DrawFlags: db $00
-def DrawFlag_StrokeStart    equ %00000001
-def DrawFlag_StrokeEnd      equ %00000010
-def DrawFlag_FillMiddle     equ %00000100
-def DrawFlag_DrawnThisFrame equ %10000000
+def DrawFlag_StrokeStart       equ %00000001
+def DrawFlag_StrokeEnd         equ %00000010
+def DrawFlag_FillMiddle        equ %00000100
+def DrawFlag_DrawnThisFrame    equ %10000000
 
 def DataSize equ 8
 
@@ -144,12 +144,12 @@ ret
 ; --------------------------------------------------------------------------
 
 	;ld hl,$0118 ; JR $+1
-	ld a, $01
-	ld [GetYIntercept+0], a
-	ld [GetXIntercept+0], a
-	ld a, $18
-	ld [GetYIntercept+1], a
-	ld [GetXIntercept+1], a
+	ld a,$01
+	ld [GetYIntercept+0],a
+	ld [GetXIntercept+0],a
+	ld a,$18
+	ld [GetYIntercept+1],a
+	ld [GetXIntercept+1],a
 
 ; --------------------------------------------------------------------------
 ; Clear the clipping flags.
@@ -158,3 +158,39 @@ ret
 	ld a,[ClipFlags]
 	and %11100000
 	ld [ClipFlags],a
+
+; --------------------------------------------------------------------------
+; Clip to Y=0.
+; --------------------------------------------------------------------------
+
+	; Does the start intersect the Y axis?
+
+	; Clip the start of the wall to Y=0.
+	ld a,[Start.Y+1]
+	bit 7,a
+	jr z,Start.DoesNotIntersectY
+
+	ld hl, Delta.X + 1
+	ld a, [hl]
+	ld e,a
+	dec hl
+	ld a, [hl]
+	or e
+	jr z,:+
+
+	call GetYIntercept
+	ld a,h
+	ld [Start.X],a
+	ld a,l
+	ld [Start.X+1],a
+
+:	ld hl,0
+  	ld a,h
+	ld [Start.Y],a
+	ld a,l
+	ld [Start.Y+1],a
+
+	; We know that the end can't intersect Y,
+	; as we would have already culled the 
+	; (At least one end must have Y>=0).
+	jr End.DoesNotIntersectY
