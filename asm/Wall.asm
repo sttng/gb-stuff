@@ -171,10 +171,10 @@ ret
 	jr z,Start.DoesNotIntersectY
 
 	ld hl, Delta.X + 1
-	ld a, [hl]
+	ld a,[hl]
 	ld e,a
 	dec hl
-	ld a, [hl]
+	ld a,[hl]
 	or e
 	jr z,:+
 
@@ -194,3 +194,35 @@ ret
 	; as we would have already culled the 
 	; (At least one end must have Y>=0).
 	jr End.DoesNotIntersectY
+
+Start.DoesNotIntersectY:
+
+	; Clip the end of the wall to Y=0.
+	ld a,(End.Y+1)
+	bit 7,a
+	jr z,End.DoesNotIntersectY
+
+	ld hl,Delta.X + 1
+	ld a,[hl]
+	ld e,a
+	dec hl
+	ld a,[hl]
+	or e
+	jr z,:+
+
+	call GetYIntercept
+
+	ld a,h
+	ld [End.X],a
+	ld a,l
+	ld [End.X+1],a
+
+:	ld hl,0
+	ld a,h
+	ld [End.Y],a
+	ld a,l
+	ld [End.Y+1],a
+
+End.DoesNotIntersectY:
+
+ClippedToY:
