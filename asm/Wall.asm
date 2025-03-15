@@ -11,10 +11,10 @@ def ClipFlag_EndOutsideRight   equ 3 ; %00001000
 def ClipFlag_Steep             equ 4 ; %00010000
 
 DrawFlags: db $00
-def DrawFlag_StrokeStart    equ 0 ; %00000001
-def DrawFlag_StrokeEnd      equ 1 ; %00000010
-def DrawFlag_FillMiddle     equ 2 ; %00000100
-def DrawFlag_DrawnThisFrame equ 7 ; %10000000
+def DrawFlag_StrokeStart       equ 0 ; %00000001
+def DrawFlag_StrokeEnd         equ 1 ; %00000010
+def DrawFlag_FillMiddle        equ 2 ; %00000100
+def DrawFlag_DrawnThisFrame    equ 7 ; %10000000
 
 def DataSize equ 8
 
@@ -58,7 +58,7 @@ ret
 	ld b,a
 	ld a,[End.Y+1]
 	and b
-	bit 7, a  ;ret m
+	bit 7,a  ;ret m
 	ret nz
 
 ; --------------------------------------------------------------------------
@@ -69,7 +69,7 @@ ret
 	;ld de,(Start.X)
 	ld a,[End.X]
 	ld h,a
-	ld a, [End.X+1]
+	ld a,[End.X+1]
 	ld l,a
 
 	ld a,[Start.X]
@@ -395,7 +395,61 @@ IsShallow:
 ; --------------------------------------------------------------------------
 
 	call Maths.Div.S16S16
-	ld a, b
-	ld [Gradient], a
-	ld a, c
-	ld [Gradient+1], a
+	ld a,b
+	ld [Gradient],a
+	ld a,c
+	ld [Gradient+1],a
+
+; --------------------------------------------------------------------------
+; Clip the start to Y=+X.
+; --------------------------------------------------------------------------
+
+	ld hl, ClipFlags
+	bit ClipFlag_StartOutsideRight, [hl]
+	jr z,ClippedStartRight
+
+	; If dY == 0, Start.X = Start.Y.
+	;ld hl,(Delta.Y)
+	ld a,[Delta.Y]
+	ld h,a
+	ld a,[Delta.Y+1]
+	ld l,a
+	ld a,h
+	or l
+	jr nz,:+
+		;ld hl,(Start.Y)
+		ld a,[Start.Y]
+		ld h,a
+		ld a,[Start.Y+1]
+		ld l,a
+		;ld (Start.X),hl
+		ld a,h
+		ld [Start.X],a
+		ld a,l
+		ld [Start.X+1],a
+		jp ClippedStartRight
+	:
+
+	; If dX == 0, Start.Y = Start.X.
+	;ld hl,(Delta.X)
+	ld a,[Delta.X]
+	ld h,a
+	ld a,[Delta.X+1]
+	ld l,a
+	ld a,h
+	or l
+	jr nz,:+
+		;ld hl,(Start.X)
+		ld a,[Start.X]
+		ld h,a
+		ld a,[Start.X+1]
+		ld l,a
+		;ld (Start.Y),hl
+		ld a,h
+		ld [Start.Y],a
+		ld a,l
+		ld [Start.Y+1],a
+		jp ClippedStartRight
+	:
+	; We can't take a shortcut, so perform a slow clip.
+
