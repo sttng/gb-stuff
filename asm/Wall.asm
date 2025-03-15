@@ -4,17 +4,17 @@
 ; Provide flags describing the clipping operation.
 ; ==========================================================================
 ClipFlags: db $00
-def ClipFlag_StartOutsideLeft  equ %00000001
-def ClipFlag_StartOutsideRight equ %00000010
-def ClipFlag_EndOutsideLeft    equ %00000100
-def ClipFlag_EndOutsideRight   equ %00001000
-def ClipFlag_Steep             equ %00010000
+def ClipFlag_StartOutsideLeft  equ 0;equ %00000001
+def ClipFlag_StartOutsideRight equ 1;equ %00000010
+def ClipFlag_EndOutsideLeft    equ 2;equ %00000100
+def ClipFlag_EndOutsideRight   equ 3;equ %00001000
+def ClipFlag_Steep             equ 4;equ %00010000
 
 DrawFlags: db $00
-def DrawFlag_StrokeStart       equ %00000001
-def DrawFlag_StrokeEnd         equ %00000010
-def DrawFlag_FillMiddle        equ %00000100
-def DrawFlag_DrawnThisFrame    equ %10000000
+def DrawFlag_StrokeStart    equ 0;equ %00000001
+def DrawFlag_StrokeEnd      equ 1;equ %00000010
+def DrawFlag_FillMiddle     equ 2;equ %00000100
+def DrawFlag_DrawnThisFrame equ 7;equ %10000000
 
 def DataSize equ 8
 
@@ -264,3 +264,87 @@ ClippedToY:
 :
 
 	; Check the start against Y=-X.
+	
+	;ld hl,(Start.X)
+	ld a,[Start.X]
+	ld h,a
+	ld a,[Start.X + 1]
+	ld l,a
+	;ld de,(Start.Y)
+	ld a,[Start.Y]
+	ld d,a
+	ld a,[Start.Y + 1]
+	ld e,a
+	
+	;call Maths.Compare.HL.NegDE.Signed
+	
+	jr nc,:+
+	dec c
+	ld hl,ClipFlags
+	set ClipFlag_StartOutsideLeft,[hl]
+	ld hl,DrawFlags
+	res DrawFlag_StrokeStart,[hl]
+:
+
+	; Check the end against Y=+X.
+
+	;ld hl,(End.X)
+	ld a,[End.X]
+	ld h,a
+	ld a,[End.X + 1]
+	ld l,a
+	;ld de,(End.Y)
+	ld a,[End.Y]
+	ld d,a
+	ld a,[End.Y + 1]
+	ld e,a
+	
+	call Maths.Compare.HL.DE.Signed
+	
+	jr c,:+
+	dec b
+	ret z ; Both ends are outside the right - bail out.
+	ld hl,ClipFlags
+	set ClipFlag_EndOutsideRight,[hl]
+	ld hl,DrawFlags
+	res DrawFlag_StrokeEnd,[hl]
+:	
+
+	; Check the end against Y=-X.
+
+	;ld hl,(End.X)
+	ld a,[End.X]
+	ld h,a
+	ld a,[End.X + 1]
+	ld l,a
+	;ld de,(End.Y)
+	ld a,[End.Y]
+	ld d,a
+	ld a,[End.Y + 1]
+	ld e,a
+	
+	call Maths.Compare.HL.NegDE.Signed
+	
+	jr nc,:+
+	dec c
+	ret z ; Both ends are outside the left - bail out.
+	ld hl,ClipFlags
+	set ClipFlag_EndOutsideLeft,[hl]
+	ld hl,DrawFlags
+	res DrawFlag_StrokeEnd,[hl]
+:
+
+; --------------------------------------------------------------------------
+; Do we need to do any clipping?
+; --------------------------------------------------------------------------
+
+	ld a,[ClipFlags]
+	and $0F
+	jp z,NoViewClippingRequired
+
+; --------------------------------------------------------------------------
+; Some clipping is, alas, required.
+; --------------------------------------------------------------------------
+	
+	; Is the wall steep or shallow?
+	; A "steep" wall is one in which |dY| > |dX|.	
