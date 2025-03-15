@@ -526,11 +526,11 @@ ClippedStartRight:
 	ld a,h
 	or l
 	jr nz,:+
-	;ld hl,(End.X)
-	ld a,[End.X]
-	ld h,a
-	ld a,[End.X+1]
-	ld l,a		
+		;ld hl,(End.X)
+		ld a,[End.X]
+		ld h,a
+		ld a,[End.X+1]
+		ld l,a		
 		;ld (End.Y),hl
 		ld a,h
 		ld [End.Y],a
@@ -592,11 +592,11 @@ ClippedEndRight:
 	ld a,h
 	or l
 	jr nz,:+
-	ld hl,(Start.Y)
-  	ld a,[Start.Y]
-	ld h,a
-	ld a,[Start.Y+1]
-	ld l,a		
+		ld hl,(Start.Y)
+  		ld a,[Start.Y]
+		ld h,a
+		ld a,[Start.Y+1]
+		ld l,a		
 		neg_hl()
 		;ld (Start.X),hl
 		ld a,h
@@ -615,11 +615,11 @@ ClippedEndRight:
 	ld a,h
 	or l
 	jr nz,:+
-	;ld hl,(Start.X)
-  	ld a,[Start.X]
-	ld h,a
-	ld a,[Start.X+1]
-	ld l,a			
+		;ld hl,(Start.X)
+		ld a,[Start.X]
+		ld h,a
+		ld a,[Start.X+1]
+		ld l,a			
 		neg_hl()
 		;ld (Start.Y),hl
 		ld a,h
