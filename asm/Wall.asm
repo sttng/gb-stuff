@@ -578,3 +578,113 @@ ClippedEndRight:
 ; --------------------------------------------------------------------------
 ; Clip the start to Y=-X.
 ; --------------------------------------------------------------------------
+
+	ld hl, ClipFlags
+	bit ClipFlag_StartOutsideLeft,[hl]
+	jr z,ClippedStartLeft
+	
+	; If dY == 0, Start.X = -Start.Y.
+	;ld hl,(Delta.Y)	
+	ld a,[Delta.Y]
+	ld h,a
+	ld a,[Delta.Y+1]
+	ld l,a	
+	ld a,h
+	or l
+	jr nz,:+
+	ld hl,(Start.Y)
+  	ld a,[Start.Y]
+	ld h,a
+	ld a,[Start.Y+1]
+	ld l,a		
+		neg_hl()
+		;ld (Start.X),hl
+		ld a,h
+		ld [Start.X],a
+		ld a,l
+		ld [Start.X+1],a		
+		jp ClippedStartLeft
+	:	
+		
+	; If dX == 0, Start.Y = -Start.X.
+	;ld hl,(Delta.X)
+	ld a,[Delta.X]
+	ld h,a
+	ld a,[Delta.X+1]
+	ld l,a		
+	ld a,h
+	or l
+	jr nz,:+
+	;ld hl,(Start.X)
+  	ld a,[Start.X]
+	ld h,a
+	ld a,[Start.X+1]
+	ld l,a			
+		neg_hl()
+		;ld (Start.Y),hl
+		ld a,h
+		ld [Start.Y],a
+		ld a,l
+		ld [Start.Y+1],a	
+		jp ClippedStartLeft
+	:
+	
+	; We can't take a shortcut, so perform a slow clip.
+	ld hl, ClipFlags
+	bit ClipFlag_Steep,[hl]
+	jr z,ClipStartLeft.Shallow	
+
+ClipStartLeft.Steep:
+
+	call GetYIntercept
+	jr ClipStartLeft.Clip
+	
+ClipStartLeft.Shallow:
+
+	call GetXIntercept
+
+ClipStartLeft.Clip:
+
+	; X = c * 256 / m + 256
+	;ld de,(Gradient)
+	ld a,[Gradient]
+	ld d,a
+	ld a,[Gradient+1]
+	ld e,a
+	inc d
+	call Maths.Div.S16S16	
+
+	ld hl, ClipFlags
+	bit ClipFlag_Steep,[hl]	
+	jr nz,:+
+	;ld (Start.Y),bc
+	ld a,b
+	ld [Start.Y],a
+	ld a,c
+	ld [Start.Y+1],a	
+	neg_bc()
+	;ld (Start.X),bc
+  	ld a,b
+	ld [Start.X],a
+	ld a,c
+	ld [Start.X+1],a		
+	jr ClippedStartLeft
+:
+	;ld (Start.X),bc
+	ld a,b
+	ld [Start.X],a
+	ld a,c
+	ld [Start.X+1],a
+	neg_bc()
+	;ld (Start.Y),bc
+	ld a,b
+	ld [Start.Y],a
+	ld a,c
+	ld [Start.Y+1],a	
+
+ClippedStartLeft:
+
+; --------------------------------------------------------------------------
+; Clip the end to Y=-X.
+; --------------------------------------------------------------------------
+	
