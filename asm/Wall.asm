@@ -900,3 +900,88 @@ Project.End.X:
 ; --------------------------------------------------------------------------
 ; Project the start X of the wall.
 ; --------------------------------------------------------------------------
+
+	; If we clipped to the left, project to the left.
+	xor a
+	ld hl, ClipFlags
+	bit ClipFlag_StartOutsideLeft,[hl]
+	jr nz,Project.Start.X
+	
+	; If we clipped to the right , project to the right.
+	ld a,95
+	bit ClipFlag_StartOutsideRight,[hl]
+	jr nz,Project.Start.X
+	
+	;ld hl,(Start.VertexIndex)
+	ld a,[Start.VertexIndex]
+	ld h,a
+	ld a,[Start.VertexIndex+1]
+	ld l,a
+	ld h,Vertices_AlreadyTransformed >> 8
+	ld a,(hl)
+	inc a
+	jr nz,Start.AlreadyProjected
+
+	push hl
+
+	; 48 * X / Y
+	;ld hl,(Start.X)
+	ld a,[Start.X]
+	ld h,a
+	ld a,[Start.X+1]
+	ld l,a
+	call Maths.Mul.S48
+	ld b,h
+	ld c,l
+	ld de,(Start.Y)
+	ld a,[Start.Y]
+	ld d,a
+	ld a,[Start.Y+1]
+	ld e,a
+	call Maths.Div.S24S16
+
+	; Offset by the centre of the screen.
+	ld a,c
+	add a,48
+	
+	; Clip to the bounds of the screen.
+	jp p,:+
+	xor a
+:	cp 96
+	jr c,:+
+	ld a,95
+:
+
+	pop hl
+
+	or $80
+	ld [hl],a
+	and $7F
+	jr Project.Start.X
+
+Start.AlreadyProjected:
+	dec a
+	and $7F
+
+
+Project.Start.X:
+	ld [Trapezium.Start_Column],a
+
+	; Run-on to the draw function.
+
+; ==========================================================================
+; Draw
+; --------------------------------------------------------------------------
+; Draws the wall.
+; --------------------------------------------------------------------------
+; Inputs:    DrawFlags: Flags to control drawing.
+;            Trapezium.Start.Column: X coordinate of the projected start
+;                of the wall.
+;            Trapezium.End.Column: X coordinate of the projected end of the
+;                wall.
+;            Start.Y: Y coordinate of the wall's start vertex.
+;            End.Y: Y coordinate of the wall's end vertex.
+;            Sector.Front: Pointer to the sector in front of the wall.
+;            Sector.Back: Pointer to the sector behind the wall.
+; ==========================================================================
+Draw:
