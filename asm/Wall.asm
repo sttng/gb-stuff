@@ -4,17 +4,17 @@
 ; Provide flags describing the clipping operation.
 ; ==========================================================================
 ClipFlags: db $00
-def ClipFlag_StartOutsideLeft  equ 0;equ %00000001
-def ClipFlag_StartOutsideRight equ 1;equ %00000010
-def ClipFlag_EndOutsideLeft    equ 2;equ %00000100
-def ClipFlag_EndOutsideRight   equ 3;equ %00001000
-def ClipFlag_Steep             equ 4;equ %00010000
+def ClipFlag_StartOutsideLeft  equ 0 ; %00000001
+def ClipFlag_StartOutsideRight equ 1 ; %00000010
+def ClipFlag_EndOutsideLeft    equ 2 ; %00000100
+def ClipFlag_EndOutsideRight   equ 3 ; %00001000
+def ClipFlag_Steep             equ 4 ; %00010000
 
 DrawFlags: db $00
-def DrawFlag_StrokeStart    equ 0;equ %00000001
-def DrawFlag_StrokeEnd      equ 1;equ %00000010
-def DrawFlag_FillMiddle     equ 2;equ %00000100
-def DrawFlag_DrawnThisFrame equ 7;equ %10000000
+def DrawFlag_StrokeStart    equ 0 ; %00000001
+def DrawFlag_StrokeEnd      equ 1 ; %00000010
+def DrawFlag_FillMiddle     equ 2 ; %00000100
+def DrawFlag_DrawnThisFrame equ 7 ; %10000000
 
 def DataSize equ 8
 
@@ -37,12 +37,11 @@ ClipAndDraw:
 ; Can we quickly backface cull the wall by its angle?
 ; --------------------------------------------------------------------------
 
-ld hl, DrawFlags
-bit DrawFlag_FillMiddle, [hl]
+	ld hl, DrawFlags
+	bit DrawFlag_FillMiddle, [hl]
 
-jr z,:+
+	jr z,:+
 
-ld hl, Angle.Transformed	
 	ld a,[Angle.Transformed]
 	cp 32
 	ret c
