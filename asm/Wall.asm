@@ -65,18 +65,20 @@ ret
 ; Calculate the wall delta values.
 ; --------------------------------------------------------------------------
 
-	ld hl,Start.X
-	ld a,[hl+]
-	ld e,[hl]	
-	ld d,a
-
-	ld hl,End.X
-	ld a,[hl+]
-	ld l,[hl]	
+	;ld hl,(End.X)
+	;ld de,(Start.X)
+	ld a,[End.X]
 	ld h,a
+	ld a, [End.X+1]
+	ld l,a
+
+	ld a,[Start.X]
+	ld d,a
+	ld a,[Start.X+1]
+	ld e,a
 
 	or a
-  ;sbc hl,de
+;sbc hl,de
 	ld a,l
 	sub e
 	ld [Delta.X+1],a
@@ -101,19 +103,18 @@ ret
 	ld a,l
 	ld [Delta.AbsX+1],a
 
-
-	ld hl,Start.Y
-	ld a,[hl+]
-	ld e,[hl]	
-	ld d,a
-
-	ld hl,End.Y
-	ld a,[hl+]
-	ld l,[hl]	
+	;ld hl,(End.Y)
+	;ld de,(Start.Y)
+	ld a,[End.Y]
 	ld h,a
-
+	ld a,[End.Y+1]
+	ld l,a
+	ld a,[Start.Y]
+	ld d,a
+	ld a,[Start.Y+1]
+	ld e,a
 	or a
-  ;sbc hl,de
+;sbc hl,de
 	ld a,l
 	sub e
 	ld [Delta.Y+1],a
@@ -169,11 +170,12 @@ ret
 	bit 7,a
 	jr z,Start.DoesNotIntersectY
 
-	ld hl, Delta.X+1
-	ld a,[hl]
+	;ld de,(Delta.X)
+	ld a,[Delta.X]
+	ld d,a
+	ld a,[Delta.X+1]
 	ld e,a
-	dec hl
-	ld a,[hl]
+	ld a,d
 	or e
 	jr z,:+
 
@@ -201,11 +203,12 @@ Start.DoesNotIntersectY:
 	bit 7,a
 	jr z,End.DoesNotIntersectY
 
-	ld hl,Delta.X+1
-	ld a,[hl]
+	;ld de,(Delta.X)
+	ld a,[Delta.X]
+	ld d,a
+	ld a,[Delta.X+1]
 	ld e,a
-	dec hl
-	ld a,[hl]
+	ld a,d
 	or e
 	jr z,:+
 
@@ -230,26 +233,22 @@ ClippedToY:
 ; Does the wall need to be clipped to Y=+X or Y=-X?
 ; --------------------------------------------------------------------------
 
-	; Check the start against Y=+X.
-
-	;ld de,(Start.Y)
-	ld hl, Start.Y
-	ld a, [hl+]
-	ld d,a
-	ld a, [hl]
-	ld e,a
-
-	;ld hl,(Start.X)
-	ld hl, Start.X
-	ld a, [hl+]
-	ld b,a
-	ld a, [hl]
-	ld l,a
-	ld h,b
-
 	; Count the number of times Y=+X (B) and Y=-X (C) are clipped against.
 	ld bc,$0202
 
+	; Check the start against Y=+X.
+
+	;ld hl,(Start.X)
+	;ld de,(Start.Y)
+	ld a,[Start.X]
+	ld h,a
+	ld a,[Start.X+1]
+	ld l,a
+	ld a,[Start.Y]
+	ld d,a
+	ld a,[Start.Y+1]
+	ld e,a
+	
 	call Maths.Compare.HL.DE.Signed
 	
 	jr c,:+
@@ -265,17 +264,17 @@ ClippedToY:
 	; Check the start against Y=-X.
 	
 	;ld hl,(Start.X)
+	;ld de,(Start.Y)
 	ld a,[Start.X]
 	ld h,a
-	ld a,[Start.X + 1]
+	ld a,[Start.X+1]
 	ld l,a
-	;ld de,(Start.Y)
 	ld a,[Start.Y]
 	ld d,a
-	ld a,[Start.Y + 1]
+	ld a,[Start.Y+1]
 	ld e,a
 	
-	;call Maths.Compare.HL.NegDE.Signed
+	call Maths.Compare.HL.NegDE.Signed
 	
 	jr nc,:+
 	dec c
@@ -288,14 +287,14 @@ ClippedToY:
 	; Check the end against Y=+X.
 
 	;ld hl,(End.X)
+	;ld de,(End.Y)
 	ld a,[End.X]
 	ld h,a
-	ld a,[End.X + 1]
+	ld a,[End.X+1]
 	ld l,a
-	;ld de,(End.Y)
 	ld a,[End.Y]
 	ld d,a
-	ld a,[End.Y + 1]
+	ld a,[End.Y+1]
 	ld e,a
 	
 	call Maths.Compare.HL.DE.Signed
@@ -312,14 +311,14 @@ ClippedToY:
 	; Check the end against Y=-X.
 
 	;ld hl,(End.X)
+	;ld de,(End.Y)
 	ld a,[End.X]
 	ld h,a
-	ld a,[End.X + 1]
+	ld a,[End.X+1]
 	ld l,a
-	;ld de,(End.Y)
 	ld a,[End.Y]
 	ld d,a
-	ld a,[End.Y + 1]
+	ld a,[End.Y 1]
 	ld e,a
 	
 	call Maths.Compare.HL.NegDE.Signed
@@ -346,4 +345,17 @@ ClippedToY:
 ; --------------------------------------------------------------------------
 	
 	; Is the wall steep or shallow?
-	; A "steep" wall is one in which |dY| > |dX|.	
+	; A "steep" wall is one in which |dY| > |dX|.
+
+  	;ld hl,(Delta.AbsX)
+	;ld de,(Delta.AbsY)
+	ld a,[Delta.AbsX]
+	ld h,a
+	ld a,[Delta.AbsX+1]
+	ld l,a
+	ld a,[Delta.AbsY]
+	ld d,a
+	ld a,[Delta.AbsY+1]
+	ld e,a
+	or a
+;sbc hl,de
