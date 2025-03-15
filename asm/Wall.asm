@@ -830,4 +830,73 @@ NoViewClippingRequired:
 ; Project the end X of the wall.
 ; --------------------------------------------------------------------------
 
+	; If we clipped to the left, project to the left.
+	xor a
+	ld hl, ClipFlags
+	bit ClipFlag_EndOutsideLeft,[hl]
+	jr nz,Project.End.X
+	
+  ; If we clipped to the right, project to the right.
+	ld a,95
+	;ld hl, ClipFlags
+	bit ClipFlag_EndOutsideRight,[hl]
+	jr nz,Project.End.X
+	
+	;ld hl,[End.VertexIndex]
+	ld a,[End.VertexIndex]
+	ld h,a
+	ld a,[End.VertexIndex+1]
+	ld l,a
+	
+	ld h,Vertices_AlreadyTransformed >> 8
+	ld a,[hl]
+	inc a
+	jr nz,End.AlreadyProjected
+	
+	push hl
 
+	; 48 * X / Y
+	;ld hl,(End.X)
+	ld a,[End.X]
+	ld h,a
+	ld a,[End.X+1]
+	ld l,a
+	call Maths.Mul.S48
+	ld b,h
+	ld c,l
+	;ld de,(End.Y)
+	ld a,[End.X]
+	ld d,a
+	ld a,[End.X+1]
+	ld e,a
+	call Maths.Div.S24S16
+
+	; Offset by the centre of the screen.
+	ld a,c
+	add a,48
+	
+	; Clip to the bounds of the screen.
+	jp p,:+
+	xor a
+:	cp 96
+	jr c,:+
+	ld a,95
+:
+
+	pop hl
+
+	or $80
+	ld [hl],a
+	and $7F
+	jr Project.End.X
+	
+End.AlreadyProjected:
+	dec a
+	and $7F
+
+Project.End.X:
+	ld [Trapezium.End_Column],a
+
+; --------------------------------------------------------------------------
+; Project the start X of the wall.
+; --------------------------------------------------------------------------
