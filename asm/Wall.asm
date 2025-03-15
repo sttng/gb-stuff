@@ -817,7 +817,7 @@ NoViewClippingRequired:
 ; If the wall ends on Y=0, skip it.
 ; --------------------------------------------------------------------------
 
-  ;ld hl,(End.Y)
+  	;ld hl,(End.Y)
 	ld a,[End.Y]
 	ld h,a
 	ld a,[End.Y+1]
