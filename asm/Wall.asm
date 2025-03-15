@@ -452,4 +452,42 @@ IsShallow:
 		jp ClippedStartRight
 	:
 	; We can't take a shortcut, so perform a slow clip.
+	ld hl, ClipFlags
+	bit ClipFlag_Steep,[hl]	
+	jr z,ClipStartRight.Shallow
 
+ClipStartRight.Steep:
+
+	call GetYIntercept
+	jr ClipStartRight.Clip
+	
+ClipStartRight.Shallow:
+
+	call GetXIntercept
+
+ClipStartRight.Clip:
+
+	; X = -c * 256 / m - 256
+	;ld de,(Gradient)
+	ld a,[Gradient]
+	ld d,a
+	ld a,[Gradient+1]
+	ld e,a
+	dec d
+  	call Maths.Div.S16S16
+	neg_bc()
+	
+	;ld (Start.X),bc
+	;ld (Start.Y),bc
+	ld a,b
+	ld [Start.X],a
+	ld [Start.Y],a	
+	ld a,c
+	ld [Start.X+1],a
+	ld [Start.Y+1],a
+
+ClippedStartRight:
+
+; --------------------------------------------------------------------------
+; Clip the end to Y=+X.
+; --------------------------------------------------------------------------
