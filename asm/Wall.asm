@@ -359,3 +359,43 @@ ClippedToY:
 	ld e,a
 	or a
 ;sbc hl,de
+	ld a,l
+	sub e
+	ld [Delta.Y+1],a
+	ld l,a
+	ld a,h
+	sbc d
+	ld [Delta.Y],a
+	ld h,a
+
+	ld a,d
+	ld [Delta.X],a
+	ld a, e
+	ld [Delta.X+1],a
+
+	jr nc,IsShallow
+
+IsSteep:
+	push hl ;have to find a better way for setting the ClipFlags instead of the push & pop of HL
+	ld hl, ClipFlags
+	set ClipFlag_Steep,[hl]
+	pop hl
+	;ex de,hl
+	ld a,d
+	ld d,h
+	ld h,a
+	ld a,e
+	ld e,l
+	ld l,a
+
+IsShallow:
+
+; --------------------------------------------------------------------------
+; Calculate the gradient of the line.
+; --------------------------------------------------------------------------
+
+	call Maths.Div.S16S16
+	ld a, b
+	ld [Gradient], a
+	ld a, c
+	ld [Gradient+1], a
