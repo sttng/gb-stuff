@@ -1961,3 +1961,59 @@ HorizontalEdge.Done:
 ; ==========================================================================
 DrawVerticalEdges:
 
+; --------------------------------------------------------------------------
+; Draw the lines between the floor and ceiling at the start.
+; --------------------------------------------------------------------------
+
+	ld hl, DrawFlags
+	bit DrawFlag_StrokeStart, [hl]
+	jr z,:+
+
+	ld a,[Trapezium.Start_Column]
+	;ld hl,(Trapezium.Start.Ceiling)
+	ld a,[Trapezium.Start_Ceiling]
+	ld h,a
+	ld a,[Trapezium.Start_Ceiling+1]
+	ld l,a
+	;ld de,(Trapezium.Start.Floor)
+	ld a,[Trapezium.Start_Floor]
+	ld d,a
+	ld a,[Trapezium.Start_Floor+1]
+	ld e,a
+
+	call DrawVerticalEdge
+
+:
+
+; --------------------------------------------------------------------------
+; Draw the lines between the floor and ceiling at the end.
+; --------------------------------------------------------------------------
+
+	ld hl, DrawFlags
+	bit DrawFlag_StrokeEnd, [hl]
+	ret z
+
+	ld a,[Trapezium.End_Column]
+	;ld hl,(Trapezium.End.Ceiling)
+	ld a,[Trapezium.End_Ceiling]
+	ld h,a
+	ld a,[Trapezium.End_Ceiling+1]
+	ld l,a
+	;ld de,(Trapezium.End.Floor)
+	ld a,[Trapezium.End_Floor]
+	ld d,a
+	ld a,[Trapezium.End_Floor+1]
+	ld e,a	
+	; Deliberate run-on.
+
+; ==========================================================================
+; DrawVerticalEdge
+; --------------------------------------------------------------------------
+; Draws a vertical edge.
+; --------------------------------------------------------------------------
+; Inputs:    A: Column.
+;            HL: Projected ceiling height.
+;            DE: Projected floor height.
+; Destroyed: AF, BC, DE, HL.
+; ==========================================================================
+DrawVerticalEdge:
