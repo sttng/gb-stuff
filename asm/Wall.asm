@@ -1301,3 +1301,24 @@ Upper.Done:
 ; --------------------------------------------------------------------------
 ; Draw the "lower" (connects floors between adjacent sectors).
 ; --------------------------------------------------------------------------
+
+	;ld hl,(UpperLower.FrontFloorHeight)
+	ld a,[UpperLower.FrontFloorHeight]
+	ld h,a
+	ld a,[UpperLower.FrontFloorHeight+1]
+	ld l,a
+	;ld de,(UpperLower.BackFloorHeight)
+	ld a,[UpperLower.BackFloorHeight]
+	ld d,a
+	ld a,[UpperLower.BackFloorHeight+1]
+	ld e,a
+
+	call Maths.Compare.HL.DE.Signed
+
+	jr z,Lower.Done
+	jr nc,Lower.FrontFloorAboveBackFloor
+
+; --------------------------------------------------------------------------
+; The front sector's floor is below the back sector's floor.
+; --------------------------------------------------------------------------
+Lower.FrontFloorBelowBackFloor:
