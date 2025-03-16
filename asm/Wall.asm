@@ -1119,5 +1119,32 @@ Wall.DrawUpperAndLower:
 ; Get the back sector floor and ceiling heights.
 ; --------------------------------------------------------------------------
 
+	;ld hl,(Sector.Back)
+	ld a,[Sector.Back]
+	ld h,a
+	ld a,[Sector.Back+1]
+	ld l,a	
+
+	ld e,[hl]
+	inc hl
+	ld d,[hl]
+	inc hl
+
+	;ld (UpperLower.BackFloorHeight),de
+	ld a,d
+	ld [UpperLower.BackFloorHeight],a
+	ld a,e
+	ld [UpperLower.BackFloorHeight+1],a
+
+	ld e,[hl]
+	inc hl
+	ld d,[hl]
+
+	;ld (UpperLower.BackCeilingHeight),de
+	ld a,d
+	ld [UpperLower.BackCeilingHeight],a
+	ld a,e
+	ld [UpperLower.BackCeilingHeight+1],a
+
 
 
