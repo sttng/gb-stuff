@@ -24,8 +24,8 @@ Render_Camera_Angle:   db  ;Render.Camera.Angle = AllocateVariable(1)
 Render_Camera_Z:       dw  ;Render.Camera.Z = AllocateVariable(2)
 Render_Camera_YShear:  dw  ;Render.Camera.YShear = AllocateVariable(2)
 
-Sector_Front:          dw  ;Sector.Front = AllocateVariable(2)
-Sector_Back:           dw  ;Sector.Back = AllocateVariable(2)
+Sector.Front:          dw  ;Sector.Front = AllocateVariable(2)
+Sector.Back:           dw  ;Sector.Back = AllocateVariable(2)
 
 Previous_Camera_X:     dw  ;Previous.Camera.X = AllocateVariable(2)
 Previous_Camera_Y:     dw  ;Previous.Camera.Y = AllocateVariable(2)
