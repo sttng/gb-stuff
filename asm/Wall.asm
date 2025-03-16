@@ -1092,7 +1092,7 @@ Wall.DrawUpperAndLower:
 	ld a,[Sector.Front]
 	ld h,a
 	ld a,[Sector.Front+1]
-	ld l,a	
+	ld l,a
 
 	ld e,[hl]
 	inc hl
@@ -1104,11 +1104,11 @@ Wall.DrawUpperAndLower:
 	ld [UpperLower.FrontFloorHeight],a
 	ld a,e
 	ld [UpperLower.FrontFloorHeight+1],a
-	
+
 	ld e,[hl]
 	inc hl
 	ld d,[hl]
-	
+
 	;ld (UpperLower.FrontCeilingHeight),de
 	ld a,d
 	ld [UpperLower.FrontCeilingHeight],a
@@ -1123,7 +1123,7 @@ Wall.DrawUpperAndLower:
 	ld a,[Sector.Back]
 	ld h,a
 	ld a,[Sector.Back+1]
-	ld l,a	
+	ld l,a
 
 	ld e,[hl]
 	inc hl
@@ -1154,12 +1154,12 @@ Wall.DrawUpperAndLower:
 	ld a,[UpperLower.FrontCeilingHeight]
 	ld h,a
 	ld a,[UpperLower.FrontCeilingHeight+1]
-	ld l,a	
+	ld l,a
 	;ld de,(UpperLower.BackCeilingHeight)
 	ld a,[UpperLower.BackCeilingHeight]
 	ld d,a
 	ld a,[UpperLower.BackCeilingHeight+1]
-	ld e,a	
+	ld e,a
 
 	call Maths.Compare.HL.DE.Signed
 
@@ -1170,3 +1170,113 @@ Wall.DrawUpperAndLower:
 ; The front sector's ceiling is above the back sector's ceiling.
 ; --------------------------------------------------------------------------
 Upper.FrontCeilingAboveBackCeiling:
+
+	;ld hl,(UpperLower.BackCeilingHeight)
+	ld a,[UpperLower.BackCeilingHeight]
+	ld h,a
+	ld a,[UpperLower.BackCeilingHeight+1]
+	ld l,a
+	call ProjectHorizontalEdge
+
+	;ld hl,(HorizontalEdge.Start.Y)
+	ld a,[HorizontalEdge.Start_Y]
+	ld h,a
+	ld a,[HorizontalEdge.Start_Y+1]
+	ld l,a
+	;ld (Trapezium.Start.Floor),hl
+	ld a,h
+	ld [Trapezium.Start_Floor],a
+	ld a,l
+	ld [Trapezium.Start_Floor+1],a
+	push hl
+
+	;ld hl,(HorizontalEdge.End.Y)
+	ld a,[HorizontalEdge.End_Y]
+	ld h,a
+	ld a,[HorizontalEdge.End_Y+1]
+	ld l,a
+	;ld (Trapezium.End.Floor),hl
+	ld a,h
+	ld [Trapezium.End_Floor],a
+	ld a,l
+	ld [Trapezium.End_Floor+1],a
+	push hl
+
+	;ld hl,(UpperLower.FrontCeilingHeight)
+	ld a,[UpperLower.FrontCeilingHeight]
+	ld h,a
+	ld a,[UpperLower.FrontCeilingHeight+1]
+	ld l,a
+	call ProjectHorizontalEdge
+
+	;ld hl,(HorizontalEdge.Start.Y)
+	ld a,[HorizontalEdge.Start_Y]
+	ld h,a
+	ld a,[HorizontalEdge.Start_Y+1]
+	ld l,a	
+	;ld (Trapezium.Start.Ceiling),hl
+	ld a,h
+	ld [Trapezium.Start_Ceiling],a
+	ld a,l
+	ld [Trapezium.Start_Ceiling+1],a
+	push hl
+
+	;ld hl,(HorizontalEdge.End.Y)
+	ld a,[HorizontalEdge.End_Y]
+	ld h,a
+	ld a,[HorizontalEdge.End_Y+1]
+	ld l,a
+	;ld (Trapezium.End.Ceiling),hl
+	ld a,h
+	ld [Trapezium.End_Ceiling],a
+	ld a,l
+	ld [Trapezium.End_Ceiling+1],a
+	push hl
+
+	call DrawVerticalEdges	
+
+	pop hl
+	;ld (HorizontalEdge.End.Y),hl
+	ld a,h
+	ld [HorizontalEdge.End_Y],a
+	ld a,l
+	ld [HorizontalEdge.End_Y+1],a
+	pop hl
+	;ld (HorizontalEdge.Start.Y),hl
+	ld a,h
+	ld [HorizontalEdge.Start_Y],a
+	ld a,l
+	ld [HorizontalEdge.Start_Y+1],a
+	;ld de,Line.Clip.Default
+	ld a,Line.Clip_Default
+	ld d,a
+	ld a,Line.Clip_Default+1
+	ld e,a	
+	call DrawHorizontalEdge
+
+	pop hl
+	;ld (HorizontalEdge.End.Y),hl
+	ld a,h
+	ld [HorizontalEdge.End_Y],a
+	ld a,l
+	ld [HorizontalEdge.End_Y+1],a	
+	pop hl
+	;ld (HorizontalEdge.Start.Y),hl
+	ld a,h
+	ld [HorizontalEdge.Start_Y],a
+	ld a,l
+	ld [HorizontalEdge.Start_Y+1],a	
+	;ld de,Line.Clip.UpperFloor
+	ld a,Line.Clip_UpperFloor
+	ld d,a
+	ld a,Line.Clip_UpperFloor+1
+	ld e,a
+	set Line.LineFlag.TopDown,(iy+Line.LineFlags)
+	call DrawHorizontalEdge
+
+	jr Upper.Done
+
+; --------------------------------------------------------------------------
+; The front sector's ceiling is below the back sector's ceiling.
+; --------------------------------------------------------------------------
+Upper.FrontCeilingBelowBackCeiling:
