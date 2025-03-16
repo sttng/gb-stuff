@@ -248,21 +248,21 @@ ClippedToY:
 	ld d,a
 	ld a,[Start.Y+1]
 	ld e,a
-	
+
 	call Maths.Compare.HL.DE.Signed
-	
+
 	jr c,:+
 	dec b
-	
+
 	ld hl,ClipFlags
 	set ClipFlag_StartOutsideRight,[hl]
 	ld hl,DrawFlags
 	res DrawFlag_StrokeStart,[hl]
-	
+
 :
 
 	; Check the start against Y=-X.
-	
+
 	;ld hl,(Start.X)
 	;ld de,(Start.Y)
 	ld a,[Start.X]
@@ -273,9 +273,9 @@ ClippedToY:
 	ld d,a
 	ld a,[Start.Y+1]
 	ld e,a
-	
+
 	call Maths.Compare.HL.NegDE.Signed
-	
+
 	jr nc,:+
 	dec c
 	ld hl,ClipFlags
@@ -296,9 +296,9 @@ ClippedToY:
 	ld d,a
 	ld a,[End.Y+1]
 	ld e,a
-	
+
 	call Maths.Compare.HL.DE.Signed
-	
+
 	jr c,:+
 	dec b
 	ret z ; Both ends are outside the right - bail out.
@@ -320,9 +320,9 @@ ClippedToY:
 	ld d,a
 	ld a,[End.Y 1]
 	ld e,a
-	
+
 	call Maths.Compare.HL.NegDE.Signed
-	
+
 	jr nc,:+
 	dec c
 	ret z ; Both ends are outside the left - bail out.
@@ -343,7 +343,7 @@ ClippedToY:
 ; --------------------------------------------------------------------------
 ; Some clipping is, alas, required.
 ; --------------------------------------------------------------------------
-	
+
 	; Is the wall steep or shallow?
 	; A "steep" wall is one in which |dY| > |dX|.
 
@@ -460,7 +460,7 @@ ClipStartRight.Steep:
 
 	call GetYIntercept
 	jr ClipStartRight.Clip
-	
+
 ClipStartRight.Shallow:
 
 	call GetXIntercept
@@ -476,7 +476,7 @@ ClipStartRight.Clip:
 	dec d
   	call Maths.Div.S16S16
 	neg_bc()
-	
+
 	;ld (Start.X),bc
 	;ld (Start.Y),bc
 	ld a,b
@@ -493,9 +493,9 @@ ClippedStartRight:
 ; --------------------------------------------------------------------------
 
 	ld hl, ClipFlags
-	bit ClipFlag_EndOutsideRight,[hl]	
+	bit ClipFlag_EndOutsideRight,[hl]
 	jr z,ClippedEndRight
-	
+
 	; If dY == 0, End.X = End.Y.
 	;ld hl,(Delta.Y)
 	ld a,[Delta.Y]
@@ -530,7 +530,7 @@ ClippedStartRight:
 		ld a,[End.X]
 		ld h,a
 		ld a,[End.X+1]
-		ld l,a		
+		ld l,a
 		;ld (End.Y),hl
 		ld a,h
 		ld [End.Y],a
@@ -547,7 +547,7 @@ ClipEndRight.Steep:
 
 	call GetYIntercept
 	jr ClipEndRight.Clip
-	
+
 ClipEndRight.Shallow:
 
 	call GetXIntercept
@@ -563,12 +563,12 @@ ClipEndRight.Clip:
 	dec d
 	call Maths.Div.S16S16
 	neg_bc()
-	
+
 	;ld (End.X),bc
 	;ld (End.Y),bc
 	ld a,b
 	ld [End.X],a
-	ld [End.Y],a	
+	ld [End.Y],a
 	ld a,c
 	ld [End.X+1],a
 	ld [End.Y+1],a
@@ -582,9 +582,9 @@ ClippedEndRight:
 	ld hl, ClipFlags
 	bit ClipFlag_StartOutsideLeft,[hl]
 	jr z,ClippedStartLeft
-	
+
 	; If dY == 0, Start.X = -Start.Y.
-	;ld hl,(Delta.Y)	
+	;ld hl,(Delta.Y)
 	ld a,[Delta.Y]
 	ld h,a
 	ld a,[Delta.Y+1]
@@ -596,22 +596,22 @@ ClippedEndRight:
   		ld a,[Start.Y]
 		ld h,a
 		ld a,[Start.Y+1]
-		ld l,a		
+		ld l,a
 		neg_hl()
 		;ld (Start.X),hl
 		ld a,h
 		ld [Start.X],a
 		ld a,l
-		ld [Start.X+1],a		
+		ld [Start.X+1],a
 		jp ClippedStartLeft
-	:	
-		
+	:
+
 	; If dX == 0, Start.Y = -Start.X.
 	;ld hl,(Delta.X)
 	ld a,[Delta.X]
 	ld h,a
 	ld a,[Delta.X+1]
-	ld l,a		
+	ld l,a
 	ld a,h
 	or l
 	jr nz,:+
@@ -619,26 +619,26 @@ ClippedEndRight:
 		ld a,[Start.X]
 		ld h,a
 		ld a,[Start.X+1]
-		ld l,a			
+		ld l,a
 		neg_hl()
 		;ld (Start.Y),hl
 		ld a,h
 		ld [Start.Y],a
 		ld a,l
-		ld [Start.Y+1],a	
+		ld [Start.Y+1],a
 		jp ClippedStartLeft
 	:
-	
+
 	; We can't take a shortcut, so perform a slow clip.
 	ld hl, ClipFlags
 	bit ClipFlag_Steep,[hl]
-	jr z,ClipStartLeft.Shallow	
+	jr z,ClipStartLeft.Shallow
 
 ClipStartLeft.Steep:
 
 	call GetYIntercept
 	jr ClipStartLeft.Clip
-	
+
 ClipStartLeft.Shallow:
 
 	call GetXIntercept
@@ -652,22 +652,22 @@ ClipStartLeft.Clip:
 	ld a,[Gradient+1]
 	ld e,a
 	inc d
-	call Maths.Div.S16S16	
+	call Maths.Div.S16S16
 
 	ld hl, ClipFlags
-	bit ClipFlag_Steep,[hl]	
+	bit ClipFlag_Steep,[hl]
 	jr nz,:+
 	;ld (Start.Y),bc
 	ld a,b
 	ld [Start.Y],a
 	ld a,c
-	ld [Start.Y+1],a	
+	ld [Start.Y+1],a
 	neg_bc()
 	;ld (Start.X),bc
   	ld a,b
 	ld [Start.X],a
 	ld a,c
-	ld [Start.X+1],a		
+	ld [Start.X+1],a
 	jr ClippedStartLeft
 :
 	;ld (Start.X),bc
@@ -680,7 +680,7 @@ ClipStartLeft.Clip:
 	ld a,b
 	ld [Start.Y],a
 	ld a,c
-	ld [Start.Y+1],a	
+	ld [Start.Y+1],a
 
 ClippedStartLeft:
 
@@ -697,7 +697,7 @@ ClippedStartLeft:
 	ld a,[Delta.Y]
 	ld h,a
 	ld a,[Delta.Y+1]
-	ld l,a		
+	ld l,a
 	ld a,h
 	or l
 	jr nz,:+
@@ -705,13 +705,13 @@ ClippedStartLeft:
 		ld a,[End.Y]
 		ld h,a
 		ld a,[End.Y+1]
-		ld l,a			
+		ld l,a
 		neg_hl()
 		;ld (End.X),hl
 		ld a,h
 		ld [End.X],a
 		ld a,l
-		ld [End.X+1],a			
+		ld [End.X+1],a
 		jp ClippedEndLeft
   :
 	
@@ -720,7 +720,7 @@ ClippedStartLeft:
 	ld a,[Delta.X]
 	ld h,a
 	ld a,[Delta.X+1]
-	ld l,a		
+	ld l,a
 	ld a,h
 	or l
 	jr nz,:+
@@ -728,16 +728,16 @@ ClippedStartLeft:
 		ld a,[End.X]
 		ld h,a
 		ld a,[End.X+1]
-		ld l,a			
+		ld l,a
 		neg_hl()
 		;ld (End.Y),hl
 		ld a,h
 		ld [End.Y],a
 		ld a,l
-		ld [End.Y+1],a			
+		ld [End.Y+1],a
 		jp ClippedEndLeft
-	:	
-	
+	:
+
 	; We can't take a shortcut, so perform a slow clip.
 	ld hl, ClipFlags
 	bit ClipFlag_Steep,[hl]
@@ -747,7 +747,7 @@ ClipEndLeft.Steep:
 
 	call GetYIntercept
 	jr ClipEndLeft.Clip
-	
+
 ClipEndLeft.Shallow:
 
 	call GetXIntercept
@@ -762,7 +762,7 @@ ClipEndLeft.Clip:
 	ld e,a
 	inc d
 	call Maths.Div.S16S16
-	
+
 	ld hl, ClipFlags
 	bit ClipFlag_Steep,[hl]
 	jr nz,:+
@@ -770,13 +770,13 @@ ClipEndLeft.Clip:
 	ld a,b
 	ld [End.Y],a
 	ld a,c
-	ld [End.Y+1],a		
+	ld [End.Y+1],a
 	neg_bc()
 	;ld (End.X),bc
 	ld a,b
 	ld [End.X],a
 	ld a,c
-	ld [End.X+1],a		
+	ld [End.X+1],a
 	jr ClippedEndLeft
 :
 	;ld (End.X),bc
@@ -792,7 +792,7 @@ ClipEndLeft.Clip:
 	ld [End.Y+1],a	
 
 ClippedEndLeft:
-	
+
 NoViewClippingRequired:
 
 ; --------------------------------------------------------------------------
@@ -835,24 +835,24 @@ NoViewClippingRequired:
 	ld hl, ClipFlags
 	bit ClipFlag_EndOutsideLeft,[hl]
 	jr nz,Project.End.X
-	
+
   ; If we clipped to the right, project to the right.
 	ld a,95
 	;ld hl, ClipFlags
 	bit ClipFlag_EndOutsideRight,[hl]
 	jr nz,Project.End.X
-	
+
 	;ld hl,[End.VertexIndex]
 	ld a,[End.VertexIndex]
 	ld h,a
 	ld a,[End.VertexIndex+1]
 	ld l,a
-	
+
 	ld h,Vertices_AlreadyTransformed >> 8
 	ld a,[hl]
 	inc a
 	jr nz,End.AlreadyProjected
-	
+
 	push hl
 
 	; 48 * X / Y
@@ -874,7 +874,7 @@ NoViewClippingRequired:
 	; Offset by the centre of the screen.
 	ld a,c
 	add a,48
-	
+
 	; Clip to the bounds of the screen.
 	jp p,:+
 	xor a
@@ -889,7 +889,7 @@ NoViewClippingRequired:
 	ld [hl],a
 	and $7F
 	jr Project.End.X
-	
+
 End.AlreadyProjected:
 	dec a
 	and $7F
@@ -906,12 +906,12 @@ Project.End.X:
 	ld hl, ClipFlags
 	bit ClipFlag_StartOutsideLeft,[hl]
 	jr nz,Project.Start.X
-	
+
 	; If we clipped to the right , project to the right.
 	ld a,95
 	bit ClipFlag_StartOutsideRight,[hl]
 	jr nz,Project.Start.X
-	
+
 	;ld hl,(Start.VertexIndex)
 	ld a,[Start.VertexIndex]
 	ld h,a
@@ -943,7 +943,7 @@ Project.End.X:
 	; Offset by the centre of the screen.
 	ld a,c
 	add a,48
-	
+
 	; Clip to the bounds of the screen.
 	jp p,:+
 	xor a
@@ -1027,14 +1027,14 @@ Draw:
 	ld [Start.Y],a
 	ld a,e
 	ld [Start.Y+1],a
-	
+
 	ld a,[Trapezium.Start_Column]
 	ld b,a
 	ld a,[Trapezium.End_Column]
 	ld [Trapezium.Start_Column],a
 	ld a,b
 	ld [Trapezium.End_Column],a
-	
+
 	;ld hl,(Sector.Front)
 	ld a,[Sector.Front]
 	ld h,a
@@ -1046,15 +1046,15 @@ Draw:
 	ld a,[Sector.Back+1]
 	ld e,a
 	;ld (Sector.Back),hl
-	ld a,[Sector.Back]
-	ld h,a
-	ld a,[Sector.Back+1]
-	ld l,a	
+	ld a,h
+	ld [Sector.Back],a
+	ld a,l
+	ld [Sector.Back+1],a
 	;ld (Sector.Front),de
-	ld a,[Sector.Front]
-	ld d,a
-	ld a,[Sector.Front+1]
-	ld e,a	
+	ld a,d
+	ld [Sector.Front],a
+	ld a,e
+	ld [Sector.Front+1],a
 	ld a,[DrawFlags]
 	and (1 << DrawFlag_StrokeStart) | (1 << DrawFlag_StrokeEnd)
 	jr z,:+
@@ -1069,4 +1069,55 @@ Draw:
 ; --------------------------------------------------------------------------
 
 StartDrawing:
+
+; --------------------------------------------------------------------------
+; Are we drawing a "middle" or an "upper/lower" wall type?
+; --------------------------------------------------------------------------
+
+	ld hl, DrawFlags
+	bit DrawFlag_FillMiddle,[hl]
+	jp nz,Wall.DrawMiddle
+
+; --------------------------------------------------------------------------
+; Draw an "upper and lower" wall.
+; --------------------------------------------------------------------------
+Wall.DrawUpperAndLower:
+
+; --------------------------------------------------------------------------
+; Get the front sector floor and ceiling heights.
+; --------------------------------------------------------------------------
+
+
+	;ld hl,(Sector.Front)
+	ld a,[Sector.Front]
+	ld h,a
+	ld a,[Sector.Front+1]
+	ld l,a	
+
+	ld e,[hl]
+	inc hl
+	ld d,[hl]
+	inc hl
+
+	;ld (UpperLower.FrontFloorHeight),de
+	ld a,d
+	ld [UpperLower.FrontFloorHeight],a
+	ld a,e
+	ld [UpperLower.FrontFloorHeight+1],a
+	
+	ld e,[hl]
+	inc hl
+	ld d,[hl]
+	
+	;ld (UpperLower.FrontCeilingHeight),de
+	ld a,d
+	ld [UpperLower.FrontCeilingHeight],a
+	ld a,e
+	ld [UpperLower.FrontCeilingHeight+1],a
+
+; --------------------------------------------------------------------------
+; Get the back sector floor and ceiling heights.
+; --------------------------------------------------------------------------
+
+
 
