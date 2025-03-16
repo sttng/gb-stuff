@@ -1146,5 +1146,27 @@ Wall.DrawUpperAndLower:
 	ld a,e
 	ld [UpperLower.BackCeilingHeight+1],a
 
+; --------------------------------------------------------------------------
+; Draw the "upper" (connects ceilings between adjacent sectors).
+; --------------------------------------------------------------------------
 
+	;ld hl,(UpperLower.FrontCeilingHeight)
+	ld a,[UpperLower.FrontCeilingHeight]
+	ld h,a
+	ld a,[UpperLower.FrontCeilingHeight+1]
+	ld l,a	
+	;ld de,(UpperLower.BackCeilingHeight)
+	ld a,[UpperLower.BackCeilingHeight]
+	ld d,a
+	ld a,[UpperLower.BackCeilingHeight+1]
+	ld e,a	
 
+	call Maths.Compare.HL.DE.Signed
+
+	jr z,Upper.Done
+	jr c,Upper.FrontCeilingBelowBackCeiling
+
+; --------------------------------------------------------------------------
+; The front sector's ceiling is above the back sector's ceiling.
+; --------------------------------------------------------------------------
+Upper.FrontCeilingAboveBackCeiling:
