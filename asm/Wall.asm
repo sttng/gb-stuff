@@ -1616,4 +1616,53 @@ Wall.DrawMiddle:
 ; Draw the vertical edges of the wall.
 ; --------------------------------------------------------------------------
 
+	call DrawVerticalEdges
+
+; --------------------------------------------------------------------------
+; Flag the "middle" columns as being drawn.
+; --------------------------------------------------------------------------
+
+	;ld hl,(Trapezium.Start.Column)
+	ld a,[Trapezium.Start_Colummn]
+	ld h,a
+	ld a,[Trapezium.Start_Colummn+1]
+	ld l,a
+	ld h,TopEdgeClip >> 8
+	ld a,[Trapezium.End_Column]
+	sub l
+	ld b,a
+	inc b
+:	ld a,[hl]
+	or a
+	jp m,:+
+	cpl
+	ld [hl],a
+
+	inc h
+	ld [hl],-1+1
+	dec h
+
+	ld a,[ColumnsToDraw]
+	dec a
+	jp z,Render.Finish ; Quickly bail out if we've finished.
+	ld [ColumnsToDraw],a
+:	inc l
+	;djnz -
+	dec b
+	jr :--
+
+	ret
+
+
+; ==========================================================================
+; ProjectHorizontalEdge
+; --------------------------------------------------------------------------
+; Projects a horizontal edge to the screen.
+; "Horizontal" refers to a line with constant height in 3D (when projected
+; to 2D it will appear sloped).
+; --------------------------------------------------------------------------
+; Inputs:    HL: Height of the edge.
+; Outputs:   HorizontalEdge.Start.Y, HorizontalEdge.End.Y: Projected Y
+;            coordinates of the ends of the wall edge.
+; ==========================================================================
 
