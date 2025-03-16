@@ -1814,3 +1814,150 @@ DrawHorizontalEdge:
 ; --------------------------------------------------------------------------
 
 
+	ld a,[Clip_g_line16X2]
+	ld b,a
+	ld a,[Clip_g_line16X1]
+
+	cp b
+	jr c,:+
+	ld [Clip_g_line16X2],a
+	ld a,b
+	ld [Clip.g_line16X1],a
+:
+
+	; Try the start.
+	ld a,[Trapezium.Start_Column]
+	ld b,a
+	ld a,[Clip.g_line16X1]
+	sub b
+	jr z,HorizontalEdge.StartNotClipped
+
+	; The number of columns to fix.
+	ld b,a
+	inc b
+
+	; The start has been clipped.
+	;ld hl,(Line.ClipPixel)
+	ld a,[Line.ClipPixel]
+	ld h,a
+	ld a,[Line.ClipPixel+1]
+	ld l,a
+	;ld (HorizontalEdge.StartClipper),hl
+	ld a,h
+	ld [HorizontalEdge.StartClipper],a
+	ld a,l
+	ld [HorizontalEdge.StartClipper+1],a
+
+	;ld hl,(HorizontalEdge.Start.Y)
+	ld a,[HorizontalEdge.Start_Y]
+	ld h,a
+	ld a,[HorizontalEdge.Start_Y+1]
+	ld l,a
+	call Clip16ToRowPlusOne
+	inc a
+	ld h,a
+	ld a,[Trapezium.Start_Column]
+	ld l,a
+
+:
+HorizontalEdge.StartClipper: ;= $+1
+	call Line.Clip.Default
+	inc l
+	;djnz -
+	dec b
+	jr :-
+	jr HorizontalEdge.Done
+
+HorizontalEdge.StartNotClipped:
+
+	; Try the end.
+	ld a,[Clip_g_line16X2]
+	ld b,a
+	ld a,[Trapezium.End_Column]
+	sub b
+	jr z,HorizontalEdge.Done
+
+	; The number of columns to fix.
+	ld b,a
+	inc b
+
+	; The end has been clipped.
+	;ld hl,(Line.ClipPixel)
+	ld a,[Line.ClipPixel]
+	ld h,a
+	ld a,[Line.ClipPixel+1]
+	ld l,a
+	;ld (HorizontalEdge.EndClipper),hl
+	ld a,h
+	ld [HorizontalEdge.EndClipper],a
+	ld a,l
+	ld [HorizontalEdge.EndClipper+1],a
+
+	;ld hl,(HorizontalEdge.End.Y)
+	ld a,[HorizontalEdge.End_Y]
+	ld h,a
+	ld a,[HorizontalEdge.End_Y+1]
+	ld l,a
+	call Clip16ToRowPlusOne
+	inc a
+	ld h,a
+	ld a,[Trapezium.End_Column]
+	ld l,a
+
+:
+HorizontalEdge.EndClipper = $+1
+	call Line.Clip.Default
+	dec l
+	;djnz -
+	dec b
+	jr :-
+
+	jr HorizontalEdge.Done
+
+HorizontalEdge.Culled:
+
+	;ld hl,(Line.ClipPixel)
+	ld a,[Line.ClipPixel]
+	ld h,a
+	ld a,[Line.ClipPixel+1]
+	ld l,a
+	;ld (HorizontalEdge.Culled.Clipper),hl
+	ld a,h
+	ld [HorizontalEdge.Culled_Clipper],a
+	ld a,l
+	ld [HorizontalEdge.Culled_Clipper+1],a
+
+	;ld hl,(HorizontalEdge.Start.Y)
+	ld a,[HorizontalEdge.Start_Y]
+	ld h,a
+	ld a,[HorizontalEdge.Start_Y+1]
+	ld l,a
+	call Clip16ToRowPlusOne
+	inc a
+	ld h,a
+	ld a,[Trapezium.Start_Column]
+	ld l,a
+	ld a,[Trapezium.End_Column]
+	sub l
+	ld b,a
+	inc b
+:
+HorizontalEdge.Culled_Clipper: ;= $+1
+	call Line.Clip.Default
+	inc l
+	;djnz -
+	dec b
+	jr :-
+
+HorizontalEdge.Done:
+	ret
+
+; ==========================================================================
+; DrawVerticalEdges
+; --------------------------------------------------------------------------
+; Draws the vertical edges of a wall.
+; --------------------------------------------------------------------------
+; Destroyed: AF, BC, DE, HL.
+; ==========================================================================
+DrawVerticalEdges:
+
