@@ -1753,3 +1753,42 @@ ProjectHorizontalEdge:
 ; Outputs:   HorizontalEdge.Start.Y, HorizontalEdge.End.Y: Projected Y
 ;            coordinates of the ends of the wall edge.
 ; ==========================================================================
+DrawHorizontalEdge:
+
+	;ld hl,(HorizontalEdge.Start.Y)
+	ld a,[HorizontalEdge.Start_Y]
+	ld h,a
+	ld a,[HorizontalEdge.Start_Y+1]
+	ld l,a	
+	;ld (Clip.g_line16Y1),hl
+	ld a,h
+	ld [Clip.g_line16Y1],a
+	ld a,l
+	ld [Clip.g_line16Y1+1],a
+
+	ld hl,(HorizontalEdge.End.Y)
+	ld a,[HorizontalEdge.End_Y]
+	ld h,a
+	ld a,[HorizontalEdge.End_Y+1]
+	ld l,a		
+	;ld (Clip.g_line16Y2),hl
+	ld a,h
+	ld [Clip.g_line16Y2],a
+	ld a,l
+	ld [Clip.g_line16Y2+1],a
+
+; --------------------------------------------------------------------------
+; Set the pixel clipping routine.
+; --------------------------------------------------------------------------
+
+	;ld (Line.ClipPixel),de
+	ld a,d
+	ld [Line.ClipPixel],a
+	ld a,e
+	ld [Line.ClipPixel+1],a
+
+; --------------------------------------------------------------------------
+; Clip the line.
+; --------------------------------------------------------------------------
+
+
