@@ -1432,3 +1432,23 @@ Lower.FrontFloorBelowBackFloor:
 ; The front sector's floor is below the back sector's floor.
 ; --------------------------------------------------------------------------
 Lower.FrontFloorAboveBackFloor:
+
+	;ld hl,(UpperLower.FrontFloorHeight)
+	ld a,[UpperLower.FrontFloorHeight]
+	ld h,a
+	ld a,[UpperLower.FrontFloorHeight+1]
+	ld l,a
+	call ProjectHorizontalEdge
+	;ld de,Line.Clip.LowerCeiling
+	ld a,Line.Clip_LowerCeiling
+	ld d,a
+	ld a,Line.Clip_LowerCeiling+1
+	ld e,a
+	res Line.LineFlag.TopDown,(iy+Line.LineFlags)
+	call DrawHorizontalEdge
+
+Lower.Done:
+
+; --------------------------------------------------------------------------
+; Check if we've finished any more columns.
+; --------------------------------------------------------------------------
