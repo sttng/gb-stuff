@@ -1665,4 +1665,19 @@ Wall.DrawMiddle:
 ; Outputs:   HorizontalEdge.Start.Y, HorizontalEdge.End.Y: Projected Y
 ;            coordinates of the ends of the wall edge.
 ; ==========================================================================
+ProjectHorizontalEdge:
 
+; --------------------------------------------------------------------------
+; Calculate the height relative to the camera position.
+; --------------------------------------------------------------------------	
+
+	;ld de,(Render.Camera.Z)
+	ld a,[Render.Camera_Z]
+	ld d,a
+	ld a,[Render.Camera_Z+1]
+	ld e,a
+	add hl,de
+
+; --------------------------------------------------------------------------
+; Project the height of the wall start to the screen.
+; --------------------------------------------------------------------------
