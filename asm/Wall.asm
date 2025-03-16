@@ -1452,3 +1452,65 @@ Lower.Done:
 ; --------------------------------------------------------------------------
 ; Check if we've finished any more columns.
 ; --------------------------------------------------------------------------
+
+	;ld hl,(Trapezium.Start.Column)
+	ld a,[Trapezium.Start_Column]
+	ld h,a
+	ld a,[Trapezium.Start_Column+1]
+	ld l,a
+	ld h,TopEdgeClip >> 8
+	ld a,[Trapezium.End_Column]
+	sub l
+	ld b,a
+	inc b
+
+:	ld a,[hl]
+	or a
+	jp m,:+
+
+	inc h
+	cp [hl]
+	dec h
+
+	jr c,:+
+
+	cpl
+	ld [hl],a
+
+	inc h
+	ld [hl],-1+1
+	dec h
+
+	ld a,[ColumnsToDraw]
+	dec a
+	jp z,Render.Finish ; Quickly bail out if we've finished.
+	ld [ColumnsToDraw],a
+
+:	inc l
+	;djnz :--
+	dec b
+	jr :--
+
+	ret
+
+; --------------------------------------------------------------------------
+; Draw a "middle" wall.
+; --------------------------------------------------------------------------
+Wall.DrawMiddle:
+
+; --------------------------------------------------------------------------
+; "Middle" walls always use the front subsector for heights.
+; --------------------------------------------------------------------------
+
+  	;ld hl,(Sector.Front)
+	ld a,[Sector.Front]
+	ld h,a
+	ld a,[Sector.Front+1]
+	ld l,a
+
+; --------------------------------------------------------------------------
+; Draw the "middle" wall's floor edge.
+; --------------------------------------------------------------------------
+
+
+
