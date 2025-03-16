@@ -1213,7 +1213,7 @@ Upper.FrontCeilingAboveBackCeiling:
 	ld a,[HorizontalEdge.Start_Y]
 	ld h,a
 	ld a,[HorizontalEdge.Start_Y+1]
-	ld l,a	
+	ld l,a
 	;ld (Trapezium.Start.Ceiling),hl
 	ld a,h
 	ld [Trapezium.Start_Ceiling],a
@@ -1251,7 +1251,7 @@ Upper.FrontCeilingAboveBackCeiling:
 	ld a,Line.Clip_Default
 	ld d,a
 	ld a,Line.Clip_Default+1
-	ld e,a	
+	ld e,a
 	call DrawHorizontalEdge
 
 	pop hl
@@ -1280,3 +1280,24 @@ Upper.FrontCeilingAboveBackCeiling:
 ; The front sector's ceiling is below the back sector's ceiling.
 ; --------------------------------------------------------------------------
 Upper.FrontCeilingBelowBackCeiling:
+
+	;ld hl,(UpperLower.FrontCeilingHeight)
+	ld a,[UpperLower.FrontCeilingHeight]
+	ld h,a
+	ld a,[UpperLower.FrontCeilingHeight+1]
+	ld l,a
+
+	call ProjectHorizontalEdge
+	;ld de,Line.Clip.UpperFloor
+	ld a,Line.Clip_UpperFloor
+	ld d,a
+	ld a,Line.Clip_UpperFloor+1
+	ld e,a
+	set Line.LineFlag.TopDown,(iy+Line.LineFlags)
+	call DrawHorizontalEdge
+
+Upper.Done:
+
+; --------------------------------------------------------------------------
+; Draw the "lower" (connects floors between adjacent sectors).
+; --------------------------------------------------------------------------
