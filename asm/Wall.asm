@@ -2017,3 +2017,109 @@ DrawVerticalEdges:
 ; Destroyed: AF, BC, DE, HL.
 ; ==========================================================================
 DrawVerticalEdge:
+
+	ld [VerticalEdge_Column],a
+	;ld (VerticalEdge.Floor),de
+	ld a,d
+	ld [VerticalEdge.Floor],a
+	ld a,e
+	ld [VerticalEdge.Floor+1],a
+
+	ld d,TopEdgeClip >> 8
+	ld e,a
+	ld a,[de]
+	or a
+	ret z;ret m
+
+
+	inc hl
+	call Clip16ToRow
+	inc a
+	ld b,a
+
+	ld a,[de]
+	cp b
+	jr c,:+
+	ld b,a
+:	
+
+	;ld hl,(VerticalEdge.Floor)
+	ld a,[VerticalEdge.Floor]
+	ld h,a
+	ld a,[VerticalEdge.Floor+1]
+	ld l,a
+	dec hl
+	call Clip16ToRow
+	inc a
+	ld c,a
+
+	inc d
+	ld a,[de]
+	cp c
+	jr c,:+
+	ld a,c
+:
+
+	sub b
+	ret c
+	ret z
+
+	ld e,b
+	ld b,a
+	inc b
+
+	ld a,[VerticalEdge.Column]
+
+	push bc
+	dec e
+	call Pixel.GetInformation
+	pop bc
+
+	ld de,12
+	ld c,a
+
+:	ld a,[hl]
+	or c
+	ld [hl],a
+	add hl,de
+	;djnz -
+	dec b
+	jr :-
+	ret
+
+; ==========================================================================
+; Line.Clip.Default
+; --------------------------------------------------------------------------
+; Clips line pixels against the completed columns and the top/bottom bounds.
+; --------------------------------------------------------------------------
+; Inputs:    (L,H): The pixel to clip.
+; Outputs:   Carry set if clipped, cleared if not clipped.
+; Destroyed: AF, D.
+; ==========================================================================
+Line.Clip_Default:
+	ld a,h
+
+	; Can we clip against the top edge?
+	ld h,TopEdgeClip >> 8
+	cp [hl]
+	jr nc,:+
+	ld h,a
+	ret
+
+:	; Can we clip against the bottom edge?
+	inc h
+	cp [hl]
+	ccf
+	ld h,a
+	ret
+
+; ==========================================================================
+; Line.Clip.UpperFloor
+; --------------------------------------------------------------------------
+; Clips line pixels against the completed columns and the top bounds. If
+; below the upper bounds, these are amended to clip later lines.
+; --------------------------------------------------------------------------
+; Inputs:    (L,H): The pixel to clip.
+; Outputs:   Carry set if clipped, cleared if not clipped.
+; Destroyed: AF, D.
+; ==========================================================================
