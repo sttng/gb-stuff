@@ -318,7 +318,7 @@ ClippedToY:
 	ld l,a
 	ld a,[End.Y]
 	ld d,a
-	ld a,[End.Y 1]
+	ld a,[End.Y+1]
 	ld e,a
 
 	call Maths.Compare.HL.NegDE.Signed
@@ -834,13 +834,13 @@ NoViewClippingRequired:
 	xor a
 	ld hl, ClipFlags
 	bit ClipFlag_EndOutsideLeft,[hl]
-	jr nz,Project.End.X
+	jr nz,Project.End_X
 
   ; If we clipped to the right, project to the right.
 	ld a,95
 	;ld hl, ClipFlags
 	bit ClipFlag_EndOutsideRight,[hl]
-	jr nz,Project.End.X
+	jr nz,Project.End_X
 
 	;ld hl,[End.VertexIndex]
 	ld a,[End.VertexIndex]
@@ -888,13 +888,13 @@ NoViewClippingRequired:
 	or $80
 	ld [hl],a
 	and $7F
-	jr Project.End.X
+	jr Project.End_X
 
 End.AlreadyProjected:
 	dec a
 	and $7F
 
-Project.End.X:
+Project.End_X:
 	ld [Trapezium.End_Column],a
 
 ; --------------------------------------------------------------------------
@@ -905,12 +905,12 @@ Project.End.X:
 	xor a
 	ld hl, ClipFlags
 	bit ClipFlag_StartOutsideLeft,[hl]
-	jr nz,Project.Start.X
+	jr nz,Project.Start_X
 
 	; If we clipped to the right , project to the right.
 	ld a,95
 	bit ClipFlag_StartOutsideRight,[hl]
-	jr nz,Project.Start.X
+	jr nz,Project.Start_X
 
 	;ld hl,(Start.VertexIndex)
 	ld a,[Start.VertexIndex]
@@ -918,7 +918,7 @@ Project.End.X:
 	ld a,[Start.VertexIndex+1]
 	ld l,a
 	ld h,Vertices_AlreadyTransformed >> 8
-	ld a,(hl)
+	ld a,[hl]
 	inc a
 	jr nz,Start.AlreadyProjected
 
@@ -957,14 +957,14 @@ Project.End.X:
 	or $80
 	ld [hl],a
 	and $7F
-	jr Project.Start.X
+	jr Project.Start_X
 
 Start.AlreadyProjected:
 	dec a
 	and $7F
 
 
-Project.Start.X:
+Project.Start_X:
 	ld [Trapezium.Start_Column],a
 
 	; Run-on to the draw function.
