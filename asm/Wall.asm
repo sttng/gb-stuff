@@ -2123,3 +2123,147 @@ Line.Clip_Default:
 ; Outputs:   Carry set if clipped, cleared if not clipped.
 ; Destroyed: AF, D.
 ; ==========================================================================
+Line.Clip_UpperFloor:
+	ld a,h
+
+	; Can we clip against the top edge?
+	ld h,TopEdgeClip >> 8
+	cp [hl]
+	jr c,:+
+
+	ld [hl],a
+
+	; Can we clip against the bottom edge?
+
+	inc h
+	cp [hl]
+	ccf
+
+:	ld h,a
+	ret
+
+; ==========================================================================
+; Line.Clip.LowerCeiling
+; --------------------------------------------------------------------------
+; Clips line pixels against the completed columns and the bottom bounds. If
+; above the bottom bounds, these are amended to clip later lines.
+; --------------------------------------------------------------------------
+; Inputs:    (L,H): The pixel to clip.
+; Outputs:   Carry set if clipped, cleared if not clipped.
+; Destroyed: AF, D.
+; ==========================================================================
+Line.Clip_LowerCeiling:
+	ld a,h
+
+	; Can we clip against the bottom edge?
+	ld h,BottomEdgeClip >> 8
+	cp [hl]
+	ccf
+	jr c,:+
+
+	ld [hl],a
+
+	; Can we clip against the top edge?
+	dec h
+	cp [hl]
+
+:	ld h,a
+	ret
+
+; ==========================================================================
+; Clip24To16
+; --------------------------------------------------------------------------
+; Clips a 24-bit number to a 16-bit one.
+; --------------------------------------------------------------------------
+; Inputs:    ABC: The value to clip.
+; Outputs:   BC: The clipped value (between -32768 and +32767).
+; Destroyed: AF.
+; ==========================================================================
+Clip24To16:
+	or a
+	jr z,Clip24To16.SmallPositive
+	inc a
+	jr z,Clip24To16.SmallNegative
+	dec a
+	ld bc,32767
+	ret c ;ret p
+	ld bc,-32768
+	ret
+
+Clip24To16.SmallPositive:
+	; BC is in the range 0..65535
+	bit 7,b
+	ret z
+	ld bc,32767
+	ret
+
+Clip24To16.SmallNegative:
+	; BC is in the range -1..-65536
+	bit 7,b
+	ret nz
+	ld bc,-32768
+	ret
+
+; ==========================================================================
+; Clip16ToRow
+; --------------------------------------------------------------------------
+; Clips a 16-bit number to an 8-bit one in the range of screen rows (0..63).
+; --------------------------------------------------------------------------
+; Inputs:    HL: The value to clip.
+; Outputs:   A: The clipped value (between 0 and 63).
+; Destroyed: F.
+; ==========================================================================
+Clip16ToRow:
+	bit 7,h
+	jr z,:+
+	xor a
+	ret
+:	ld a,h
+	or a
+	jr z,:+
+	ld a,63
+	ret
+:	ld a,l
+	cp 64
+	ret c
+	ld a,63
+	ret
+
+; ==========================================================================
+; Clip16ToRowPlusOne
+; --------------------------------------------------------------------------
+; Clips a 16-bit number to an 8-bit one in the range of screen rows plus one
+; (-1..64).
+; --------------------------------------------------------------------------
+; Inputs:    HL: The value to clip.
+; Outputs:   A: The clipped value (between -1 and 64).
+; Destroyed: F.
+; ==========================================================================
+Clip16ToRowPlusOne:
+	bit 7,h
+	jr z,:+
+	ld a,-1
+	ret
+:	ld a,h
+	or a
+	jr z,:+
+	ld a,64
+	ret
+:	ld a,l
+	cp 65
+	ret c
+	ld a,64
+	ret
+
+
+; ==========================================================================
+; GetYIntercept
+; --------------------------------------------------------------------------
+; Calculates the Y intercept of a wall (the point where Y=0).
+; The returned value is cached.
+; --------------------------------------------------------------------------
+; Inputs:    Start.X, Start.Y, End.X, End.Y, Delta.X, Delta.Y.
+; Outputs:   HL: The X coordinate on the wall for Y=0.
+; Destroyed: AF, BC, DE.
+; ==========================================================================
+
