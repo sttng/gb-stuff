@@ -2266,4 +2266,118 @@ Clip16ToRowPlusOne:
 ; Outputs:   HL: The X coordinate on the wall for Y=0.
 ; Destroyed: AF, BC, DE.
 ; ==========================================================================
+GetYIntercept:
+	jr GetYIntercept+2
+	nop
+
+	; Result = Start.X - (Delta.X * Start.Y) / Delta.Y
+
+	;ld de,(Delta.X)
+	ld a,[Delta.X]
+	ld d,a
+	ld a,[Delta.X+1]
+	ld e,a
+	;ld bc,(Start.Y)
+	ld a,[Start.Y]
+	ld b,a
+	ld a,[Start.Y+1]
+	ld c,a
+	call Maths.Mul.S16S16
+
+	ld a,e
+	ld b,h
+	ld c,l
+
+	push de
+
+	;ld de,(Delta.Y)
+	ld a,[Delta.Y]
+	ld d,a
+	ld a,[Delta.Y+1]
+	ld e,a
+	call Maths.Div.S24S16
+
+	;ld hl,(Start.X)
+	ld a,[Start.X]
+	ld h,a
+	ld a,[Start.X+1]
+	ld l,a
+
+	pop de
+	ld a,d
+	xor e
+	jp c,:+;jp m,:+
+	neg_bc()
+:	add hl,bc
+
+	ld a,$21 ; LD HL,nn
+	ld [GetYIntercept+0],a
+	ld a,h
+	ld [GetYIntercept+1],a
+	ld a,l
+	ld [GetYIntercept+2],a
+  ret
+
+; ==========================================================================
+; GetXIntercept
+; --------------------------------------------------------------------------
+; Calculates the X intercept of a wall (the point where X=0).
+; The returned value is cached.
+; --------------------------------------------------------------------------
+; Inputs:    Start.X, Start.Y, End.X, End.Y, Delta.X, Delta.Y.
+; Outputs:   HL: The Y coordinate on the wall for X=0.
+; Destroyed: AF, BC, DE.
+; ==========================================================================
+GetXIntercept:
+	jr GetXIntercept+2
+	nop
+
+	; Result = Start.Y - (Delta.Y * Start.X) / Delta.X
+
+	;ld de,(Delta.Y)
+	ld a,[Delta.Y]
+	ld d,a
+	ld a,[Delta.Y+1]
+	ld e,a
+	;ld bc,(Start.X)
+	ld a,[Start.X]
+	ld b,a
+	ld a,[Start.X+1]
+	ld c,a
+	call Maths.Mul.S16S16
+
+	ld a,e
+	ld b,h
+	ld c,l
+
+	push de
+
+	;ld de,(Delta.X)
+	ld a,[Delta.X]
+	ld d,a
+	ld a,[Delta.X+1]
+	ld e,a
+	call Maths.Div.S24S16
+
+	;ld hl,(Start.Y)
+	ld a,[Start.Y]
+	ld h,a
+	ld a,[Start.Y+1]
+	ld l,a
+
+	pop de
+	ld a,d
+	xor e
+	jp c,:+;jp m,+
+	neg_bc()
+:	add hl,bc
+
+	ld a,$21 ; LD HL,nn
+	ld [GetXIntercept+0],a
+	ld a,h
+	ld [GetXIntercept+1],a
+	ld a,l
+	ld [GetXIntercept+2],a
+
+	ret
 
