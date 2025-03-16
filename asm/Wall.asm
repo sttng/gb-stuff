@@ -933,7 +933,7 @@ Project.End.X:
 	call Maths.Mul.S48
 	ld b,h
 	ld c,l
-	ld de,(Start.Y)
+	;ld de,(Start.Y)
 	ld a,[Start.Y]
 	ld d,a
 	ld a,[Start.Y+1]
@@ -985,3 +985,88 @@ Project.Start.X:
 ;            Sector.Back: Pointer to the sector behind the wall.
 ; ==========================================================================
 Draw:
+
+; --------------------------------------------------------------------------
+; Are we looking at the back of the wall?
+; --------------------------------------------------------------------------
+
+	ld b,a
+	ld a,[Trapezium.End_Column]
+	cp b
+	jp nc,StartDrawing
+
+; --------------------------------------------------------------------------
+; We are looking at the back of the wall. Is it a middle wall? If so, skip.
+; --------------------------------------------------------------------------
+
+	ld hl, DrawFlags
+	bit DrawFlag_FillMiddle,[hl]
+	ret nz
+
+; --------------------------------------------------------------------------
+; It's not a middle wall. Swap over the ends before rendering.
+; --------------------------------------------------------------------------
+
+	;ld hl,(Start.Y)
+	ld a,[Start.Y]
+	ld h,a
+	ld a,[Start.Y+1]
+	ld l,a
+	;ld de,(End.Y)
+	ld a,[End.Y]
+	ld h,a
+	ld a,[End.Y+1]
+	ld l,a
+	;ld (End.Y),hl
+	ld a,h
+	ld [End.Y],a
+	ld a,l
+	ld [End.Y+1],a	
+	;ld (Start.Y),de
+	ld a,d
+	ld [Start.Y],a
+	ld a,e
+	ld [Start.Y+1],a
+	
+	ld a,[Trapezium.Start_Column]
+	ld b,a
+	ld a,[Trapezium.End_Column]
+	ld [Trapezium.Start_Column],a
+	ld a,b
+	ld [Trapezium.End_Column],a
+	
+	;ld hl,(Sector.Front)
+	ld a,[Sector.Front]
+	ld h,a
+	ld a,[Sector.Front+1]
+	ld l,a
+	;ld de,(Sector.Back)
+	ld a,[Sector.Back]
+	ld d,a
+	ld a,[Sector.Back+1]
+	ld e,a
+	;ld (Sector.Back),hl
+	ld a,[Sector.Back]
+	ld h,a
+	ld a,[Sector.Back+1]
+	ld l,a	
+	;ld (Sector.Front),de
+	ld a,[Sector.Front]
+	ld d,a
+	ld a,[Sector.Front+1]
+	ld e,a	
+	ld a,[DrawFlags]
+	and (1 << DrawFlag_StrokeStart) | (1 << DrawFlag_StrokeEnd)
+	jr z,:+
+	cp (1 << DrawFlag_StrokeStart) | (1 << DrawFlag_StrokeEnd)
+	jr z,:+
+	xor (1 << DrawFlag_StrokeStart) | (1 << DrawFlag_StrokeEnd)
+	ld [DrawFlags],a
+:
+
+; --------------------------------------------------------------------------
+; Begin drawing the wall.
+; --------------------------------------------------------------------------
+
+StartDrawing:
+
