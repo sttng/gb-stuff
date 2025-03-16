@@ -1322,3 +1322,113 @@ Upper.Done:
 ; The front sector's floor is below the back sector's floor.
 ; --------------------------------------------------------------------------
 Lower.FrontFloorBelowBackFloor:
+
+	;ld hl,(UpperLower.BackFloorHeight)
+	ld a,[UpperLower.BackFloorHeight]
+	ld h,a
+	ld a,[UpperLower.BackFloorHeight+1]
+	ld l,a
+	call ProjectHorizontalEdge
+
+	;ld hl,(HorizontalEdge.Start.Y)
+	ld a,[HorizontalEdge.Start_Y]
+	ld h,a
+	ld a,[HorizontalEdge.Start_Y+1]
+	ld l,a
+	;ld (Trapezium.Start.Ceiling),hl
+	ld a,h
+	ld [Trapezium.Start_Ceiling],a
+	ld a,l
+	ld [Trapezium.Start_Ceiling+1],a	
+	push hl
+
+	;ld hl,(HorizontalEdge.End.Y)
+	ld a,[HorizontalEdge.End_Y]
+	ld h,a
+	ld a,[HorizontalEdge.End_Y+1]
+	ld l,a
+	;ld (Trapezium.End.Ceiling),hl
+	ld a,h
+	ld [Trapezium.End_Ceiling],a
+	ld a,l
+	ld [Trapezium.End_Ceiling+1],a	
+	push hl
+
+	;ld hl,(UpperLower.FrontFloorHeight)
+	ld a,[UpperLower.FrontFloorHeight]
+	ld h,a
+	ld a,[UpperLower.FrontFloorHeight+1]
+	ld l,a
+	call ProjectHorizontalEdge
+
+	;ld hl,(HorizontalEdge.Start.Y)
+	ld a,[HorizontalEdge.Start_Y]
+	ld h,a
+	ld a,[HorizontalEdge.Start_Y+1]
+	ld l,a
+	;ld (Trapezium.Start.Floor),hl
+	ld a,h
+	ld [Trapezium.Start_Floor],a
+	ld a,l
+	ld [Trapezium.Start_Floor+1],a
+	push hl
+
+	;ld hl,(HorizontalEdge.End.Y)
+	ld a,[HorizontalEdge.End_Y]
+	ld h,a
+	ld a,[HorizontalEdge.End_Y+1]
+	ld l,a
+	;ld (Trapezium.End.Floor),hl
+	ld a,h
+	ld [Trapezium.End_Floor],a
+	ld a,l
+	ld [Trapezium.End_Floor+1],a
+	push hl
+
+	call DrawVerticalEdges	
+
+	pop hl
+	;ld (HorizontalEdge.End.Y),hl
+	ld a,h
+	ld [HorizontalEdge.End_Y],a
+	ld a,l
+	ld [HorizontalEdge.End_Y+1],a
+	pop hl
+	;ld (HorizontalEdge.Start.Y),hl
+	ld a,h
+	ld [HorizontalEdge.Start_Y],a
+	ld a,l
+	ld [HorizontalEdge.Start_Y+1],a
+	;ld de,Line.Clip.Default
+	ld a,Line.Clip_Default
+	ld d,a
+	ld a,Line.Clip_Default+1
+	ld e,a
+	call DrawHorizontalEdge
+
+	pop hl
+	;ld (HorizontalEdge.End.Y),hl
+	ld a,h
+	ld [HorizontalEdge.End_Y],a
+	ld a,l
+	ld [HorizontalEdge.End_Y+1],a
+	pop hl
+	;ld (HorizontalEdge.Start.Y),hl
+	ld a,h
+	ld [HorizontalEdge.Start_Y],a
+	ld a,l
+	ld [HorizontalEdge.Start_Y+1],a
+	;ld de,Line.Clip.LowerCeiling
+	ld a,Line.Clip_LowerCeiling
+	ld d,a
+	ld a,Line.Clip_LowerCeiling+1
+	ld e,a
+	res Line.LineFlag.TopDown,(iy+Line.LineFlags)
+	call DrawHorizontalEdge
+
+	jr Lower.Done
+
+; --------------------------------------------------------------------------
+; The front sector's floor is below the back sector's floor.
+; --------------------------------------------------------------------------
+Lower.FrontFloorAboveBackFloor:
