@@ -1681,3 +1681,75 @@ ProjectHorizontalEdge:
 ; --------------------------------------------------------------------------
 ; Project the height of the wall start to the screen.
 ; --------------------------------------------------------------------------
+
+	push hl
+	;ld de,(Start.Y)
+	ld a,[Start.Y]
+	ld d,a
+	ld a,[Start.Y+1]
+	ld e,a
+	call Maths.Div.S16S16
+	call Clip24To16
+	;ld hl,(Render.Camera.YShear)
+	ld a,[Render.Camera_YShear]
+	ld h,a
+	ld a,[Render.Camera_YShear+1]
+	ld l,a
+	or a
+	;sbc hl,bc
+	ld a,l
+	sub c
+	ld l,a
+	ld a,h
+	sbc b
+	ld h,a
+	;ld (HorizontalEdge.Start.Y),hl
+	ld a,h
+	ld [HorizontalEdge.Start_Y],a
+	ld a,l
+	ld [HorizontalEdge.Start_Y+1],a	
+	pop hl
+
+; --------------------------------------------------------------------------
+; Project the height of the wall end to the screen.
+; --------------------------------------------------------------------------
+
+	;ld de,(End.Y)
+	ld a,[End.Y]
+	ld d,a
+	ld a,[End.Y+1]
+	ld e,a
+	call Maths.Div.S16S16
+	call Clip24To16
+	ld hl,(Render.Camera.YShear)
+	ld a,[Render.Camera_YShear]
+	ld h,a
+	ld a,[Render.Camera_YShear+1]
+	ld l,a
+	or a
+	;sbc hl,bc
+	ld a,l
+	sub c
+	ld l,a
+	ld a,h
+	sbc b
+	ld h,a
+	;ld (HorizontalEdge.End.Y),hl
+	ld a,h
+	ld [HorizontalEdge.End_Y],a
+	ld a,l
+	ld [HorizontalEdge.End_Y+1],a	
+
+	ret
+
+; ==========================================================================
+; DrawHorizontalEdge
+; --------------------------------------------------------------------------
+; Draws a horizontal edge of a wall.
+; "Horizontal" refers to a line with constant height in 3D (when projected
+; to 2D it will appear sloped).
+; --------------------------------------------------------------------------
+; Inputs:    DE: Pointer to pixel clipping routine.
+; Outputs:   HorizontalEdge.Start.Y, HorizontalEdge.End.Y: Projected Y
+;            coordinates of the ends of the wall edge.
+; ==========================================================================
