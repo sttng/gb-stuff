@@ -1721,7 +1721,7 @@ ProjectHorizontalEdge:
 	ld e,a
 	call Maths.Div.S16S16
 	call Clip24To16
-	ld hl,(Render.Camera.YShear)
+	;ld hl,(Render.Camera.YShear)
 	ld a,[Render.Camera_YShear]
 	ld h,a
 	ld a,[Render.Camera_YShear+1]
@@ -1766,7 +1766,7 @@ DrawHorizontalEdge:
 	ld a,l
 	ld [Clip.g_line16Y1+1],a
 
-	ld hl,(HorizontalEdge.End.Y)
+	;ld hl,(HorizontalEdge.End.Y)
 	ld a,[HorizontalEdge.End_Y]
 	ld h,a
 	ld a,[HorizontalEdge.End_Y+1]
@@ -1861,7 +1861,7 @@ DrawHorizontalEdge:
 
 :
 HorizontalEdge.StartClipper: ;= $+1
-	call Line.Clip.Default
+	call Line.Clip_Default
 	inc l
 	;djnz -
 	dec b
@@ -1905,8 +1905,8 @@ HorizontalEdge.StartNotClipped:
 	ld l,a
 
 :
-HorizontalEdge.EndClipper = $+1
-	call Line.Clip.Default
+HorizontalEdge.EndClipper: ;= $+1
+	call Line.Clip_Default
 	dec l
 	;djnz -
 	dec b
@@ -1943,7 +1943,7 @@ HorizontalEdge.Culled:
 	inc b
 :
 HorizontalEdge.Culled_Clipper: ;= $+1
-	call Line.Clip.Default
+	call Line.Clip_Default
 	inc l
 	;djnz -
 	dec b
