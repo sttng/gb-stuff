@@ -1759,7 +1759,7 @@ DrawHorizontalEdge:
 	ld a,[HorizontalEdge.Start_Y]
 	ld h,a
 	ld a,[HorizontalEdge.Start_Y+1]
-	ld l,a	
+	ld l,a
 	;ld (Clip.g_line16Y1),hl
 	ld a,h
 	ld [Clip.g_line16Y1],a
@@ -1770,7 +1770,7 @@ DrawHorizontalEdge:
 	ld a,[HorizontalEdge.End_Y]
 	ld h,a
 	ld a,[HorizontalEdge.End_Y+1]
-	ld l,a		
+	ld l,a
 	;ld (Clip.g_line16Y2),hl
 	ld a,h
 	ld [Clip.g_line16Y2],a
@@ -1789,6 +1789,28 @@ DrawHorizontalEdge:
 
 ; --------------------------------------------------------------------------
 ; Clip the line.
+; --------------------------------------------------------------------------
+
+	ld a,[Trapezium.Start_Column]
+	ld [Clip.g_line16X1],a
+	ld a,[Trapezium.End_Column]
+	ld [Clip.g_line16X2],a
+	call Clip.Clip2DLine16Ex
+
+; --------------------------------------------------------------------------
+; Was it entirely culled?
+; --------------------------------------------------------------------------
+
+	jr c,HorizontalEdge.Culled
+
+; --------------------------------------------------------------------------
+; The wall was not culled, so draw it.
+; --------------------------------------------------------------------------
+
+	call Line.Draw
+
+; --------------------------------------------------------------------------
+; Do we need to handle clipped regions of the line?
 ; --------------------------------------------------------------------------
 
 
