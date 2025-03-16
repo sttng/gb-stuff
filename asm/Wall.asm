@@ -1512,5 +1512,108 @@ Wall.DrawMiddle:
 ; Draw the "middle" wall's floor edge.
 ; --------------------------------------------------------------------------
 
+	ld e,[hl]
+	inc hl
+	ld d,[hl]
+	inc hl
+
+	push hl
+
+	;ex de,hl
+	ld a,d
+	ld d,h
+	ld h,a
+	ld a,e
+	ld e,l
+	ld l,a
+	
+	call ProjectHorizontalEdge
+	;ld de,Line.Clip.Default
+	ld a,Line.Clip_Default
+	ld d,a
+	ld a,Line.Clip_Default+1
+	ld e,a
+	call DrawHorizontalEdge
+
+; --------------------------------------------------------------------------
+; Copy over the projected Y coordinates for the floor.
+; --------------------------------------------------------------------------
+
+	;ld hl,(HorizontalEdge.Start.Y)
+	ld a,[HorizontalEdge.Start_Y]
+	ld h,a
+	ld a,[HorizontalEdge.Start_Y+1]
+	ld l,a
+	;ld (Trapezium.Start.Floor),hl
+	ld a,h
+	ld [Trapezium.Start_Floor],a
+	ld a,l
+	ld [Trapezium.Start_Floor+1],a
+
+	;ld hl,(HorizontalEdge.End.Y)
+	ld a,[HorizontalEdge.End_Y]
+	ld h,a
+	ld a,[HorizontalEdge.End_Y+1]
+	ld l,a
+	;ld (Trapezium.End.Floor),hl
+	ld a,h
+	ld [Trapezium.End_Floor],a
+	ld a,l
+	ld [Trapezium.End_Floor+1],a
+
+	pop hl
+
+; --------------------------------------------------------------------------
+; Draw the "middle" wall's ceiling edge.
+; --------------------------------------------------------------------------
+
+	ld e,[hl]
+	inc hl
+	ld d,[hl]
+
+	;ex de,hl
+	ld a,d
+	ld d,h
+	ld h,a
+	ld a,e
+	ld e,l
+	ld l,a
+	call ProjectHorizontalEdge
+	;ld de,Line.Clip.Default
+	ld a,Line.Clip_Default
+	ld d,a
+	ld a,Line.Clip_Default+1
+	ld e,a
+	call DrawHorizontalEdge
+
+; --------------------------------------------------------------------------
+; Copy over the projected Y coordinates for the ceiling.
+; --------------------------------------------------------------------------
+
+	;ld hl,(HorizontalEdge.Start.Y)
+	ld a,[HorizontalEdge.Start_Y]
+	ld h,a
+	ld a,[HorizontalEdge.Start_Y+1]
+	ld l,a
+	;ld (Trapezium.Start.Ceiling),hl
+	ld a,h
+	ld [Trapezium.Start_Ceiling],a
+	ld a,l
+	ld [Trapezium.Start_Ceiling+1],a
+
+	;ld hl,(HorizontalEdge.End.Y)
+	ld a,[HorizontalEdge.End_Y]
+	ld h,a
+	ld a,[HorizontalEdge.End_Y+1]
+	ld l,a
+	;ld (Trapezium.End.Ceiling),hl
+	ld a,h
+	ld [Trapezium.End_Ceiling],a
+	ld a,l
+	ld [Trapezium.End_Ceiling+1],a
+
+; --------------------------------------------------------------------------
+; Draw the vertical edges of the wall.
+; --------------------------------------------------------------------------
 
 
