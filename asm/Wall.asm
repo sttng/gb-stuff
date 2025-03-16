@@ -38,7 +38,7 @@ ClipAndDraw:
 ; --------------------------------------------------------------------------
 
 	ld hl, DrawFlags
-	bit DrawFlag_FillMiddle, [hl]
+	bit DrawFlag_FillMiddle,[hl]
 
 	jr z,:+
 
@@ -404,8 +404,8 @@ IsShallow:
 ; Clip the start to Y=+X.
 ; --------------------------------------------------------------------------
 
-	ld hl, ClipFlags
-	bit ClipFlag_StartOutsideRight, [hl]
+	ld hl,ClipFlags
+	bit ClipFlag_StartOutsideRight,[hl]
 	jr z,ClippedStartRight
 
 	; If dY == 0, Start.X = Start.Y.
@@ -452,7 +452,7 @@ IsShallow:
 		jp ClippedStartRight
 	:
 	; We can't take a shortcut, so perform a slow clip.
-	ld hl, ClipFlags
+	ld hl,ClipFlags
 	bit ClipFlag_Steep,[hl]	
 	jr z,ClipStartRight.Shallow
 
@@ -492,7 +492,7 @@ ClippedStartRight:
 ; Clip the end to Y=+X.
 ; --------------------------------------------------------------------------
 
-	ld hl, ClipFlags
+	ld hl,ClipFlags
 	bit ClipFlag_EndOutsideRight,[hl]
 	jr z,ClippedEndRight
 
@@ -579,7 +579,7 @@ ClippedEndRight:
 ; Clip the start to Y=-X.
 ; --------------------------------------------------------------------------
 
-	ld hl, ClipFlags
+	ld hl,ClipFlags
 	bit ClipFlag_StartOutsideLeft,[hl]
 	jr z,ClippedStartLeft
 
@@ -654,7 +654,7 @@ ClipStartLeft.Clip:
 	inc d
 	call Maths.Div.S16S16
 
-	ld hl, ClipFlags
+	ld hl,ClipFlags
 	bit ClipFlag_Steep,[hl]
 	jr nz,:+
 	;ld (Start.Y),bc
@@ -688,7 +688,7 @@ ClippedStartLeft:
 ; Clip the end to Y=-X.
 ; --------------------------------------------------------------------------
 
-	ld hl, ClipFlags
+	ld hl,ClipFlags
 	bit ClipFlag_EndOutsideLeft,[hl]
 	jr z,ClippedEndLeft
 
@@ -739,7 +739,7 @@ ClippedStartLeft:
 	:
 
 	; We can't take a shortcut, so perform a slow clip.
-	ld hl, ClipFlags
+	ld hl,ClipFlags
 	bit ClipFlag_Steep,[hl]
 	jr z,ClipEndLeft.Shallow
 
@@ -832,13 +832,13 @@ NoViewClippingRequired:
 
 	; If we clipped to the left, project to the left.
 	xor a
-	ld hl, ClipFlags
+	ld hl,ClipFlags
 	bit ClipFlag_EndOutsideLeft,[hl]
 	jr nz,Project.End_X
 
   ; If we clipped to the right, project to the right.
 	ld a,95
-	;ld hl, ClipFlags
+	;ld hl,ClipFlags
 	bit ClipFlag_EndOutsideRight,[hl]
 	jr nz,Project.End_X
 
@@ -903,7 +903,7 @@ Project.End_X:
 
 	; If we clipped to the left, project to the left.
 	xor a
-	ld hl, ClipFlags
+	ld hl,ClipFlags
 	bit ClipFlag_StartOutsideLeft,[hl]
 	jr nz,Project.Start_X
 
@@ -999,7 +999,7 @@ Draw:
 ; We are looking at the back of the wall. Is it a middle wall? If so, skip.
 ; --------------------------------------------------------------------------
 
-	ld hl, DrawFlags
+	ld hl,DrawFlags
 	bit DrawFlag_FillMiddle,[hl]
 	ret nz
 
@@ -1074,7 +1074,7 @@ StartDrawing:
 ; Are we drawing a "middle" or an "upper/lower" wall type?
 ; --------------------------------------------------------------------------
 
-	ld hl, DrawFlags
+	ld hl,DrawFlags
 	bit DrawFlag_FillMiddle,[hl]
 	jp nz,Wall.DrawMiddle
 
@@ -1649,7 +1649,7 @@ Wall.DrawMiddle:
 :	inc l
 	;djnz -
 	dec b
-	jr :--
+	jr :-
 
 	ret
 
