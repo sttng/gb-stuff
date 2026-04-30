@@ -4,14 +4,121 @@ SECTION "Header", ROM0[$100]
     jp EntryPoint
     ds $150 - $104, 0
 
+; ==========================================
+; HARDWARE INITIALIZATION & MAIN LOOP
+; ==========================================
 EntryPoint:
-    ; Example usage:
-    ; Draw a line from (10, 5) to (100, 50)
-    ; ld b, 10
-    ; ld c, 5
-    ; ld d, 100
-    ; ld e, 50
-    ; call DrawLine
+    ; 1. Initialize Stack Pointer (Mandatory for Call/Push/Pop)
+    ld sp, $E000
+    
+    ; Disable interrupts just to be safe during setup
+    di
+
+    ; 2. Safely turn off the LCD by waiting for VBlank
+.wait_vblank:
+    ld a, [rLY]
+    cp 144
+    jr c, .wait_vblank
+    
+    xor a
+    ld [rLCDC], a       ; LCD Off
+
+    ; 3. Setup Background Palette (Grayscale: 11 10 01 00)
+    ld a, %11100100
+    ld [rBGP], a
+
+    ; 4. Clear the Line Buffer in WRAM
+    ld hl, wLineBuffer
+    ld bc, 2048
+    xor a
+.clear_buffer:
+    ld [hl+], a
+    dec bc
+    ld a, b
+    or c
+    jr nz, .clear_buffer
+
+    ; 5. Initialize the Background Tilemap ($9800)
+    ; We are plotting a 128x64 window -> 16x8 tiles.
+    ; We'll map tile index 0-127 exactly to this grid.
+    ld hl, $9800
+    ld b, 8             ; 8 rows
+    ld c, 0             ; Tile Index counter
+.row_loop:
+    ld d, 16            ; 16 columns per row
+.col_loop:
+    ld a, c
+    ld [hl+], a
+    inc c
+    dec d
+    jr nz, .col_loop
+    
+    ; Add 16 to HL to skip to the next visible row on the 32x32 Game Boy map
+    ld a, 16
+    add l
+    ld l, a
+    jr nc, .no_carry_map
+    inc h
+.no_carry_map:
+    dec b
+    jr nz, .row_loop
+
+    ; 6. DRAW OUR EXAMPLE LINES (To WRAM Buffer)
+    ; Draw Line 1 (X)
+    ld b, 10
+    ld c, 10
+    ld d, 118
+    ld e, 54
+    call DrawLine
+    
+    ; Draw Line 2 (X)
+    ld b, 10
+    ld c, 54
+    ld d, 118
+    ld e, 10
+    call DrawLine
+    
+    ; Draw a Box
+    ld b, 10
+    ld c, 10
+    ld d, 118
+    ld e, 10
+    call DrawLine
+    ld b, 118
+    ld c, 10
+    ld d, 118
+    ld e, 54
+    call DrawLine
+    ld b, 118
+    ld c, 54
+    ld d, 10
+    ld e, 54
+    call DrawLine
+    ld b, 10
+    ld c, 54
+    ld d, 10
+    ld e, 10
+    call DrawLine
+
+    ; 7. Copy Rendered Buffer to VRAM ($8000)
+    ld hl, wLineBuffer
+    ld de, $8000
+    ld bc, 2048
+.copy_to_vram:
+    ld a, [hl+]
+    ld [de], a
+    inc de
+    dec bc
+    ld a, b
+    or c
+    jr nz, .copy_to_vram
+
+    ; 8. Turn LCD Back On
+    ; Bit 7 = LCD On, Bit 4 = BG Data at $8000, Bit 0 = BG On
+    ld a, %10010001
+    ld [rLCDC], a
+
+    ; 9. Lockup - Rendering is complete
 .lockup
     halt
     jr .lockup
@@ -107,44 +214,31 @@ DrawLine::
 ; X-MAJOR LOOP (DX >= DY)
 ; ==========================================
 .x_major:
-    ; Setup Counter (DX + 1) in B
     ldh a, [hLineDX]
     inc a
     ld b, a
-    
-    ; Setup Error Accumulator (DX / 2) in C
     ldh a, [hLineDX]
     srl a
     ld c, a
-    
 .x_major_loop:
-    push bc                 ; Save Counter and Error
+    push bc
     call SetPixel_Fast
-    pop bc                  ; Restore Counter and Error
-    
-    ; X += SX (Major Axis ALWAYS moves)
+    pop bc
     ldh a, [hLineSX]
     add d
     ld d, a
-    
-    ; Error -= DY
     ldh a, [hLineDY]
     ld h, a
     ld a, c
     sub h
     ld c, a
     jr nc, .x_major_continue
-    
-    ; Error < 0: Y += SY (Minor Axis conditional move)
     ldh a, [hLineSY]
     add e
     ld e, a
-    
-    ; Error += DX
     ldh a, [hLineDX]
     add c
     ld c, a
-    
 .x_major_continue:
     dec b
     jr nz, .x_major_loop
@@ -154,44 +248,31 @@ DrawLine::
 ; Y-MAJOR LOOP (DY > DX)
 ; ==========================================
 .y_major:
-    ; Setup Counter (DY + 1) in B
     ldh a, [hLineDY]
     inc a
     ld b, a
-    
-    ; Setup Error Accumulator (DY / 2) in C
     ldh a, [hLineDY]
     srl a
     ld c, a
-    
 .y_major_loop:
-    push bc                 ; Save Counter and Error
+    push bc
     call SetPixel_Fast
-    pop bc                  ; Restore Counter and Error
-    
-    ; Y += SY (Major Axis ALWAYS moves)
+    pop bc
     ldh a, [hLineSY]
     add e
     ld e, a
-    
-    ; Error -= DX
     ldh a, [hLineDX]
     ld h, a
     ld a, c
     sub h
     ld c, a
     jr nc, .y_major_continue
-    
-    ; Error < 0: X += SX (Minor Axis conditional move)
     ldh a, [hLineSX]
     add d
     ld d, a
-    
-    ; Error += DY
     ldh a, [hLineDY]
     add c
     ld c, a
-    
 .y_major_continue:
     dec b
     jr nz, .y_major_loop
@@ -202,7 +283,6 @@ DrawLine::
 ; ==========================================
 ; Inputs: D = X coordinate, E = Y coordinate
 SetPixel_Fast::
-    ; Bounds Checking
     ld a, d
     cp 128
     ret nc
@@ -210,33 +290,29 @@ SetPixel_Fast::
     cp 64
     ret nc
 
-    ; 1. Fast Y Base Address Lookup (Zero Math)
     ld a, e
     add a
     ld l, a
     ld h, HIGH(Y_Row_Pointers)
     ld a, [hl+]
     ld h, [hl]
-    ld l, a     ; HL = Base address for row Y
+    ld l, a
 
-    ; 2. Add X Offset
     ld a, d
     and %11111000
-    add a       ; (X/8)*16
+    add a
     add l
     ld l, a
     jr nc, .no_carry
     inc h
 .no_carry:
 
-    ; 3. Fast Bitmask Lookup (Zero Math)
     push hl
     ld l, d
     ld h, HIGH(X_Masks)
-    ld b, [hl]  ; B = Bitmask
+    ld b, [hl]
     pop hl
 
-    ; 4. Draw Pixel
     ld a, [hl]
     or b
     ld [hl+], a
