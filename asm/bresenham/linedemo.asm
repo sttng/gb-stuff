@@ -1,7 +1,7 @@
 ; ============================================================
 ;  linedemo.asm  -  Game Boy X line demo (RGBDS)
 ;
-;  Draws two diagonal lines forming an X in a 128x64 window.
+;  Draws two diagonal lines forming an X in a 128x64 area on the BG layer.
 ;  16-bit Bresenham error to avoid overflow (dx up to 127).
 ;
 ;  Build:
@@ -12,8 +12,6 @@
 
 INCLUDE "hardware.inc"
 
-DEF WIN_WX EQU 23    ; WX=23 -> window left at screen x=16
-DEF WIN_WY EQU 40    ; window top at screen y=40
 
 ; ---- interrupt vectors ------------------------------------
 SECTION "Vecs", ROM0[$0000]
@@ -61,13 +59,15 @@ Start:
     di
     ld   sp, $FFFE
 
-    ; wait for VBlank so VRAM is safe to write
-.wvb:
-    ld   a, [rLY]
-    cp   144
-    jr   c, .wvb
-    xor  a
-    ld   [rLCDC], a     ; LCD off
+	; Do not turn the LCD off outside of VBlank
+WaitVBlank:
+	ld a, [rLY]
+	cp 144
+	jr c, WaitVBlank
+
+	; Turn the LCD off
+	xor a
+	ld [rLCDC], a
 
     ; zero tile data $8000..$97FF
     ld   hl, $8000
@@ -80,52 +80,47 @@ Start:
     or   c
     jr   nz, .clr
 
-    ; fill entire _SCRN1 ($9C00..$9FFF, 32x32 tiles) with $FF first
-    ld   hl, _SCRN1
-    ld   bc, $0400      ; 1024 bytes = 32*32
+    ; initialise tile $FF as solid (all pixels colour 3): 16 bytes of $FF at $8FF0
+    ld   hl, $8FF0
+    ld   b, 5
     ld   a, $FF
-.fillmap:
+.filltile:
     ld   [hl+], a
-    dec  bc
-    ld   a, b
-    or   c
-    jr   nz, .fillmap
-
-    ; overwrite the 16x8 drawing area with tile indices 0..127
-    ld   hl, _SCRN1
-    ld   c, 0
-    ld   b, 8
-.mrow:
-    ld   d, 16
-.mcol:
-    ld   [hl], c
-    inc  hl
-    inc  c
-    dec  d
-    jr   nz, .mcol
-    ld   de, 16         ; skip remaining 16 tiles of this 32-wide row
-    add  hl, de
     dec  b
-    jr   nz, .mrow
+    jr   nz, .filltile
 
-    ; line 1: (7,9) -> (64,64)
-    ld   a, 7
+	; Copy the tilemap
+	ld de, Tilemap
+	ld hl, $9800
+	ld bc, Tilemap.End - Tilemap
+CopyTilemap:
+	ld a, [de]
+	ld [hli], a
+	inc de
+	dec bc
+	ld a, b
+	or a, c
+	jr nz, CopyTilemap
+
+    ; line 1: (1,3) -> (123,63)
+    ld   a, 1
     ld   [wX0], a
-    ld   a, 9
+    ld   a, 3
     ld   [wY0], a
-    ld   a, 64
+    ld   a, 123
     ld   [wX1], a
+    ld   a, 63
     ld   [wY1], a
     call DrawLine
 
-    ; line 2: (127,13) -> (3,37)
+    ; line 2: (127,17) -> (7,23)
     ld   a, 127
     ld   [wX0], a
-    ld   a, 13
+    ld   a, 17
     ld   [wY0], a
-    ld   a, 3
+    ld   a, 7
     ld   [wX1], a
-    ld   a, 37
+    ld   a, 23
     ld   [wY1], a
     call DrawLine
 
@@ -134,11 +129,7 @@ Start:
     xor  a
     ld   [rSCX], a
     ld   [rSCY], a
-    ld   a, WIN_WY
-    ld   [rWY], a
-    ld   a, WIN_WX
-    ld   [rWX], a
-    ld   a, LCDCF_ON|LCDCF_BLK01|LCDCF_WIN9C00|LCDCF_WINON|LCDCF_BG9800|LCDCF_BGON
+    ld   a, LCDCF_ON|LCDCF_BG8000|LCDCF_BG9800|LCDCF_BGON
     ld   [rLCDC], a
 .forever:
     halt
@@ -420,3 +411,27 @@ SetPixel:
 
 SECTION "Pad", ROM0[$7FFE]
     DW $0000
+	
+	
+SECTION "Tilemap", ROM0
+
+Tilemap:
+	db $00, $01, $02, $03, $04, $05, $06, $07, $08, $09, $0A, $0B, $0C, $0D, $0E, $0F, $FF, $FF, $FF, $FF,  0,0,0,0,0,0,0,0,0,0,0,0
+	db $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $1A, $1B, $1C, $1D, $1E, $1F, $FF, $FF, $FF, $FF,  0,0,0,0,0,0,0,0,0,0,0,0
+	db $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $2A, $2B, $2C, $2D, $2E, $2F, $FF, $FF, $FF, $FF,  0,0,0,0,0,0,0,0,0,0,0,0
+	db $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $3A, $3B, $3C, $3D, $3E, $3F, $FF, $FF, $FF, $FF,  0,0,0,0,0,0,0,0,0,0,0,0
+	db $40, $41, $42, $43, $44, $45, $46, $47, $48, $49, $4A, $4B, $4C, $4D, $4E, $4F, $FF, $FF, $FF, $FF,  0,0,0,0,0,0,0,0,0,0,0,0
+	db $50, $51, $52, $53, $54, $55, $56, $57, $58, $59, $5A, $5B, $5C, $5D, $5E, $5F, $FF, $FF, $FF, $FF,  0,0,0,0,0,0,0,0,0,0,0,0
+	db $60, $61, $62, $63, $64, $65, $66, $67, $68, $69, $6A, $6B, $6C, $6D, $6E, $6F, $FF, $FF, $FF, $FF,  0,0,0,0,0,0,0,0,0,0,0,0
+	db $70, $71, $72, $73, $74, $75, $76, $77, $78, $79, $7A, $7B, $7C, $7D, $7E, $7F, $FF, $FF, $FF, $FF,  0,0,0,0,0,0,0,0,0,0,0,0
+	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,  0,0,0,0,0,0,0,0,0,0,0,0
+	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,  0,0,0,0,0,0,0,0,0,0,0,0
+	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,  0,0,0,0,0,0,0,0,0,0,0,0
+	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,  0,0,0,0,0,0,0,0,0,0,0,0
+	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,  0,0,0,0,0,0,0,0,0,0,0,0
+	db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00,  0,0,0,0,0,0,0,0,0,0,0,0
+	db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00,  0,0,0,0,0,0,0,0,0,0,0,0
+	db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00,  0,0,0,0,0,0,0,0,0,0,0,0
+	db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00,  0,0,0,0,0,0,0,0,0,0,0,0
+	db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00,  0,0,0,0,0,0,0,0,0,0,0,0
+.End:
