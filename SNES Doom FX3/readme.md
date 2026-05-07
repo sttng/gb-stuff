@@ -93,3 +93,9 @@ Wrote 210856 bytes to snesmode.bin
 Verifying Flash:      [==============================]  100%
   OK
 ```
+
+```
+sudo ./picotool partition info
+there is no partition table
+un-partitioned_space : S(rw) NSBOOT(rw) NS(rw), uf2 { 'absolute', 'rp2350-arm-s', 'rp2350-riscv', 'data' }
+```
