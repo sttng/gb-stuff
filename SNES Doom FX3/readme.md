@@ -12,7 +12,6 @@ The RP2350 chip on the SNES DOOM PCB needs to be in bootloader mode to show as a
 
 ```
 sudo ./picotool info
-[sudo] password for m2m:          
 Program Information
  name:          snesmode
  binary start:  0x10000000
