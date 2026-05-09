@@ -87,7 +87,7 @@ Wrote 16777216 bytes to all.bin
 ```
 
 ```
-udo ./picotool save -r 0x10000000 0x100337a8 -v snesmode.bin
+sudo ./picotool save -r 0x10000000 0x100337a8 -v snesmode.bin
 Saving file:          [==============================]  100%
 Wrote 210856 bytes to snesmode.bin
 Verifying Flash:      [==============================]  100%
