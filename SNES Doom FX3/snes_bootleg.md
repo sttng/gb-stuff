@@ -1,8 +1,5 @@
 # SNES Cart Unlicensed Variants  
 
-**Gamars Puzzle (Kaiser)**  
-A LoROM game with SRAM at 316000h (unlike normal LoROM games that have SRAM at 70xxxxh). Cartridge Header Maker entry is \[FFDAh]=00h, and SRAM size entry is \[FFD8h]=20h (4096 gigabytes), the actual size of the SRAM is unknown.
-
 **Bootlegs**  
 The "bootleg" games are semi-illegal pirate productions, typically consisting of a custom (and not-so-professional) game engine, bundled with graphics and sounds ripped from commercial games. Some of these cartridges are containing some small copy-protection hardware (see below).
 
