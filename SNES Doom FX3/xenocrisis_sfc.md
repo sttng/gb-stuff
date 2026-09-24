@@ -1,48 +1,53 @@
-The dump is corrupted in a very regular way, but it still confirms the architecture: the SST39SF010A holds a small 65816 kernel, and the RP2040 sits behind a register window at **$3000**.
+The new dump is good. It sums to 0x3AD1, which matches the header checksum, the title reads "XENOCRISIS", and the reset jump is now correct. I disassembled all of it and annotated the listing (attached below). It is a small, clean LoROM FastROM kernel of about 9 KB, and it matches the RP2040 firmware on every point I could check.
 
-### The dump is bad
+**Contents of the chip**
 
-Every byte whose address has bits A3..A1 = `101` (address &amp; 0xE == 0xA, so offsets ending in A or B) actually contains the byte from address+4. That is one byte in eight. In the 9 KB of used code, every offset ending in A or B matches its +4 neighbour, while other offsets match their neighbours only about 25–35% of the time. The results:
+- About 1.1 KB of 65816 code at $8000–$86BC.
+- An SPC700 driver of $100C bytes at $86BD. It is uploaded to ARAM $0200 over the standard IPL protocol at boot.
+- The handshake tables at $96CC: `"Ubbxc\0"` sent, `AA "BBXC" 00` expected back.
+- A palette and a 2bpp font.
+- The header has map $30 and chipset **$63**. The upper nibble 6 isn't an assigned coprocessor type, and the extended header carries maker "BM" and code "XCRI". Either makes a clean detection key for the sd2snes firmware.
 
-- **Checksum:** the header says 0x3AD1 (complement 0xC52E, which is consistent), but the dump sums to 0x8EF7.
-- **Reset code:** at $8008, `JML $80800C` reads as `5C 0C A2 FF`. The code that follows at $800C is clearly the jump target.
-- **Code everywhere:** for example, `LDX #$1809 / STX $4300` reads as `A2 09 18 00 00 43`.
-- **Vectors:** the native NMI vector at $FFEA is lost; it reads as the IRQ vector.
+**Boot sequence**
 
-This cannot be what a real SNES sees, because the console couldn't get past the reset JML. So the fault is in how it was read: most likely your reader's A2 line, or glue logic on the cart reacting differently to the reader than to a console.
+1. It clears VRAM, CGRAM, OAM and WRAM, then uploads the SPC driver.
+2. It reads $3000 32,768 times to drain anything left in the RP2040's FIFO.
+3. It waits until $3000 reads $00.
+4. It runs the handshake one byte at a time, restarting on any mismatch.
+5. It enables NMI plus H/V IRQ (NMITIMEN $B1, HTIME $D2) and joypad auto-read, then enters the main loop at $85DF.
 
-The quickest fix is to read the SST39SF010A directly in a programmer. Otherwise, re-dump with a different reader, or check your reader on a known cart first. A clean image must sum to 0x3AD1. If a re-dump isn't possible, I can attempt a reconstruction and use that checksum as the acceptance test. Most of the lost bytes are operands in very repetitive DMA and PPU setup code, but I wouldn't trust a reconstruction without the checksum matching.
+**Commands the RP2040 sends** (read from $3000, dispatched through the table at $8552):
 
-### What the kernel shows, despite the damage
+| Byte | Handler | Meaning                                                                                               |
+|------|---------|-------------------------------------------------------------------------------------------------------|
+| 0    | —       | Nothing pending                                                                                       |
+| 1    | $84D3   | Wait for vblank                                                                                       |
+| 2    | $84DA   | Wait for raster IRQ split                                                                             |
+| 3    | $84E1   | Wait for raster IRQ split                                                                             |
+| 4    | $84E8   | `SEI / JSL $00:3000 / CLI`: execute the RP2040's generated code, which ends in RTL                    |
+| 5    | $84F9   | APU stream: 3 header bytes, then N × 4-byte packets from $3000 into $2140–$2143, handshaking on $2143 |
+| 6    | $84F1   | Acknowledge by writing $17                                                                            |
 
-The cartridge is LoROM FastROM with a 128 KB chip, of which only about 9 KB is used ($8000–$A397):
+**What the SNES sends back each frame** (written to $3000):
 
-- **Reset ($8000):** it switches to native mode, sets FastROM and initialises the PPU, then runs the handshake at about $80F3. It writes the challenge table at $96CC (`"Ubbxc\0"`) to **$3000** and compares what it reads back from $3000 against the table at $96D2 (`AA "BBXC" 00`). That is exactly the sequence the RP2040 firmware implements at `0x1000B294`.
-- **Main dispatcher ($8561):** it loops on `LDA $3000`, and a nonzero value is a command number. It indexes `JSR ($8552,X)`, a small jump table:
-  
-  - Command 4 is `SEI / JSL $00:3000 / CLI` at $84E8. The SNES executes the RP2040's generated code directly out of the window, and the `RTL` at the end of each block returns to the dispatcher. That explains the `0x04`…`0x6B` framing I found in the ARM generator.
-  - Command 5 ($84F9) streams bytes from $3000 into $2141–$2143 using the $2140 handshake. This is the BRR/APU upload path fed by core 1's encoder.
-- **Other contents:** there is an SPC700 driver blob at about $86B0–$8880, and font/graphics data from about $9800.
-- **Status writes:** the kernel reports back by writing codes such as `$14` and `$17` to $3000.
-- **Handlers:** NMI/IRQ handlers live around $8494–$84CF, and the kernel uses H-IRQ via $4207/$4208.
+- $10 marks the start of a frame.
+- $12 is followed by joy1 and joy2. These are 16-bit `STX $3000`, so each writes $3000 and then $3001.
+- $13 is followed by the APU port 1 value.
+- $11 comes next.
+- $16 is followed by a flags byte; bit 0 is the PAL/NTSC bit from $213F.
+- The raster IRQ path reports $14 or $15. That IRQ writes a brightness/force-blank value to INIDISP mid-frame, which gives the RP2040's DMA transfers a longer window than vblank alone.
 
-So the window is in the system area with /ROMSEL high, like the SA-1 or GSU register space. It is not in ROM space. Because code executes out of it, it must cover at least **$00:3000–$3FFF**, since the program counter walks upward through it. Every read strobe there pops one FIFO byte, and every write pushes one byte to the RP2040.
+The RP2040 command handler I found earlier (0x12, 0x13, 0x16, 0x55) lines up with this exactly.
 
-### The PCB
+**Things that constrain the sd2snes design**
 
-The board has the RP2040, a W25Q128 (the flash you dumped first), the SST39SF010A, a small logic IC plus a 20-pin transceiver (the $3000 decode and the GPIO15-gated buffer), an 8-pin SOIC that is probably the CIC (matching the SNESCIC credit), and an IRQ test point. There is no SRAM; saves go to the RP2040 flash as I described before.
+- **Window size:** it has to cover at least $3000–$3FFF. Command 4 executes upward from $00:3000, and the 16-bit joypad writes touch $3001. Only bank $00 is actually used: the JSL targets bank $00 and the generated DMA code does `STZ $4304`. Decoding banks $00–$3F and $80–$BF is still the safe choice.
+- **Access speed:** reads in the window run at 3.58 MHz regardless of FastROM, because $2000–$3FFF is always a 6-cycle region.
+- **One byte per strobe:** each /RD in the window pops exactly one byte, and each /WR pushes one.
+- **Empty reads must be $00.** The drain loop depends on it.
+- **The FIFO must never underrun mid-block.** An empty FIFO during command 4 returns $00, which executes as BRK. The BRK/ABORT handler at $83E9 rewrites the return address to $80:8000, so the console soft-resets. The FPGA side therefore needs a prefetching buffer that is always ahead of the SNES while a block is being streamed.
+- **Interrupts during streaming:** command 4 runs with IRQ masked, but NMI can still land mid-block. The NMI handler at $84B4 only touches direct-page variables, so it doesn't consume window bytes, and nothing special is needed there.
 
-The USB-C port is almost certainly wired to the RP2040, and the firmware enables USB stdio. With the cart running in a console, a serial terminal should show the "Dbg: %d" line once per second. That is a cheap first look at what the firmware is doing at runtime.
+Everything else in the kernel is ordinary LoROM. On the sd2snes side, then, the work is just the $3000 window peripheral plus detection on chipset $63 or maker "BM" / code "XCRI". The hard part is still running the RP2040 firmware.
 
-### What this changes in the sd2snes plan
-
-The SNES side is now simple.
-
-1. **Kernel ROM:** map it as plain LoROM, which sd2snes already handles.
-2. **Window peripheral:** add a decoder for $00–$3F/$80–$BF:$3000–$3FFF. Reads pop a TX FIFO and return 0x00 when it is empty; writes push to an RX FIFO. This sits next to the MSU/DAC logic in your dedicated core. I would decode the full 4 KB range, since generated blocks can be long, and treat whether mirrors exist as something to confirm with a scope on the real cart.
-3. **The hard part:** running the RP2040 firmware on a soft ARMv6-M core with the SDK and bus-library hooks is unchanged from the earlier plan.
-4. **Packaging:** ship the kernel ROM plus the RP2040 image as one file with a detection tag.
-
-The emulator harness is now very concrete. Load the kernel in Mesen2 as LoROM, give it a $3000 device, and run the firmware in Unicorn behind it. That produces your reference traces and the CPU-budget numbers for sizing the soft core.
-
-Once you have a clean kernel image (checksum 0x3AD1), I can do a full annotated disassembly, including the complete command table and the SPC driver protocol, and then start on the harness.
+The obvious next step is the emulator harness: Mesen2 with this kernel and a $3000 device, backed by Unicorn running the RP2040 image with the SDK hooks. That produces the golden $3000 read/write traces and the per-frame CPU budget for sizing the soft core. If you have a logic analyzer, capturing /RD, /WR and D0–D7 gated on $3000 on the real cart would give you a hardware reference trace to check the harness against.
